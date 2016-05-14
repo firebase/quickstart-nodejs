@@ -1,0 +1,11 @@
+{
+  "name": "firebase-database-quickstart",
+  "version": "1.0.0",
+  "description": "Firebase Node Database Quickstart Sample",
+  "main": "index.js",
+  "author": "nivco@google.com",
+  "license": "Apache License Version 2.0",
+  "dependencies": {
+    "firebase": "^3.0.0"
+  }
+}
