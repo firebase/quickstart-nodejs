@@ -6,6 +6,10 @@
   "author": "nivco@google.com",
   "license": "Apache License Version 2.0",
   "dependencies": {
-    "firebase": "^3.0.0"
+    "escape-html": "^1.0.3",
+    "firebase": "https://www.gstatic.com/firebasejs/staging/3.0.0/firebase.tgz",
+    "node-schedule": "^1.1.0",
+    "nodemailer": "^2.4.1",
+    "promise": "^7.1.1"
   }
 }

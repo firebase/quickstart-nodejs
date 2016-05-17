@@ -18,31 +18,172 @@
 // [START imports]
 var firebase = require('firebase');
 // [END imports]
+var nodemailer = require('nodemailer');
+var schedule = require('node-schedule');
+var Promise = require('promise');
+var escape = require('escape-html');
 
+// TODO(DEVELOPER): Configure your email transport.
+// Configure the email transport using the default SMTP transport and a GMail account.
+// See: https://nodemailer.com/
+// For other types of transports (Amazon SES, Sendgrid...) see https://nodemailer.com/2-0-0-beta/setup-transporter/
+var mailTransport = nodemailer.createTransport('smtps://<user>%40gmail.com:<password>@smtp.gmail.com');
+
+// TODO(DEVELOPER): Create your Change the 2 placeholders below.
 // [START initialize]
 // Initialize the app with a service account, granting admin privileges
 firebase.initializeApp({
-  // TODO(DEVELOPER): Change the 2 placeholder below.
   databaseURL: 'https://<PROJECT_ID>.firebaseio.com',
-  serviceAccount: '<SERVICE_ACCOUNT_CRENDENTIAL_FILE.json>'
+  serviceAccount: '<PATH_TO_SERVICE_ACCOUNT_CREDENTIAL_FILE>'
 });
 // [END initialize]
 
+/**
+ * Send a new star notification email to the user with the given UID.
+ */
+// [START single_value_read]
+function sendNotificationToUser(uid, postId) {
+  // Fetch the user's email.
+  var userRef = firebase.database().ref('/users/' + uid);
+  userRef.once('value').then(function(snapshot) {
+    var email = snapshot.val().email;
+    // Send the email to the user.
+    // [START_EXCLUDE]
+    if (email) {
+      sendNotificationEmail(email).then(function() {
+        // Save the date at which we sent that notification.
+        // [START write_fan_out]
+        var update = {};
+        update['/posts/' + postId + '/lastNotificationTimestamp'] =
+            firebase.database.ServerValue.TIMESTAMP;
+        update['/user-posts/' + uid + '/' + postId + '/lastNotificationTimestamp'] =
+            firebase.database.ServerValue.TIMESTAMP;
+        firebase.database().update(update);
+        // [END write_fan_out]
+      });
+    }
+    // [END_EXCLUDE]
+  });
+}
+// [END single_value_read]
 
-// [START function]
-// Makes all new messages ALL UPPERCASE.
-// As an admin, the app has access to read and write all data, regardless of Security Rules
-var db = firebase.database();
-var messageRef = db.ref('/messages');
-messageRef.on('child_added', function(snapshot) {
-  console.log('New message:', snapshot.val().text);
 
-  // Uppercase the message.
-  var uppercased = snapshot.val().text.toUpperCase();
+/**
+ * Send the new star notification email to the given email.
+ */
+function sendNotificationEmail(email) {
+  var mailOptions = {
+    from: '"Firebase Database Quickstart" <noreply@firebase.com>',
+    to: email,
+    subject: 'New star!',
+    text: 'One of your posts has received a new star!'
+  };
+  return mailTransport.sendMail(mailOptions).then(function() {
+    console.log('New star email notification sent to: ' + email);
+  });
+}
 
-  // Saving the uppercased message to DB.
-  console.log('Saving uppercased message: ' + uppercased);
-  return snapshot.ref.update({text: uppercased});
-});
-console.log('Uppercaser started...');
-// [END function]
+/**
+ * Update the star count.
+ */
+// [START post_stars_transaction]
+function updateStarCount(postRef) {
+  postRef.transaction(function(post) {
+    if (post) {
+      post.starCount = post.stars ? Object.keys(post.stars).length : 0;
+    }
+    return post;
+  });
+}
+// [END post_stars_transaction]
+
+/**
+ * Keep the likes count updated and send email notifications for new likes.
+ */
+function startListeners() {
+  firebase.database().ref('/posts').on('child_added', function (postSnapshot) {
+    var postReference = postSnapshot.ref;
+    var uid = postSnapshot.val().uid;
+    var postId = postSnapshot.key;
+    // Update the star count.
+    // [START post_value_event_listener]
+    postReference.child('stars').on('value', function(dataSnapshot) {
+      updateStarCount(postReference);
+      // [START_EXCLUDE]
+      updateStarCount(firebase.database().ref('user-posts/' + uid + '/' + postId));
+      // [END_EXCLUDE]
+    });
+    // [END post_value_event_listener]
+    // Send email to author when a new star is received.
+    // [START child_event_listener_recycler]
+    postReference.child('stars').on('child_added', function(dataSnapshot) {
+      sendNotificationToUser(uid, postId);
+    });
+    // [END child_event_listener_recycler]
+  });
+  console.log('New star notifier started...');
+  console.log('Likes count updater started...');
+}
+
+/**
+ * Send an email listing the top posts every Sunday.
+ */
+function startWeeklyTopPostEmailer() {
+  // Run this job every Sunday at 2:30pm.
+  schedule.scheduleJob({hour: 14, minute: 30, dayOfWeek: 0}, function () {
+    // List the top 5 posts.
+    // [START top_posts_query]
+    var topPostsRef = firebase.database().ref('/posts').orderByChild('starCount').limitToLast(5);
+    // [END top_posts_query]
+    var allUserRef = firebase.database().ref('/users');
+    Promise.all([topPostsRef.once('value'), allUserRef.once('value')]).then(function(resp) {
+      var topPosts = resp[0].val();
+      var allUsers = resp[1].val();
+      var emailText = createWeeklyTopPostsEmailHtml(topPosts);
+      sendWeeklyTopPostEmail(allUsers, emailText);
+    });
+  });
+  console.log('Weekly top posts emailer started...');
+}
+
+/**
+ * Sends the Weekly top post email to all users in the given `users` object.
+ */
+function sendWeeklyTopPostEmail(users, emailHtml) {
+  Object.keys(users).forEach(function(uid) {
+    var user = users[uid];
+    if (user.email) {
+      var mailOptions = {
+        from: '"Firebase Database Quickstart" <noreply@firebase.com>',
+        to: user.email,
+        subject: 'This week\'s top posts!',
+        html: emailHtml
+      };
+      mailTransport.sendMail(mailOptions).then(function() {
+        console.log('Weekly top posts email sent to: ' + user.email);
+        // Save the date at which we sent the weekly email.
+        // [START basic_write]
+        firebase.database().child('/users/' + uid + '/lastSentWeeklyTimestamp')
+            .set(firebase.database.ServerValue.TIMESTAMP);
+        // [END basic_write]
+      });
+    }
+  });
+}
+
+/**
+ * Creates the text for the Weekly top posts email given an Object of top posts.
+ */
+function createWeeklyTopPostsEmailHtml(topPosts) {
+  var emailHtml = '<h1>Here are this week\'s top posts:</h1>';
+  Object.keys(topPosts).forEach(function(postId) {
+    var post = topPosts[postId];
+    emailHtml += '<h2>' + escape(post.title) + '</h2><div>Author: ' + escape(post.author) +
+        '</div><div>Stars: ' + escape(post.starCount) + '</div><p>' + escape(post.body) + '</p>';
+  });
+  return emailHtml;
+}
+
+// Start the server.
+startListeners();
+startWeeklyTopPostEmailer();
