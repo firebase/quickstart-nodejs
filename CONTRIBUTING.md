@@ -10,7 +10,7 @@ We'd love for you to contribute to our source code and to make the Firebase Node
  - [Coding Rules](#rules)
  - [Signing the CLA](#cla)
 
-## <a name="coc"></a> Code of Conduct
+## <a name="coc"></a>Code of Conduct
 
 As contributors and maintainers of the Firebase Node.JS Quickstarts project, we pledge to respect everyone who contributes by posting issues, updating documentation, submitting pull requests, providing feedback in comments, and any other activities.
 
@@ -22,7 +22,7 @@ If any member of the community violates this code of conduct, the maintainers of
 
 If you are subject to or witness unacceptable behavior, or have any other concerns, please drop us a line at nivco@google.com.
 
-## <a name="question"></a> Got a Question or Problem?
+## <a name="question"></a>Got a Question or Problem?
 
 If you have questions about how to use the Firebase Node.JS Quickstarts, please direct these to [StackOverflow][stackoverflow] and use the `firebase` tag. We are also available on GitHub issues.
 
@@ -37,14 +37,14 @@ Where have you looked?
 Where did you expect to find this information?
 ```
 
-## <a name="issue"></a> Found an Issue?
+## <a name="issue"></a>Found an Issue?
 If you find a bug in the source code or a mistake in the documentation, you can help us by
 submitting an issue to our [GitHub Repository][github]. Even better you can submit a Pull Request
 with a fix.
 
 See [below](#submit) for some guidelines.
 
-## <a name="submit"></a> Submission Guidelines
+## <a name="submit"></a>Submission Guidelines
 
 ### Submitting an Issue
 Before you submit your issue search the archive, maybe your question was already answered.
@@ -161,11 +161,11 @@ from the main (upstream) repository:
     git pull --ff upstream master
     ```
 
-## <a name="rules"></a> Coding Rules
+## <a name="rules"></a>Coding Rules
 
 We generally follow the [Google JavaScript style guide][js-style-guide].
 
-## <a name="cla"></a> Signing the CLA
+## <a name="cla"></a>Signing the CLA
 
 Please sign our [Contributor License Agreement][google-cla] (CLA) before sending pull requests. For any code
 changes to be accepted, the CLA must be signed. It's a quick process, we promise!
