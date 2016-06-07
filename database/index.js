@@ -29,7 +29,7 @@ var escape = require('escape-html');
 // For other types of transports (Amazon SES, Sendgrid...) see https://nodemailer.com/2-0-0-beta/setup-transporter/
 var mailTransport = nodemailer.createTransport('smtps://<user>%40gmail.com:<password>@smtp.gmail.com');
 
-// TODO(DEVELOPER): Create your Change the 2 placeholders below.
+// TODO(DEVELOPER): Change the two placeholders below.
 // [START initialize]
 // Initialize the app with a service account, granting admin privileges
 firebase.initializeApp({
@@ -63,6 +63,8 @@ function sendNotificationToUser(uid, postId) {
       });
     }
     // [END_EXCLUDE]
+  }).catch(function(error) {
+    console.log('Failed to send notification to user:', error);
   });
 }
 // [END single_value_read]
@@ -101,7 +103,7 @@ function updateStarCount(postRef) {
  * Keep the likes count updated and send email notifications for new likes.
  */
 function startListeners() {
-  firebase.database().ref('/posts').on('child_added', function (postSnapshot) {
+  firebase.database().ref('/posts').on('child_added', function(postSnapshot) {
     var postReference = postSnapshot.ref;
     var uid = postSnapshot.val().uid;
     var postId = postSnapshot.key;
@@ -112,12 +114,16 @@ function startListeners() {
       // [START_EXCLUDE]
       updateStarCount(firebase.database().ref('user-posts/' + uid + '/' + postId));
       // [END_EXCLUDE]
+    }, function(error) {
+      console.log('Failed to add "value" listener at /posts/' + postId + '/stars node:', error);
     });
     // [END post_value_event_listener]
     // Send email to author when a new star is received.
     // [START child_event_listener_recycler]
     postReference.child('stars').on('child_added', function(dataSnapshot) {
       sendNotificationToUser(uid, postId);
+    }, function(error) {
+      console.log('Failed to add "child_added" listener at /posts/' + postId + '/stars node:', error);
     });
     // [END child_event_listener_recycler]
   });
@@ -141,13 +147,15 @@ function startWeeklyTopPostEmailer() {
       var allUsers = resp[1].val();
       var emailText = createWeeklyTopPostsEmailHtml(topPosts);
       sendWeeklyTopPostEmail(allUsers, emailText);
+    }).catch(function(error) {
+      console.log('Failed to start weekly top posts emailer:', error);
     });
   });
   console.log('Weekly top posts emailer started...');
 }
 
 /**
- * Sends the Weekly top post email to all users in the given `users` object.
+ * Sends the weekly top post email to all users in the given `users` object.
  */
 function sendWeeklyTopPostEmail(users, emailHtml) {
   Object.keys(users).forEach(function(uid) {
@@ -163,16 +171,18 @@ function sendWeeklyTopPostEmail(users, emailHtml) {
         console.log('Weekly top posts email sent to: ' + user.email);
         // Save the date at which we sent the weekly email.
         // [START basic_write]
-        firebase.database().child('/users/' + uid + '/lastSentWeeklyTimestamp')
+        return firebase.database().child('/users/' + uid + '/lastSentWeeklyTimestamp')
             .set(firebase.database.ServerValue.TIMESTAMP);
         // [END basic_write]
+      }).catch(function(error) {
+        console.log('Failed to send weekly top posts email:', error);
       });
     }
   });
 }
 
 /**
- * Creates the text for the Weekly top posts email given an Object of top posts.
+ * Creates the text for the weekly top posts email given an Object of top posts.
  */
 function createWeeklyTopPostsEmailHtml(topPosts) {
   var emailHtml = '<h1>Here are this week\'s top posts:</h1>';
