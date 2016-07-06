@@ -17,11 +17,11 @@
 
 // [START imports]
 var firebase = require('firebase');
+// [END imports]
 var nodemailer = require('nodemailer');
 var schedule = require('node-schedule');
 var Promise = require('promise');
 var escape = require('escape-html');
-// [END imports]
 
 // TODO(DEVELOPER): Configure your email transport.
 // Configure the email transport using the default SMTP transport and a GMail account.
