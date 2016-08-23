@@ -58,7 +58,7 @@ function sendNotificationToUser(uid, postId) {
             firebase.database.ServerValue.TIMESTAMP;
         update['/user-posts/' + uid + '/' + postId + '/lastNotificationTimestamp'] =
             firebase.database.ServerValue.TIMESTAMP;
-        firebase.database().update(update);
+        firebase.database().ref().update(update);
         // [END write_fan_out]
       });
     }
