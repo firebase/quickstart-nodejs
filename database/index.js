@@ -16,7 +16,7 @@
 'use strict';
 
 // [START imports]
-var firebase = require('firebase');
+var firebase = require('firebase-admin');
 // [END imports]
 var nodemailer = require('nodemailer');
 var schedule = require('node-schedule');
@@ -32,9 +32,11 @@ var mailTransport = nodemailer.createTransport('smtps://<user>%40gmail.com:<pass
 // TODO(DEVELOPER): Change the two placeholders below.
 // [START initialize]
 // Initialize the app with a service account, granting admin privileges
+var serviceAccount = require("path/to/serviceAccountKey.json");
+
 firebase.initializeApp({
-  databaseURL: 'https://<PROJECT_ID>.firebaseio.com',
-  serviceAccount: '<PATH_TO_SERVICE_ACCOUNT_CREDENTIAL_FILE>'
+  credential: firebase.credential.cert(serviceAccount),
+  databaseURL: 'https://<PROJECT_ID>.firebaseio.com'
 });
 // [END initialize]
 
