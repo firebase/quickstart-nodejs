@@ -5,7 +5,7 @@ The Node.js Firebase Database quickstart demonstrates how to connect to and use 
 
 This server will:
  - Update the star counts for all posts.
- - Send email notifications when a post has been stared.
+ - Send email notifications when a post has been starred.
  - Send weekly emails listing top post.
 
 Introduction
