@@ -1,4 +1,5 @@
-const https = require('https');
+var https = require('https');
+var zlib = require('zlib');
 var fs = require('fs');
 var google = require('googleapis');
 
@@ -40,24 +41,39 @@ function getTemplate() {
       hostname: HOST,
       path: PATH,
       headers: {
-        'Authorization': 'Bearer ' + accessToken
+        'Authorization': 'Bearer ' + accessToken,
+        'Accept-Encoding': 'gzip'
       }
     }
 
+    var buffer = [];
     var request = https.request(options, function(resp) {
-      resp.setEncoding('utf8');
-      var etag = resp.headers['etag'];
-      resp.on('data', function(data) {
-        fs.writeFileSync('config.json', data);
-        console.log('Retrieved template has been written to config.json');
-        console.log('ETag from server: ' + etag);
-      });
+      if (resp.statusCode == 200) {
+        var gunzip = zlib.createGunzip();
+        resp.pipe(gunzip);
+
+        gunzip.on('data', function(data) {
+          buffer.push(data.toString());
+        }).on('end', function() {
+          fs.writeFileSync('config.json', buffer.join(''));
+          console.log('Retrieved template has been written to config.json');
+          var etag = resp.headers['etag'];
+          console.log('ETag from server: ' + etag);
+        }).on('error', function(err) {
+          console.error('Unable to decompress template.');
+          console.error(err);
+        });
+      } else {
+        console.log('Unable to get template.');
+        console.log(resp.error);
+      }
     });
 
     request.on('error', function(err) {
-      console.log('Unable to get template.');
+      console.log('Request for configuration template failed.');
       console.log(err);
     });
+
     request.end();
   });
 }
@@ -77,19 +93,24 @@ function publishTemplate(etag) {
       headers: {
         'Authorization': 'Bearer ' + accessToken,
         'Content-Type': 'application/json; UTF-8',
+        'Accept-Encoding': 'gzip',
         'If-Match': etag
       }
     }
 
     var request = https.request(options, function(resp) {
-      resp.setEncoding('utf8');
-      var newEtag = resp.headers['x-google-api-etag'];
-      console.log('Template has been published');
-      console.log('ETag from server: ' + newEtag);
+      if (resp.statusCode == 200) {
+        var newEtag = resp.headers['etag'];
+        console.log('Template has been published');
+        console.log('ETag from server: ' + newEtag);
+      } else {
+        console.log('Unable to publish template.');
+        console.log(resp.error);
+      }
     });
 
     request.on('error', function(err) {
-      console.log('Unable to publish template.');
+      console.log('Request to send configuration template failed.');
       console.log(err);
     });
 
