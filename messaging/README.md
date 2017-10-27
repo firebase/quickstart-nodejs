@@ -15,10 +15,12 @@ Firebase Cloud Messaging REST API in your app, see [About Cloud Messaging Server
 Getting started
 ---------------
 
-1. [Add Firebase to your Android Project](https://firebase.google.com/docs/android/setup).
-2. Create a service account as described in [Adding Firebase to your Server](https://firebase.google.com/docs/admin/setup) and download the JSON file.
+1. Create a service account as described in [Adding Firebase to your Server](https://firebase.google.com/docs/admin/setup) and download the JSON file.
   - Copy the json file to this folder and rename it to `service-account.json`.
-3. Change the `PROJECT_ID` variable in `index.js` to your project ID.
+2. Change the `PROJECT_ID` variable in `index.js` to your project ID.
+3. Ensure that you have [`googleapis`](https://github.com/google/google-api-nodejs-client) installed.
+
+        npm install googleapis
 
 Run
 ---
