@@ -16,7 +16,7 @@ have the following installed:
 - Node.js (>= 6.0.0)
 - npm (should be included with Node.js)
 
-Download the Firebase source and its dependencies with:
+Download the sample application source and its dependencies with:
 
 ```bash
 git clone https://github.com/firebase/quickstart-nodejs.git
@@ -40,9 +40,9 @@ var config = {
 };
 module.exports = config;
 ```
-Copy and paste the Web snippet code configuration found in the console (either by clicking "Add
-Firebase to your web app" button in your Project overview, or clicking the "Web setup" button in
-the Auth page) in the `config.js` file.
+Copy and paste the Web snippet code configuration found in the console to the `config.js` file.
+You can find the snippet either by clicking the "Web setup" button in the Firebase Console
+Authentication page.
 
 Ensure the application authorized domain is also whitelisted. `localhost` should already be set
 as an authorized OAuth domain.
