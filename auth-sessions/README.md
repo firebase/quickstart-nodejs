@@ -26,7 +26,13 @@ npm install
 
 ### Configuring the app
 
-In the Firebase Console, make sure Email/Password and Google providers are enabled.
+Create your project in the [Firebase
+Console](https://console.firebase.google.com).
+
+[Add Firebase to your app](https://firebase.google.com/docs/web/setup).
+
+Enable the **Google** and **Email/Password** sign-in providers in the
+**Authentication > SIGN-IN METHOD** tab.
 
 In the root folder `./auth-sessions`, create a `config.js` file:
 
@@ -41,15 +47,17 @@ var config = {
 module.exports = config;
 ```
 Copy and paste the Web snippet code configuration found in the console to the `config.js` file.
-You can find the snippet either by clicking the "Web setup" button in the Firebase Console
+You can find the snippet by clicking the "Web setup" button in the Firebase Console
 Authentication page.
 
 Ensure the application authorized domain is also whitelisted. `localhost` should already be set
 as an authorized OAuth domain.
 
 Since the application is using the Firebase Admin SDK, service account credentials will be
-required. In the Firebase Console, go to "Project Settings" and select "SERVICE ACCOUNTS".
-Generate a new private key and save it in the root folder `./auth-sessions` as
+required. Learn more on how to [add the Firebase Admin SDK to your
+server](https://firebase.google.com/docs/admin/setup).
+
+After you generate a new private key, save it in the root folder `./auth-sessions` as
 `serviceAccountKeys.json`.
 Make sure to keep these credentials secret and never expose them in public.
 
