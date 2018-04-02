@@ -19,7 +19,7 @@ have the following installed:
 Download the sample application source and its dependencies with:
 
 ```bash
-git clone https://github.com/firebase/quickstart-nodejs.git
+git clone https://github.com/firebase/quickstart-nodejs
 cd quickstart-nodejs/auth-sessions
 npm install
 ```
