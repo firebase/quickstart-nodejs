@@ -1,0 +1,15 @@
+# Node modules.
+node_modules/
+
+# Generated files.
+*.log
+*.pyc
+.DS_Store
+*~
+*.swp
+public/bundle.js
+
+# Local config.
+**/.firebaserc
+serviceAccountKeys.json
+config.js
