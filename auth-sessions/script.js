@@ -42,7 +42,7 @@ function getUiConfig() {
       },
       'uiShown': function() {
         // Remove progress bar when the UI is ready.
-        $('#loading').addClass('hidden');
+        document.getElementById('loading').classList.add('hidden');
       }
     },
     'signInFlow': 'popup',
@@ -69,7 +69,7 @@ function getUiConfig() {
  */
 var handleSignedInUser = function(user) {
   // Show redirection notice.
-  $('#redirecting').removeClass('hidden');
+  document.getElementById('redirecting').classList.remove('hidden');
   // Set session cookie
   user.getIdToken().then(function(idToken) {
     // Session login endpoint is queried and the session cookie is set.
