@@ -6,11 +6,12 @@ var google = require('googleapis');
 var PROJECT_ID = '<YOUR_PROJECT_ID>';
 var HOST = 'firebaseremoteconfig.googleapis.com';
 var PATH = '/v1/projects/' + PROJECT_ID + '/remoteConfig';
-var SCOPE = 'https://www.googleapis.com/auth/firebase.remoteconfig';
+var SCOPES = ['https://www.googleapis.com/auth/firebase.remoteconfig'];
 
 /**
  * Get a valid access token.
  */
+// [START retrieve_access_token]
 function getAccessToken() {
   return new Promise(function(resolve, reject) {
     var key = require('./service-account.json');
@@ -18,7 +19,7 @@ function getAccessToken() {
       key.client_email,
       null,
       key.private_key,
-      [SCOPE],
+      SCOPES,
       null
     );
     jwtClient.authorize(function(err, tokens) {
@@ -30,6 +31,7 @@ function getAccessToken() {
     });
   });
 }
+// [END retrieve_access_token]
 
 /**
  * Retrieve the current Firebase Remote Config template from the server. Once
