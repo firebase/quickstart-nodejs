@@ -3,7 +3,7 @@ var zlib = require('zlib');
 var fs = require('fs');
 var google = require('googleapis');
 
-var PROJECT_ID = '<YOUR_PROJECT_ID>';
+var PROJECT_ID = 'PROJECT_ID';
 var HOST = 'firebaseremoteconfig.googleapis.com';
 var PATH = '/v1/projects/' + PROJECT_ID + '/remoteConfig';
 var SCOPE = 'https://www.googleapis.com/auth/firebase.remoteconfig';
@@ -42,9 +42,9 @@ function getTemplate() {
       path: PATH,
       headers: {
         'Authorization': 'Bearer ' + accessToken,
-        'Accept-Encoding': 'gzip'
+        'Accept-Encoding': 'gzip',
       }
-    }
+    };
 
     var buffer = [];
     var request = https.request(options, function(resp) {
@@ -79,6 +79,92 @@ function getTemplate() {
 }
 
 /**
+ * Print the last 5 available Firebase Remote Config template metadata from the server.
+ */
+function listVersions() {
+  getAccessToken().then(function(accessToken) {
+    const options = {
+      hostname: HOST,
+      path: PATH + ':listVersions?pageSize=5',
+      method: 'GET',
+      headers: {
+        'Authorization': 'Bearer ' + accessToken,
+      },
+    };
+
+    const request = https.request(options, function(resp) {
+      if (resp.statusCode === 200) {
+        console.log('Versions:');
+        resp.on('data', function(data) {
+          console.log(data.toString());
+        });
+      } else {
+        resp.on('data', function(err) {
+          console.log(err.toString());
+        });
+      }
+    });
+
+    request.on('error', function(err) {
+      console.error('Request for template versions failed.');
+      console.error(err.toString());
+    });
+
+    request.end();
+  });
+}
+
+/**
+ * Roll back to an available version of Firebase Remote Config template.
+ *
+ * @param version Version of the template to roll back to.
+ */
+function rollback(version) {
+  getAccessToken().then(function(accessToken) {
+    const options = {
+      hostname: HOST,
+      path: PATH + ':rollback',
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + accessToken,
+        'Content-Type': 'application/json; UTF-8',
+        'Accept-Encoding': 'gzip',
+      }
+    };
+    const request = https.request(options, function(resp) {
+      const gunzip = zlib.createGunzip();
+      resp.pipe(gunzip);
+
+      if (resp.statusCode === 200) {
+        gunzip.on('data', function(data) {
+          console.log('Rolled back to: ' + version);
+          console.log(data.toString());
+          const newETag = resp.headers['etag'];
+          console.log('ETag from server: ' + newETag);
+        });
+      } else {
+        gunzip.on('data', function(data) {
+          console.error(data.toString());
+        });
+      }
+    });
+
+    const rollbackVersion = {
+      version_number: version
+    };
+
+    request.write(JSON.stringify(rollbackVersion));
+
+    request.on('error', function(err) {
+      console.error('Request to roll back to template: ' + version + ' failed.');
+      console.error(err.toString());
+    });
+
+    request.end();
+  });
+}
+
+/**
  * Publish the local template stored in `config.json` to the server.
  *
  * @param {String} etag ETag must be supplied when publishing a template. This is to
@@ -96,13 +182,13 @@ function publishTemplate(etag) {
         'Accept-Encoding': 'gzip',
         'If-Match': etag
       }
-    }
+    };
 
     var request = https.request(options, function(resp) {
-      if (resp.statusCode == 200) {
-        var newEtag = resp.headers['etag'];
+      if (resp.statusCode === 200) {
+        var newETag = resp.headers['etag'];
         console.log('Template has been published');
-        console.log('ETag from server: ' + newEtag);
+        console.log('ETag from server: ' + newETag);
       } else {
         console.log('Unable to publish template.');
         console.log(resp.error);
@@ -119,15 +205,21 @@ function publishTemplate(etag) {
   });
 }
 
-var action = process.argv[2];
-var etag = process.argv[3];
+const action = process.argv[2];
+const etagOrVersion = process.argv[3];
 
-if (action && action == 'get') {
+if (action && action === 'get') {
   getTemplate();
-} else if (action && action == 'publish' && etag) {
+} else if (action && action === 'publish' && etagOrVersion) {
   publishTemplate(etag);
+} else if (action && action === 'versions') {
+  listVersions();
+} else if (action && action === 'rollback' && etagOrVersion) {
+  rollback(etagOrVersion);
 } else {
   console.log('Invalid command. Please use one of the following:\n'
       + 'node index.js get\n'
-      + 'node index.js publish <LATEST_ETAG>');
+      + 'node index.js publish <LATEST_ETAG>\n'
+      + 'node index.js versions\n'
+      + 'node index.js rollback <TEMPLATE_VERSION_NUMBER>');
 }
