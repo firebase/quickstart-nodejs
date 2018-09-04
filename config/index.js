@@ -213,7 +213,7 @@ const etagOrVersion = process.argv[3];
 if (action && action === 'get') {
   getTemplate();
 } else if (action && action === 'publish' && etagOrVersion) {
-  publishTemplate(etag);
+  publishTemplate(etagOrVersion);
 } else if (action && action === 'versions') {
   listVersions();
 } else if (action && action === 'rollback' && etagOrVersion) {
