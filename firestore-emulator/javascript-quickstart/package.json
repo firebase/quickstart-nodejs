@@ -1,0 +1,16 @@
+{
+  "name": "cloud-firestore-emulator-javascript-quickstart",
+  "version": "1.0.1",
+  "description": "Cloud Firestore emulator testing",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "ryanpbrewster@google.com",
+  "license": "MIT",
+  "devDependencies": {
+    "@firebase/app": "^0.3.4",
+    "@firebase/firestore": "^0.8.1",
+    "@firebase/testing": "file:firebase-testing-v0.2.0.tgz",
+    "mocha": "^4.1.0"
+  }
+}

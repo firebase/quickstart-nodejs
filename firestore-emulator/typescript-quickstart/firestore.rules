@@ -1,0 +1,14 @@
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId} {
+      allow read;
+      allow write: if request.auth.uid != null;
+    }
+    match /rooms/{roomId} {
+      allow read;
+      // Only the owner can modify the room
+      allow write: if request.resource.data.owner == request.auth.uid &&
+                   (resource == null || resource.data.owner == request.auth.uid);
+    }
+  }
+}
