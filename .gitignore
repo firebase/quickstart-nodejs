@@ -1,5 +1,6 @@
 **/secrets.json
 **/firebase-debug.log
+**/firestore-debug.log
 **/node_modules
 **/bower_components
 **/*.bak
