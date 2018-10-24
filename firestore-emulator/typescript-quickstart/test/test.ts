@@ -47,7 +47,7 @@ class TestingBase {
   async before() {
     // Create new project ID for each test.
     testNumber++;
-    return firebase.loadFirestoreRules({
+    await firebase.loadFirestoreRules({
       projectId: getProjectId(),
       rules: rules,
     });
