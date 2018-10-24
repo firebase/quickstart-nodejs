@@ -60,7 +60,7 @@ class TestingBase {
 }
 
 // eslint-disable-next-line no-unused-vars
-@suite class 'My app' extends TestingBase {
+@suite class MyApp extends TestingBase {
   @test async 'require users to log in before creating a profile'() {
     const db = authedApp(null);
     const profile = db.collection('users').doc('alice');
