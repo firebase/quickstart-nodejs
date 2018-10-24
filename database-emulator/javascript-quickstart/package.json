@@ -6,8 +6,6 @@
     "pretest": "eslint test/*.js",
     "test": "mocha"
   },
-  "author": "ryanpbrewster@google.com",
-  "license": "MIT",
   "devDependencies": {
     "@firebase/testing": "file:firebase-testing-v0.3.0.tgz",
     "eslint": "5.7.0",
