@@ -27,31 +27,28 @@ To run the tests, execute
 npm test
 ```
 which will execute `mocha`, running all the tests in the `tests/` directory. At
-the beginning, you should see 3 tests pass and 3 tests fail.
+the beginning, you should see 5 tests pass and 1 tests fail.
 
 ```
-    1) require users to log in before creating a profile
-    ✓ should let anyone create their own profile (41ms)
-    ✓ should let anyone read any profile (41ms)
+    ✓ require users to log in before creating a profile
+    1) should let anyone create their own profile
+    ✓ should let anyone read any profile
     ✓ should let anyone create a room
-    2) should force people to name themselves as room owner when creating a room
-    3) should not let one user steal a room from another user
+    ✓ should force people to name themselves as room owner when creating a room
+    ✓ should not let one user steal a room from another user
 
 
-  3 passing (337ms)
-  3 failing
+  5 passing
+  1 failing
 ```
 
 ## Making the tests pass
 
-The tests fail because they're checking for security rules behavior that isn't
-being enforced. By default, the Cloud Firestore emulator runs with completely
-open security rules. Let's use something a bit more secure. This directory
-contains a file named `firestore.rules`. Let's restart the emulator and have it
-use those rules instead of the defaults.
+The tests fail because they expect the rules to block unauthorized writes to a location. To fix
+this, go to the firestore.rules and uncomment the rule on line 5:
 
 ```
-firebase serve --only firestore --rules=firestore.rules
+allow write: if request.auth.uid != null;
 ```
 
 If we re-run the tests now, they should all pass.
@@ -61,13 +58,13 @@ npm test
 
 should give you output like
 ```
-    ✓ require users to log in before creating a profile (871ms)
-    ✓ should let anyone create their own profile (91ms)
-    ✓ should let anyone read any profile (60ms)
-    ✓ should let anyone create a room (56ms)
-    ✓ should force people to name themselves as room owner when creating a room (40ms)
-    ✓ should not let one user steal a room from another user (79ms)
+    ✓ require users to log in before creating a profile
+    ✓ should let anyone create their own profile 
+    ✓ should let anyone read any profile
+    ✓ should let anyone create a room
+    ✓ should force people to name themselves as room owner when creating a room
+    ✓ should not let one user steal a room from another user
 
 
-  6 passing (1s)
+  6 passing
 ```

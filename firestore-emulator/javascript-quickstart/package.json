@@ -9,11 +9,10 @@
   "author": "ryanpbrewster@google.com",
   "license": "MIT",
   "devDependencies": {
-    "@firebase/app": "0.3.4",
-    "@firebase/firestore": "0.8.1",
-    "@firebase/testing": "file:firebase-testing-v0.2.0.tgz",
-    "eslint": "^5.7.0",
-    "eslint-config-google": "^0.11.0",
-    "mocha": "4.1.0"
+    "@firebase/testing": "file:firebase-testing-v0.3.0.tgz",
+    "eslint": "5.7.0",
+    "eslint-config-google": "0.11.0",
+    "mocha": "4.1.0",
+    "request-promise": "4.2.2"
   }
 }
