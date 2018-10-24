@@ -1,4 +1,2 @@
 *.js
 *.js.map
-node_modules/
-package-lock.json
