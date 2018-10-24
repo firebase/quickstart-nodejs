@@ -13,6 +13,7 @@ const projectIdBase = 'firestore-emulator-example-' + Date.now();
 
 const rules = fs.readFileSync('firestore.rules', 'utf8');
 
+// Run each test in its own project id to make it independent.
 let testNumber = 0;
 
 /**
@@ -59,7 +60,7 @@ class TestingBase {
 }
 
 // eslint-disable-next-line no-unused-vars
-@suite class MyApp extends TestingBase {
+@suite class 'My app' extends TestingBase {
   @test async 'require users to log in before creating a profile'() {
     const db = authedApp(null);
     const profile = db.collection('users').doc('alice');

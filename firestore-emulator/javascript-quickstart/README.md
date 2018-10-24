@@ -6,7 +6,7 @@ Let's try writing some simple tests for our security rules.
 
 ### Install Node dependencies
 
-If you're in this directory, you should be able to just run `npm install`.
+Run `npm install` from this directory.
 
 ### Running the emulator
 
@@ -15,7 +15,7 @@ Make sure you've Opted-in to the emulator beta:
 firebase --open-sesame emulators
 firebase setup:emulators:firestore
 ```
-Start the database emulator (and leave it running during the tests)
+Start the firestore emulator (and leave it running during the tests)
 ```
 firebase serve --only firestore
 ```
@@ -26,7 +26,7 @@ To run the tests, execute
 ```
 npm test
 ```
-which will execute `mocha`, running all the tests in the `tests/` directory. At
+which runs all the tests in the `tests/` directory. At
 the beginning, you should see 5 tests pass and 1 tests fail.
 
 ```

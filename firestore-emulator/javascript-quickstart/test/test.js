@@ -10,6 +10,7 @@ const projectIdBase = 'firestore-emulator-example-' + Date.now();
 
 const rules = fs.readFileSync('firestore.rules', 'utf8');
 
+// Run each test in its own project id to make it independent.
 let testNumber = 0;
 
 /**
