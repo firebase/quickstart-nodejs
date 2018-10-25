@@ -1,0 +1,10 @@
+{
+    "extends": "google",
+    "parser": "typescript-eslint-parser",
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "rules": {
+        "max-len": [1, 100, 4]
+    }
+}
