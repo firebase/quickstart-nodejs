@@ -10,7 +10,6 @@
     "@firebase/testing": "0.3.0",
     "eslint": "5.7.0",
     "eslint-config-google": "0.11.0",
-    "mocha": "4.1.0",
-    "request-promise": "4.2.2"
+    "mocha": "4.1.0"
   }
 }
