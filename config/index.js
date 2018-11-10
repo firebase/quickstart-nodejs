@@ -3,7 +3,7 @@ var zlib = require('zlib');
 var fs = require('fs');
 var google = require('googleapis');
 
-var PROJECT_ID = 'gh-quickstarter-278bf';
+var PROJECT_ID = 'PROJECT_ID';
 var HOST = 'https://firebaseremoteconfig.googleapis.com';
 var PATH = '/v1/projects/' + PROJECT_ID + '/remoteConfig';
 var SCOPES = ['https://www.googleapis.com/auth/firebase.remoteconfig'];
