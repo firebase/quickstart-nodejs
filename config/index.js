@@ -1,5 +1,4 @@
 var rp = require('request-promise');
-var zlib = require('zlib');
 var fs = require('fs');
 var google = require('googleapis');
 
