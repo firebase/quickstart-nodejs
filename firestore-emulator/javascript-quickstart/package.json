@@ -3,10 +3,13 @@
   "version": "1.0.1",
   "description": "Cloud Firestore emulator testing",
   "scripts": {
+    "format": "prettier --write **/*.js",
     "test": "mocha"
   },
   "devDependencies": {
     "@firebase/testing": "0.3.3",
-    "mocha": "4.1.0"
+    "filesystem": "1.0.1",
+    "mocha": "5.2.0",
+    "prettier": "1.15.2"
   }
 }

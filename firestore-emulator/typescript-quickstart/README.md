@@ -25,45 +25,17 @@ To run the tests, execute
 ```
 npm test
 ```
-which runs all the tests in the `tests/` directory. At
-the beginning, you should see 5 tests pass and 1 tests fail.
+which runs all the tests in the `tests/` directory.
 
 ```
-    ✓ require users to log in before creating a profile
-    1) should let anyone create their own profile
-    ✓ should let anyone read any profile
-    ✓ should let anyone create a room
-    ✓ should force people to name themselves as room owner when creating a room
-    ✓ should not let one user steal a room from another user
+    ✓ require users to log in before creating a profile (71ms)
+    ✓ should enforce the createdAt date in user profiles (79ms)
+    ✓ should only let users create their own profile (57ms)
+    ✓ should let anyone read any profile (40ms)
+    ✓ should let anyone create a room (44ms)
+    ✓ should force people to name themselves as room owner when creating a room (48ms)
+    ✓ should not let one user steal a room from another user (119ms)
 
 
-  5 passing
-  1 failing
-```
-
-## Making the tests pass
-
-The tests fail because they expect the rules to block unauthorized writes to a location. To fix
-this, go to the firestore.rules and uncomment the rule on line 5:
-
-```
-allow write: if request.auth.uid != null;
-```
-
-If we re-run the tests now, they should all pass.
-```
-npm test
-```
-
-should give you output like
-```
-    ✓ require users to log in before creating a profile
-    ✓ should let anyone create their own profile 
-    ✓ should let anyone read any profile
-    ✓ should let anyone create a room
-    ✓ should force people to name themselves as room owner when creating a room
-    ✓ should not let one user steal a room from another user
-
-
-  6 passing
+  7 passing (607ms)
 ```
