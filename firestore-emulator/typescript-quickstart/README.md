@@ -10,9 +10,8 @@ Run `npm install` from this directory.
 
 ### Running the emulator
 
-Make sure you've Opted-in to the emulator beta:
+Setup the Firestore emulator
 ```
-firebase --open-sesame emulators
 firebase setup:emulators:firestore
 ```
 Start the firestore emulator (and leave it running during the tests)
