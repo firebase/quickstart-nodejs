@@ -1,5 +1,3 @@
-// Reference mocha-typescript's global definitions:
-// eslint-disable-next-line spaced-comment
 /// <reference path='../node_modules/mocha-typescript/globals.d.ts' />
 import * as firebase from "@firebase/testing";
 import * as fs from "fs";
@@ -45,7 +43,6 @@ function authedApp(auth) {
  *  Test Cases
  * ============
  */
-/* eslint-disable require-jsdoc */
 class TestingBase {
   async before() {
     // Create new project ID for each test.
@@ -61,7 +58,6 @@ class TestingBase {
   }
 }
 
-// eslint-disable-next-line no-unused-vars
 @suite
 class MyApp extends TestingBase {
   @test
@@ -164,4 +160,3 @@ class MyApp extends TestingBase {
     );
   }
 }
-/* eslint-enable require-jsdoc */
