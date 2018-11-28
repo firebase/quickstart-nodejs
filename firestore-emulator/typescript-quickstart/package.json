@@ -5,7 +5,7 @@
   "scripts": {
     "format": "prettier --write **/*.ts",
     "pretest": "tsc",
-    "test": "mocha"
+    "test": "FIREBASE_FIRESTORE_EMULATOR_ADDRESS='127.0.0.1:8080' mocha"
   },
   "devDependencies": {
     "@firebase/testing": "0.3.3",
