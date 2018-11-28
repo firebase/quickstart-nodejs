@@ -6,13 +6,14 @@ Let's try writing some simple tests for our security rules.
 
 ### Install Node dependencies
 
-Run `npm install` from this directory.
+Run `npm install` from this directory, and make sure that you have a recent
+version of the [Firebase CLI tool](https://github.com/firebase/firebase-tools)
+installed (you'll need `firebase --version` to be at least `6.1.1`).
 
 ### Running the emulator
 
-Make sure you've Opted-in to the emulator beta:
+Download the database emulator
 ```
-firebase --open-sesame emulators
 firebase setup:emulators:database
 ```
 Start the database emulator (and leave it running during the tests)
