@@ -10,6 +10,7 @@ import * as fs from 'fs';
  * ============
  */
 const databaseName = 'database-emulator-example';
+const coverageUrlBase = 'http://localhost:9000/.inspect/coverage?ns=';
 
 const rules = fs.readFileSync('database.rules.json', 'utf8');
 
@@ -127,3 +128,5 @@ class TestingBase {
   }
 }
 /* eslint-enable require-jsdoc */
+
+console.log('View rule coverage information at ' + coverageUrlBase + databaseName);

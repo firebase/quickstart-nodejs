@@ -15,7 +15,7 @@
         },
         "members": {
           "$memberId": {
-            ".write": "data.parent().parent().child('owner').val() == auth.uid || (!newData.exists() && auth.uid == $memberId)"
+            ".write": "!newData.exists() && auth.uid == $memberId"
           }
         },
         "messages": {

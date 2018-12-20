@@ -7,6 +7,7 @@ const fs = require('fs');
  * ============
  */
 const databaseName = 'database-emulator-example';
+const coverageUrlBase = 'http://localhost:9000/.inspect/coverage?ns=';
 
 const rules = fs.readFileSync('database.rules.json', 'utf8');
 
@@ -117,3 +118,5 @@ describe('room members', () => {
     await firebase.assertSucceeds(owner.ref('rooms/room2/members/alice').set(true));
   });
 });
+
+console.log('View rule coverage information at ' + coverageUrlBase + databaseName);
