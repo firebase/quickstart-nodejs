@@ -7,21 +7,10 @@ import * as fs from "fs";
  *    Setup
  * ============
  */
-const projectIdBase = "firestore-emulator-example-" + Date.now();
+const projectName = "firestore-emulator-example";
+const coverageUrl = `http://localhost:8080/emulator/v1/projects/${projectName}:ruleCoverage.html`;
 
 const rules = fs.readFileSync("firestore.rules", "utf8");
-
-// Run each test in its own project id to make it independent.
-let testNumber = 0;
-
-/**
- * Returns the project ID for the current test
- *
- * @return {string} the project ID for the current test.
- */
-function getProjectId() {
-  return `${projectIdBase}-${testNumber}`;
-}
 
 /**
  * Creates a new app with authentication data matching the input.
@@ -32,7 +21,7 @@ function getProjectId() {
 function authedApp(auth) {
   return firebase
     .initializeTestApp({
-      projectId: getProjectId(),
+      projectId: projectName,
       auth: auth
     })
     .firestore();
@@ -45,11 +34,16 @@ function authedApp(auth) {
  */
 class TestingBase {
   async before() {
-    // Create new project ID for each test.
-    testNumber++;
     await firebase.loadFirestoreRules({
-      projectId: getProjectId(),
+      projectId: projectName,
       rules: rules
+    });
+  }
+
+  async beforeEach() {
+    // Clear the database between tests
+    await firebase.clearFirestoreData({
+      projectId: projectName
     });
   }
 
@@ -160,3 +154,5 @@ class MyApp extends TestingBase {
     );
   }
 }
+
+process.on('exit', () => console.log(`View rule coverage information at ${coverageUrl}\n`));
