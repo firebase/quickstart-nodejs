@@ -1,4 +1,3 @@
-// Reference mocha-typescript's global definitions:
 /// <reference path='../node_modules/mocha-typescript/globals.d.ts' />
 import * as firebase from "@firebase/testing";
 import * as fs from "fs";
@@ -152,4 +151,6 @@ class RoomMembers extends TestingBase {
   }
 }
 
-process.on('exit', () => console.log(`View rule coverage information at ${coverageUrl}\n`));
+process.on("exit", () =>
+  console.log(`View rule coverage information at ${coverageUrl}\n`)
+);

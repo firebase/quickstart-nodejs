@@ -144,4 +144,6 @@ describe("My app", () => {
   });
 });
 
-process.on('exit', () => console.log(`View rule coverage information at ${coverageUrl}\n`));
+process.on("exit", () =>
+  console.log(`View rule coverage information at ${coverageUrl}\n`)
+);

@@ -155,4 +155,6 @@ class MyApp extends TestingBase {
   }
 }
 
-process.on('exit', () => console.log(`View rule coverage information at ${coverageUrl}\n`));
+process.on("exit", () =>
+  console.log(`View rule coverage information at ${coverageUrl}\n`)
+);
