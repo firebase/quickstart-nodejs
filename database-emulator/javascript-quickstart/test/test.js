@@ -18,12 +18,7 @@ const rules = fs.readFileSync("database.rules.json", "utf8");
  * @return {object} the app.
  */
 function authedApp(auth) {
-  return firebase
-    .initializeTestApp({
-      databaseName: databaseName,
-      auth: auth
-    })
-    .database();
+  return firebase.initializeTestApp({ databaseName, auth }).database();
 }
 
 /**
@@ -32,7 +27,7 @@ function authedApp(auth) {
  * @return {object} the app.
  */
 function adminApp() {
-  return firebase.initializeAdminApp({ databaseName: databaseName }).database();
+  return firebase.initializeAdminApp({ databaseName }).database();
 }
 
 /*
@@ -43,7 +38,7 @@ function adminApp() {
 before(async () => {
   // Set database rules before running these tests
   await firebase.loadDatabaseRules({
-    databaseName: databaseName,
+    databaseName,
     rules: rules
   });
 });
@@ -58,6 +53,7 @@ beforeEach(async () => {
 after(async () => {
   // Close any open apps
   await Promise.all(firebase.apps().map(app => app.delete()));
+  console.log(`View rule coverage information at ${coverageUrl}\n`);
 });
 
 describe("profile read rules", () => {
@@ -140,7 +136,3 @@ describe("room members", () => {
     );
   });
 });
-
-process.on("exit", () =>
-  console.log(`View rule coverage information at ${coverageUrl}\n`)
-);

@@ -19,10 +19,7 @@ const rules = fs.readFileSync("firestore.rules", "utf8");
  */
 function authedApp(auth) {
   return firebase
-    .initializeTestApp({
-      projectId: projectName,
-      auth: auth
-    })
+    .initializeTestApp({ projectId: projectName, auth })
     .firestore();
 }
 
@@ -47,6 +44,7 @@ before(async () => {
 
 after(async () => {
   await Promise.all(firebase.apps().map(app => app.delete()));
+  console.log(`View rule coverage information at ${coverageUrl}\n`);
 });
 
 describe("My app", () => {
@@ -143,7 +141,3 @@ describe("My app", () => {
     );
   });
 });
-
-process.on("exit", () =>
-  console.log(`View rule coverage information at ${coverageUrl}\n`)
-);
