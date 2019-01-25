@@ -30,21 +30,21 @@ function authedApp(auth) {
  * ============
  */
 class TestingBase {
-  async before() {
+  static async before() {
     await firebase.loadFirestoreRules({
       projectId: projectName,
       rules: rules
     });
   }
 
-  async beforeEach() {
+  async before() {
     // Clear the database between tests
     await firebase.clearFirestoreData({
       projectId: projectName
     });
   }
 
-  async after() {
+  static async after() {
     await Promise.all(firebase.apps().map(app => app.delete()));
     console.log(`View rule coverage information at ${coverageUrl}\n`);
   }
