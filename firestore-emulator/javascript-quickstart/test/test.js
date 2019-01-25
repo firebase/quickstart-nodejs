@@ -6,10 +6,35 @@ const fs = require("fs");
  *    Setup
  * ============
  */
-const projectName = "firestore-emulator-example";
-const coverageUrl = `http://localhost:8080/emulator/v1/projects/${projectName}:ruleCoverage.html`;
+const projectIdBase = "firestore-emulator-example-" + Date.now();
 
 const rules = fs.readFileSync("firestore.rules", "utf8");
+
+// Run each test in its own project id to make it independent.
+let testNumber = 0;
+
+/**
+ * Returns the project ID for the current test
+ *
+ * @return {string} the project ID for the current test.
+ */
+function getProjectId() {
+  return `${projectIdBase}-${testNumber}`;
+}
+
+beforeEach(async () => {
+  // Create new project ID for each test.
+  testNumber++;
+  await firebase.loadFirestoreRules({
+    projectId: getProjectId(),
+    rules: rules
+  });
+});
+
+after(async () => {
+  await Promise.all(firebase.apps().map(app => app.delete()));
+});
+
 
 /**
  * Creates a new app with authentication data matching the input.
@@ -19,7 +44,10 @@ const rules = fs.readFileSync("firestore.rules", "utf8");
  */
 function authedApp(auth) {
   return firebase
-    .initializeTestApp({ projectId: projectName, auth })
+    .initializeTestApp({
+      projectId: getProjectId(),
+      auth: auth
+    })
     .firestore();
 }
 
@@ -28,25 +56,6 @@ function authedApp(auth) {
  *  Test Cases
  * ============
  */
-beforeEach(async () => {
-  // Clear the database between tests
-  await firebase.clearFirestoreData({
-    projectId: projectName
-  });
-});
-
-before(async () => {
-  await firebase.loadFirestoreRules({
-    projectId: projectName,
-    rules: rules
-  });
-});
-
-after(async () => {
-  await Promise.all(firebase.apps().map(app => app.delete()));
-  console.log(`View rule coverage information at ${coverageUrl}\n`);
-});
-
 describe("My app", () => {
   it("require users to log in before creating a profile", async () => {
     const db = authedApp(null);
