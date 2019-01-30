@@ -15,7 +15,7 @@ Getting started
 
 1. [Add Firebase to your Android Project](https://firebase.google.com/docs/android/setup).
 2. Create a service account as described in [Adding Firebase to your Server](https://firebase.google.com/docs/admin/setup) and download the JSON file.
-  - Copy the private key JSON file to this folder and rename it to `service-account.json`.
+  - Set `GOOGLE_APPLICATION_CREDENTIALS` environment variable to path of downloaded credential file.
 3. Change the `PROJECT_ID` variable in `index.js` to your project ID.
 
 Run

@@ -9,24 +9,27 @@ var SCOPES = ['https://www.googleapis.com/auth/firebase.remoteconfig'];
 
 /**
  * Get a valid access token.
+ *
+ * This method must be called in either a trusted Google environment like GCP or if running
+ * elsewhere the GOOGLE_APPLICATION_CREDENTIALS environment variable must be set to the path
+ * of the service account credentials file.
  */
 // [START retrieve_access_token]
 function getAccessToken() {
   return new Promise(function(resolve, reject) {
-    var key = require('./service-account.json');
-    var jwtClient = new google.auth.JWT(
-      key.client_email,
-      null,
-      key.private_key,
-      SCOPES,
-      null
-    );
-    jwtClient.authorize(function(err, tokens) {
-      if (err) {
+    google.auth.getApplicationDefault(function (err, authClient) {
+      if (err != null) {
         reject(err);
-        return;
       }
-      resolve(tokens.access_token);
+      if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+        authClient = authClient.createScoped(SCOPES);
+      }
+      authClient.getAccessToken(function(err, token) {
+        if (err != null) {
+          reject(err);
+        }
+        resolve(token);
+      })
     });
   });
 }
