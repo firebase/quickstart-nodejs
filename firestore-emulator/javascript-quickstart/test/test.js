@@ -48,96 +48,23 @@ after(async () => {
 });
 
 describe("My app", () => {
-  it("require users to log in before creating a profile", async () => {
+  it("must have counter initialized at zero", async () => {
     const db = authedApp(null);
-    const profile = db.collection("users").doc("alice");
-    await firebase.assertFails(profile.set({ birthday: "January 1" }));
+    const counter0 = db.collection("counters").doc("0");
+    await firebase.assertFails(counter0.set({value: 1}));
+    await firebase.assertSucceeds(counter0.set({value: 0}));
   });
 
-  it("should enforce the createdAt date in user profiles", async () => {
-    const db = authedApp({ uid: "alice" });
-    const profile = db.collection("users").doc("alice");
-    await firebase.assertFails(profile.set({ birthday: "January 1" }));
-    await firebase.assertSucceeds(
-      profile.set({
-        birthday: "January 1",
-        createdAt: firebase.firestore.FieldValue.serverTimestamp()
-      })
-    );
-  });
-
-  it("should only let users create their own profile", async () => {
-    const db = authedApp({ uid: "alice" });
-    await firebase.assertSucceeds(
-      db
-        .collection("users")
-        .doc("alice")
-        .set({
-          birthday: "January 1",
-          createdAt: firebase.firestore.FieldValue.serverTimestamp()
-        })
-    );
-    await firebase.assertFails(
-      db
-        .collection("users")
-        .doc("bob")
-        .set({
-          birthday: "January 1",
-          createdAt: firebase.firestore.FieldValue.serverTimestamp()
-        })
-    );
-  });
-
-  it("should let anyone read any profile", async () => {
+  it("can't delete a counter", async () => {
     const db = authedApp(null);
-    const profile = db.collection("users").doc("alice");
-    await firebase.assertSucceeds(profile.get());
+    const counter0 = db.collection("counters").doc("0");
+    await firebase.assertFails(counter0.delete());
   });
 
-  it("should let anyone create a room", async () => {
-    const db = authedApp({ uid: "alice" });
-    const room = db.collection("rooms").doc("firebase");
-    await firebase.assertSucceeds(
-      room.set({
-        owner: "alice",
-        topic: "All Things Firebase"
-      })
-    );
-  });
-
-  it("should force people to name themselves as room owner when creating a room", async () => {
-    const db = authedApp({ uid: "alice" });
-    const room = db.collection("rooms").doc("firebase");
-    await firebase.assertFails(
-      room.set({
-        owner: "scott",
-        topic: "Firebase Rocks!"
-      })
-    );
-  });
-
-  it("should not let one user steal a room from another user", async () => {
-    const alice = authedApp({ uid: "alice" });
-    const bob = authedApp({ uid: "bob" });
-
-    await firebase.assertSucceeds(
-      bob
-        .collection("rooms")
-        .doc("snow")
-        .set({
-          owner: "bob",
-          topic: "All Things Snowboarding"
-        })
-    );
-
-    await firebase.assertFails(
-      alice
-        .collection("rooms")
-        .doc("snow")
-        .set({
-          owner: "alice",
-          topic: "skiing > snowboarding"
-        })
-    );
+  it("must have counter incremented by one", async () => {
+    const db = authedApp(null);
+    const counter0 = db.collection("counters").doc("0");
+    await firebase.assertSucceeds(counter0.set({value: 0}));
+    await firebase.assertFails(counter0.set({value: 1.5}));
   });
 });

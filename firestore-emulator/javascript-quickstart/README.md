@@ -30,14 +30,12 @@ npm test
 which runs all the tests in the `tests/` directory.
 
 ```
-    ✓ require users to log in before creating a profile (71ms)
-    ✓ should enforce the createdAt date in user profiles (79ms)
-    ✓ should only let users create their own profile (57ms)
-    ✓ should let anyone read any profile (40ms)
-    ✓ should let anyone create a room (44ms)
-    ✓ should force people to name themselves as room owner when creating a room (48ms)
-    ✓ should not let one user steal a room from another user (119ms)
+    ✓ must have counter initialized at zero (84ms)
+    ✓ can't delete a counter (40ms)
+    ✓ must have counter incremented by one (69ms)
+
+View rule coverage information at http://localhost:8080/emulator/v1/projects/firestore-emulator-example:ruleCoverage.html
 
 
-  7 passing (607ms)
+  3 passing (296ms)
 ```
