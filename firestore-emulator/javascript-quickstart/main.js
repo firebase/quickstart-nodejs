@@ -29,5 +29,23 @@ main().catch(err => {
 
 async function uploadFunctions() {
   console.log("TODO: actually upload function triggers...");
+  await fetch(
+    `http://127.0.0.1:8080/emulator/v1/projects/${projectId}/triggers/increment`,
+    {
+      method: 'PUT',
+      body: JSON.stringify({
+        eventTrigger: {
+          "resource": `projects/${projectId}/databases/(default)/documents/counters/{counterId}`,
+          "eventType": "providers/cloud.firestore/eventTypes/document.write",
+          "service": "firestore.googleapis.com",
+        },
+      }),
+      headers: { 'Content-Type': 'application/json' },
+    }
+  ).then(
+    (res) => res.json()
+  ).then(
+    (json) => console.log(json)
+  );
   return Promise.resolve(null);
 }
