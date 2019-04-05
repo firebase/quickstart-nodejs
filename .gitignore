@@ -6,3 +6,6 @@
 **/bower_components
 **/*.bak
 .idea
+
+database-debug.log
+firestore-debug.log

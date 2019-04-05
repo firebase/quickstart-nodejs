@@ -1,14 +1,14 @@
 {
   "name": "cloud-firestore-emulator-typescript-quickstart",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Cloud Firestore emulator testing, with TypeScript",
   "scripts": {
     "format": "prettier --write **/*.ts",
     "pretest": "tsc",
-    "test": "FIREBASE_FIRESTORE_EMULATOR_ADDRESS='127.0.0.1:8080' mocha"
+    "test": "mocha"
   },
   "devDependencies": {
-    "@firebase/testing": "0.7.0",
+    "@firebase/testing": "0.7.9",
     "@types/mocha": "5.2.5",
     "filesystem": "1.0.1",
     "mocha": "5.2.0",

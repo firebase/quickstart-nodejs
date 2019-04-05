@@ -29,29 +29,27 @@ function authedApp(auth) {
  *  Test Cases
  * ============
  */
-class TestingBase {
-  static async before() {
-    await firebase.loadFirestoreRules({
-      projectId: projectName,
-      rules: rules
-    });
-  }
+before(async () => {
+  await firebase.loadFirestoreRules({
+    projectId: projectName,
+    rules: rules
+  });
+});
 
-  async before() {
-    // Clear the database between tests
-    await firebase.clearFirestoreData({
-      projectId: projectName
-    });
-  }
+beforeEach(async () => {
+  // Clear the database between tests
+  await firebase.clearFirestoreData({
+    projectId: projectName
+  });
+});
 
-  static async after() {
-    await Promise.all(firebase.apps().map(app => app.delete()));
-    console.log(`View rule coverage information at ${coverageUrl}\n`);
-  }
-}
+after(async () => {
+  await Promise.all(firebase.apps().map(app => app.delete()));
+  console.log(`View rule coverage information at ${coverageUrl}\n`);
+});
 
 @suite
-class MyApp extends TestingBase {
+class MyApp {
   @test
   async "require users to log in before creating a profile"() {
     const db = authedApp(null);

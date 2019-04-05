@@ -36,31 +36,29 @@ function adminApp() {
  *  Test Cases
  * ============
  */
-class TestingBase {
-  async before() {
-    // Set database rules before running these tests
-    await firebase.loadDatabaseRules({
-      databaseName,
-      rules: rules
-    });
-  }
+before(async () => {
+  // Set database rules before running these tests
+  await firebase.loadDatabaseRules({
+    databaseName,
+    rules: rules
+  });
+});
 
-  async beforeEach() {
-    // Clear the database between tests
-    await adminApp()
-      .ref()
-      .set(null);
-  }
+beforeEach(async () => {
+  // Clear the database between tests
+  await adminApp()
+    .ref()
+    .set(null);
+});
 
-  async after() {
-    // Close any open apps
-    await Promise.all(firebase.apps().map(app => app.delete()));
-    console.log(`View rule coverage information at ${coverageUrl}\n`);
-  }
-}
+after(async () => {
+  // Close any open apps
+  await Promise.all(firebase.apps().map(app => app.delete()));
+  console.log(`View rule coverage information at ${coverageUrl}\n`);
+})
 
 @suite
-class ProfileReadRules extends TestingBase {
+class ProfileReadRules {
   @test
   async "should allow anyone to read profiles"() {
     const alice = authedApp({ uid: "alice" });
@@ -104,7 +102,7 @@ class ProfileReadRules extends TestingBase {
 }
 
 @suite
-class RoomCreation extends TestingBase {
+class RoomCreation {
   @test
   async "should require the user creating a room to be its owner"() {
     const alice = authedApp({ uid: "alice" });
@@ -123,7 +121,7 @@ class RoomCreation extends TestingBase {
 }
 
 @suite
-class RoomMembers extends TestingBase {
+class RoomMembers {
   @test
   async "must be added by the room owner"() {
     const ownerId = "room_owner";
