@@ -6,8 +6,8 @@ const fs = require("fs");
  *    Setup
  * ============
  */
-const projectName = "firestore-emulator-example";
-const coverageUrl = `http://localhost:8080/emulator/v1/projects/${projectName}:ruleCoverage.html`;
+const projectId = "firestore-emulator-example";
+const coverageUrl = `http://localhost:8080/emulator/v1/projects/${projectId}:ruleCoverage.html`;
 
 const rules = fs.readFileSync("firestore.rules", "utf8");
 
@@ -19,7 +19,7 @@ const rules = fs.readFileSync("firestore.rules", "utf8");
  */
 function authedApp(auth) {
   return firebase
-    .initializeTestApp({ projectId: projectName, auth })
+    .initializeTestApp({ projectId, auth })
     .firestore();
 }
 
@@ -30,16 +30,11 @@ function authedApp(auth) {
  */
 beforeEach(async () => {
   // Clear the database between tests
-  await firebase.clearFirestoreData({
-    projectId: projectName
-  });
+  await firebase.clearFirestoreData({ projectId });
 });
 
 before(async () => {
-  await firebase.loadFirestoreRules({
-    projectId: projectName,
-    rules: rules
-  });
+  await firebase.loadFirestoreRules({ projectId, rules });
 });
 
 after(async () => {
