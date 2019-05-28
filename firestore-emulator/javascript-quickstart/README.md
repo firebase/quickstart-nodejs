@@ -18,7 +18,7 @@ firebase setup:emulators:firestore
 ```
 Start the firestore emulator (and leave it running during the tests)
 ```
-firebase serve --only firestore
+firebase emulators:start --only firestore
 ```
 
 ## Running the tests
