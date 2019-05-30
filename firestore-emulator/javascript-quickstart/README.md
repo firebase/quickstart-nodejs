@@ -2,26 +2,23 @@
 
 Let's try writing some simple tests for our security rules.
 
-## Setup
+## tl;dr
 
-### Install Node dependencies
-
-Run `npm install` from this directory, and make sure that you have a recent
-version of the [Firebase CLI tool](https://github.com/firebase/firebase-tools)
-installed (you'll need `firebase --version` to be at least `6.3.0`).
-
-### Running the emulator
-
-Setup the Firestore emulator
 ```
-firebase setup:emulators:firestore
-```
-Start the firestore emulator (and leave it running during the tests)
-```
-firebase emulators:start --only firestore
+firebase emulators:exec "PATH=$PATH npm test"
 ```
 
-## Running the tests
+## Dependencies
+
+* `node`
+* `firebase` (the [Firebase CLI tool](https://github.com/firebase/firebase-tools))
+
+## Rules
+
+The rules you're testing are in `firestore.rules`. You can read more about
+Firebase security rules [here](http://firebase.google.com/docs/rules).
+
+## Tests
 
 To run the tests, execute
 ```
