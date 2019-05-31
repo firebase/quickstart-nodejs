@@ -1,9 +1,9 @@
 service cloud.firestore {
     match /databases/{database}/documents {
-        match /users/{userID}/userData/kycData {
-            allow write, create, delete: if false;
+        match /users/{userID}/serverData/kycData {
+            allow read: if request.auth.uid == userID;
         }
-        match /users/{userID}/{document=**} {
+        match /users/{userID}/appData/{document=**} {
             allow read, write, create, delete: if request.auth.uid == userID;
         }
         match /{document=**} {

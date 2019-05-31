@@ -46,15 +46,99 @@ after(async () => {
 @suite
 class MyApp {
   @test
-  async "should NOT let users write their KYC data"() {
+  async "should NOT let users WRITE their KYC data"() {
     const db = authedApp({ uid: "alice" });
-    const userKYCDataRef = db
+    const userSeverDataKYCDataRef = db
+      .collection("users")
+      .doc("alice")
+      .collection("serverData")
+      .doc("kycData");
+
+    await firebase.assertFails(userSeverDataKYCDataRef.set({ firstName: "Alice" }));
+  }
+
+  @test
+  async "should NOT let users WRITE OTHER'S KYC data"() {
+    const db = authedApp({ uid: "alice" });
+    const userSeverDataKYCDataRef = db
+      .collection("users")
+      .doc("bob")
+      .collection("serverData")
+      .doc("kycData");
+
+    await firebase.assertFails(userSeverDataKYCDataRef.set({ firstName: "Alice" }));
+  }
+
+  @test
+  async "should let users READ their KYC data"() {
+    const db = authedApp({ uid: "alice" });
+    const userSeverDataKYCDataRef = db
+      .collection("users")
+      .doc("alice")
+      .collection("serverData")
+      .doc("kycData");
+
+    await firebase.assertSucceeds(userSeverDataKYCDataRef.get());
+  }
+
+  @test
+  async "should NOT let users READ OTHER'S KYC data"() {
+    const db = authedApp({ uid: "alice" });
+    const userSeverDataKYCDataRef = db
+      .collection("users")
+      .doc("bob")
+      .collection("serverData")
+      .doc("kycData");
+
+    await firebase.assertFails(userSeverDataKYCDataRef.get());
+  }
+
+  @test
+  async "should let users WRITE their appData"() {
+    const db = authedApp({ uid: "alice" });
+    const userAppDataTestRef = db
       .collection("users")
       .doc("alice")
       .collection("appData")
-      .doc("kycData");
+      .doc("test");
 
-    await firebase.assertFails(userKYCDataRef.set({ firstName: "Alice" }));
+    await firebase.assertSucceeds(userAppDataTestRef.set({ assets: "bitcoin" }));
+  }
+
+  @test
+  async "should NOT let users WRITE OTHER'S appData"() {
+    const db = authedApp({ uid: "alice" });
+    const userAppDataTestRef = db
+      .collection("users")
+      .doc("bob")
+      .collection("appData")
+      .doc("test");
+
+    await firebase.assertFails(userAppDataTestRef.set({ assets: "bitcoin" }));
+  }
+
+  @test
+  async "should let users READ their appData"() {
+    const db = authedApp({ uid: "alice" });
+    const userAppDataTestRef = db
+      .collection("users")
+      .doc("alice")
+      .collection("appData")
+      .doc("test");
+
+    await firebase.assertSucceeds(userAppDataTestRef.get());
+  }
+
+  @test
+  async "should NOT let users READ OTHER'S appData"() {
+    const db = authedApp({ uid: "alice" });
+    const userAppDataTestRef = db
+      .collection("users")
+      .doc("bob")
+      .collection("appData")
+      .doc("test");
+
+    await firebase.assertFails(userAppDataTestRef.get());
   }
 
   /*@test
