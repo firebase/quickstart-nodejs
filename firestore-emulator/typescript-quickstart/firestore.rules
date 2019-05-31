@@ -1,15 +1,13 @@
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /users/{userId} {
-      allow read;
-      allow create: if request.auth.uid == userId && request.resource.data.createdAt == request.time;
+  	match /users/{userID}/userData/kycData {
+      allow write, create, delete: if false;
     }
-    match /rooms/{roomId} {
-      allow read;
-      // If you create a room, you must set yourself as the owner.
-      allow create: if request.resource.data.owner == request.auth.uid;
-      // Only the room owner is allowed to modify it.
-      allow update: if resource.data.owner == request.auth.uid;
+  	match /users/{userID}/{document=**} {
+    	allow read, write, create, delete: if request.auth.uid == userID;
+    }
+    match /{document=**} {
+      allow read, write: if false;
     }
   }
 }

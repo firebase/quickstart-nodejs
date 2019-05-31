@@ -46,6 +46,18 @@ after(async () => {
 @suite
 class MyApp {
   @test
+  async "should NOT let users write their KYC data"() {
+    const db = authedApp({ uid: "alice" });
+    const userKYCDataRef = db
+      .collection("users")
+      .doc("alice")
+      .collection("appData")
+      .doc("kycData");
+
+    await firebase.assertFails(userKYCDataRef.set({ firstName: "Alice" }));
+  }
+
+  /*@test
   async "require users to log in before creating a profile"() {
     const db = authedApp(null);
     const profile = db.collection("users").doc("alice");
@@ -143,5 +155,5 @@ class MyApp {
           topic: "skiing > snowboarding"
         })
     );
-  }
+  }*/
 }
