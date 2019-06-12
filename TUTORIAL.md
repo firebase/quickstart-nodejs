@@ -16,6 +16,10 @@ npm install
 
 The last step is to configure our project:
 ```
+firebase login --no-localhost
+```
+followed by
+```
 firebase use --add YOUR_PROJECT_ID
 ```
 
@@ -65,5 +69,50 @@ false for 'create' @ L4
 ```
 
 which verifies that our rules are no longer allowing random users to write to
-random documents. Let's update the test. Open `test/test.js` and change
-`firebase.assertSucceeds` to `firebase.assertFails`.
+random documents. Let's update the test. Open
+```
+test/test.js
+```
+and change
+```
+firebase.assertSucceeds
+```
+to
+```
+firebase.assertFails
+```
+
+## Selective access
+Now your database too secure: it won't let any users in. Let's open
+it up a little bit, to allow users to read and write their own user profiles, stored at
+```
+/users/{userId}
+```
+
+Let's start by adding a test:
+```
+it("a user can create their own profile", async () => {
+  const db = firebase.initializeTestApp({ projectId, auth: { uid: "alice" } }).firestore();
+  await firebase.assertSucceeds(
+    db.collection("users").doc("alice").set({ hello: "world" })
+  );
+});
+```
+
+If you run this now, you'll see that it fails. Let's fix up the security rules to allow this.
+
+Modify your rules to look like
+```
+service cloud.firestore {
+  match /databases/{db}/documents {
+    match /{doc=**} {
+      allow read, write: if false;
+    }
+    match /users/{userId} {
+        allow read, write: if request.auth.uid == userId;
+    }
+  }
+}
+```
+
+Re-run the test and it should pass!
