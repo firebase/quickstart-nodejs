@@ -14,6 +14,11 @@ Then the test dependencies:
 npm install
 ```
 
+The last step is to configure our project:
+```
+firebase use --add YOUR_PROJECT_ID
+```
+
 Now we're ready to actually run the tests:
 ```
 firebase emulators:exec "npm test"
