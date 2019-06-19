@@ -14,18 +14,9 @@ Then the test dependencies:
 npm install
 ```
 
-The last step is to configure our project:
-```
-firebase login --no-localhost
-```
-followed by
-```
-firebase use --add YOUR_PROJECT_ID
-```
-
 Now we're ready to actually run the tests:
 ```
-firebase emulators:exec "npm test"
+npm run ci
 ```
 
 If all goes well, you should see
@@ -55,8 +46,6 @@ Re-run your test and you should see
 
 ```
 > mocha
-
-
 
   1) a random user can write a random document
 

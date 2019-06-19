@@ -4,11 +4,13 @@
   "description": "Cloud Firestore emulator testing",
   "scripts": {
     "format": "prettier --write **/*.js",
+    "ci": "start-server-and-test 'firebase serve --only firestore' http-get://localhost:8080 test",
     "test": "mocha --exit --timeout 10000"
   },
   "devDependencies": {
     "@firebase/testing": "^0.10.1",
     "mocha": "^6.1.4",
-    "prettier": "^1.18.2"
+    "prettier": "^1.18.2",
+    "start-server-and-test": "^1.9.1"
   }
 }
