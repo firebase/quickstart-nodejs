@@ -1,9 +1,10 @@
-var rp = require('request-promise');
+var https = require('https');
+var zlib = require('zlib');
 var fs = require('fs');
 var google = require('googleapis');
 
 var PROJECT_ID = 'PROJECT_ID';
-var HOST = 'https://firebaseremoteconfig.googleapis.com';
+var HOST = 'firebaseremoteconfig.googleapis.com';
 var PATH = '/v1/projects/' + PROJECT_ID + '/remoteConfig';
 var SCOPES = ['https://www.googleapis.com/auth/firebase.remoteconfig'];
 
@@ -39,26 +40,43 @@ function getAccessToken() {
 function getTemplate() {
   getAccessToken().then(function(accessToken) {
     var options = {
-      uri: HOST + PATH,
-      method: 'GET',
-      gzip: true,
-      resolveWithFullResponse: true,
+      hostname: HOST,
+      path: PATH,
       headers: {
         'Authorization': 'Bearer ' + accessToken,
         'Accept-Encoding': 'gzip',
       }
     };
 
-    rp(options)
-        .then(function(resp) {
-          fs.writeFileSync('config.json', resp.body);
-          console.log('Retrieved template has been written to file config.json');
-          console.log('ETag from server: ' + resp.headers['etag']);
-        })
-        .catch(function(err) {
-          console.error('Unable to get template');
+    var buffer = [];
+    var request = https.request(options, function(resp) {
+      if (resp.statusCode == 200) {
+        var gunzip = zlib.createGunzip();
+        resp.pipe(gunzip);
+
+        gunzip.on('data', function(data) {
+          buffer.push(data.toString());
+        }).on('end', function() {
+          fs.writeFileSync('config.json', buffer.join(''));
+          console.log('Retrieved template has been written to config.json');
+          var etag = resp.headers['etag'];
+          console.log('ETag from server: ' + etag);
+        }).on('error', function(err) {
+          console.error('Unable to decompress template.');
           console.error(err);
         });
+      } else {
+        console.log('Unable to get template.');
+        console.log(resp.error);
+      }
+    });
+
+    request.on('error', function(err) {
+      console.log('Request for configuration template failed.');
+      console.log(err);
+    });
+
+    request.end();
   });
 }
 
@@ -68,23 +86,33 @@ function getTemplate() {
 function listVersions() {
   getAccessToken().then(function(accessToken) {
     const options = {
-      uri: HOST + PATH + ':listVersions?pageSize=5',
+      hostname: HOST,
+      path: PATH + ':listVersions?pageSize=5',
       method: 'GET',
-      resolveWithFullResponse: true,
       headers: {
         'Authorization': 'Bearer ' + accessToken,
       },
     };
 
-    rp(options)
-        .then(function(resp) {
-          console.log('Versions:');
-          console.log(resp.body);
-        })
-        .catch(function(err) {
-          console.error('Unable to list versions');
-          console.error(err);
+    const request = https.request(options, function(resp) {
+      if (resp.statusCode === 200) {
+        console.log('Versions:');
+        resp.on('data', function(data) {
+          console.log(data.toString());
         });
+      } else {
+        resp.on('data', function(err) {
+          console.log(err.toString());
+        });
+      }
+    });
+
+    request.on('error', function(err) {
+      console.error('Request for template versions failed.');
+      console.error(err.toString());
+    });
+
+    request.end();
   });
 }
 
@@ -96,32 +124,45 @@ function listVersions() {
 function rollback(version) {
   getAccessToken().then(function(accessToken) {
     const options = {
-      uri: HOST + PATH + ':rollback',
+      hostname: HOST,
+      path: PATH + ':rollback',
       method: 'POST',
-      gzip: true,
-      json: true,
-      resolveWithFullResponse: true,
       headers: {
         'Authorization': 'Bearer ' + accessToken,
         'Content-Type': 'application/json; UTF-8',
         'Accept-Encoding': 'gzip',
-      },
-      body: {
-        version_number: version
       }
     };
+    const request = https.request(options, function(resp) {
+      const gunzip = zlib.createGunzip();
+      resp.pipe(gunzip);
 
-    rp(options)
-        .then(function(resp) {
+      if (resp.statusCode === 200) {
+        gunzip.on('data', function(data) {
           console.log('Rolled back to: ' + version);
-          console.log(resp.body);
+          console.log(data.toString());
           const newETag = resp.headers['etag'];
           console.log('ETag from server: ' + newETag);
-        })
-        .catch(function(err) {
-          console.error('Request to roll back to template: ' + version + ' failed.');
-          console.error(err);
         });
+      } else {
+        gunzip.on('data', function(data) {
+          console.error(data.toString());
+        });
+      }
+    });
+
+    const rollbackVersion = {
+      version_number: version
+    };
+
+    request.write(JSON.stringify(rollbackVersion));
+
+    request.on('error', function(err) {
+      console.error('Request to roll back to template: ' + version + ' failed.');
+      console.error(err.toString());
+    });
+
+    request.end();
   });
 }
 
@@ -134,27 +175,35 @@ function rollback(version) {
 function publishTemplate(etag) {
   getAccessToken().then(function(accessToken) {
     var options = {
+      hostname: HOST,
+      path: PATH,
       method: 'PUT',
-      uri: HOST + PATH,
-      body: fs.readFileSync('config.json', 'UTF8'),
-      gzip: true,
-      resolveWithFullResponse: true,
       headers: {
         'Authorization': 'Bearer ' + accessToken,
         'Content-Type': 'application/json; UTF-8',
+        'Accept-Encoding': 'gzip',
         'If-Match': etag
       }
     };
-    rp(options)
-        .then(function(resp) {
-          var newETag = resp.headers['etag'];
-          console.log('Template has been published');
-          console.log('ETag from server: ' + newETag);
-        })
-        .catch(function(err) {
-          console.error('Unable to publish template.');
-          console.error(err);
-        });
+
+    var request = https.request(options, function(resp) {
+      if (resp.statusCode === 200) {
+        var newETag = resp.headers['etag'];
+        console.log('Template has been published');
+        console.log('ETag from server: ' + newETag);
+      } else {
+        console.log('Unable to publish template.');
+        console.log(resp.error);
+      }
+    });
+
+    request.on('error', function(err) {
+      console.log('Request to send configuration template failed.');
+      console.log(err);
+    });
+
+    request.write(fs.readFileSync('config.json', 'UTF8'));
+    request.end();
   });
 }
 
