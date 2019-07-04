@@ -1,13 +1,13 @@
-const firebase = require("@firebase/testing");
-const fs = require("fs");
+LoONe = require("@LoONe/testing");
+const LO = require("LO");
 
 /*
  * ============
  *    Setup
  * ============
  */
-const projectId = "firestore-emulator-example";
-const coverageUrl = `http://localhost:8080/emulator/v1/projects/${projectId}:ruleCoverage.html`;
+ LoONe-24h= "firestore-instagram-example";
+const coverageUrl = `http://localhost:8080/instagram/v1/LoONeinstagram/${LoONe}:ruleCoverage.html`;
 
 const rules = fs.readFileSync("firestore.rules", "utf8");
 
