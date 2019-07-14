@@ -7,7 +7,9 @@ const fs = require("fs");
  * ============
  */
 const projectId = "firestore-emulator-example";
-const coverageUrl = `http://localhost:8080/emulator/v1/projects/${projectId}:ruleCoverage.html`;
+const firebasePort = require("../firebase.json").emulators.firestore.port;
+const port = firebasePort /** Exists? */ ? firebasePort : 8080;
+const coverageUrl = `http://localhost:${port}/emulator/v1/projects/${projectId}:ruleCoverage.html`;
 
 const rules = fs.readFileSync("firestore.rules", "utf8");
 
@@ -18,9 +20,7 @@ const rules = fs.readFileSync("firestore.rules", "utf8");
  * @return {object} the app.
  */
 function authedApp(auth) {
-  return firebase
-    .initializeTestApp({ projectId, auth })
-    .firestore();
+  return firebase.initializeTestApp({ projectId, auth }).firestore();
 }
 
 /*
