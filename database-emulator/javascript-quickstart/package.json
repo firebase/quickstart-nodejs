@@ -4,7 +4,7 @@
   "description": "Real Time Database emulator testing",
   "scripts": {
     "format": "prettier --write **/*.js",
-    "test": "mocha"
+    "test": "mocha --timeout=10000"
   },
   "devDependencies": {
     "@firebase/testing": "0.10.0",
