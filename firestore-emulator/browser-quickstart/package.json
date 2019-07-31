@@ -1,13 +1,10 @@
 {
   "scripts": {
-    "test": "karma start --single-run --browsers ChromeHeadless karma.conf.js"
+    "test": "mocha --exit"
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "karma": "^4.2.0",
-    "karma-chai": "^0.1.0",
-    "karma-chrome-launcher": "^3.0.0",
-    "karma-mocha": "^1.3.0",
-    "mocha": "^6.2.0"
+    "mocha": "^6.2.0",
+    "puppeteer": "^1.19.0"
   }
 }
