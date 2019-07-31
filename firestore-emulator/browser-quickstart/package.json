@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "test": "mocha --exit"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.0",
+    "puppeteer": "^1.19.0"
+  }
+}
