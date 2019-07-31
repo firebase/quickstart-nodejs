@@ -1,8 +1,9 @@
 # Connecting a web app to the Firestore emulator
 
-Cloud Firestore relies heavily on bi-directional streams. Most clients connect
-via gRPC. Browser clients unfortunately cannot use gRPC bidi streams (see
-https://github.com/grpc/grpc-web), so Cloud Firestore also supports the
+Cloud Firestore relies heavily on bi-directional streams. Most clients (such as
+Android, iOS, and Node.js) connect via gRPC. Browser clients unfortunately
+cannot use gRPC bidi streams (see https://github.com/grpc/grpc-web), so Cloud
+Firestore also supports the
 [WebChannel protocol](https://google.github.io/closure-library/api/goog.net.WebChannel.html).
 
 We are in the process of adding WebChannel support to the Firestore emulator.
