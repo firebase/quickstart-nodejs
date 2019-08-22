@@ -86,7 +86,7 @@ This Learn Assistant has some convenient features we'll take advantage of for th
 Note: Be sure you've followed the previous topic and created the home directory structure explained there.
 
 1.  You'll be opening files. Click to open <walkthrough-editor-open-file filePath="./rules-tutorial/emulator-codelab/codelab-initial-state/firestore.rules">a sample firebase.rules file</walkthrough-editor-open-file>.
-1.  In those files, you'll read notes and instructions in code comments and make edits. Click to select <walkthrough-editor-select-line filePath="./rules-tutorial/emulator-codelab/codelab-initial-state/firestore.rules" startLine=0 startCharacterOffset=0 endLine=4 endCharacterOffset=0>some introductory notes</walkthrough-editor-select-line>.
+1.  In those files, you'll read notes and instructions in code comments and make edits. Click to select <walkthrough-editor-select-line filePath="./rules-tutorial/emulator-codelab/codelab-initial-state/firestore.rules" startLine=0 startCharacterOffset=0 endLine=4 endCharacterOffset=0>some code lines or introductory notes</walkthrough-editor-select-line>.
 1.  You'll run commands at the Cloud Shell prompt, some that you copy/paste from the editor panel and some - as you've already discovered - you can launch directly from this Learn Assistant panel:
 
 ```bash   
@@ -128,7 +128,7 @@ npm run test
 ```  
 Awesome. We're going to peek under the hood next, but the gist is our test suite populated the Firestore emulator with data and made a series of access requests, which were allowed and denied according to our Security Rules, and checked per our test cases.
 
-## Let them create shopping carts
+## Let users create shopping carts
 
 In the editor panel, switch to the <walkthrough-editor-open-file filePath="./rules-tutorial/emulator-codelab/codelab-initial-state/firestore.rules">firestore.rules tab</walkthrough-editor-open-file> if you're not already there.. 
 
@@ -156,10 +156,12 @@ npm run test
 npm run test
 ```
 
-## Let them update and delete shopping carts
+## Let users update and delete shopping carts
 
 Next, we'll cover the case when a user wants to update or delete a cart. In that case, we want a different rule, that checks the ownerUID that saved in the document rather than the ownerUID sent in the request:
 
+1. Replace the contents of `firestore.rules` with the following:
+```
     service cloud.firestore {
       match /databases/{database}/documents {
         match /carts/{cartID} {
@@ -168,11 +170,18 @@ Next, we'll cover the case when a user wants to update or delete a cart. In that
         }
       }
     }
+```
+2. Re-run the test suite.
+  Rerun the tests, and see that one more test passes. Good job!
+```bash
+npm run test
+```
 
-Let them look in their shopping carts
+## Let users look in their shopping carts
 
 When we rerun the tests, we find that the next failure is that although cart owners can write to their cart, they can't read it. Since we want cart owners to be the only ones to read their carts, modify the update and delete rule to also allow reads:
 
+1. Replace the contents of `firestore.rules` with the following:
 ```
     service cloud.firestore {
       match /databases/{database}/documents {
@@ -183,9 +192,17 @@ When we rerun the tests, we find that the next failure is that although cart own
       }
     }
 ```
+2. Re-run the test suite.
+  Rerun the tests, and see that one more test passes. Good job!
+```bash
+npm run test
+```
+
+## Let users put items in their cart
 
 Rerunning the tests, we find that the tests around cart documents pass, but the tests for the `items` subcollections are not passing. The cart owner should be able to read or write to that subcollection, so we can write one last rule that will allow access if the user accessing the items data has the same UID as the ownerUID on the cart document:
 
+1. Replace the contents of `firestore.rules` with the following:
 ```
 service cloud.firestore {
   match /databases/{database}/documents {
@@ -199,7 +216,11 @@ service cloud.firestore {
   }
 }
 ```
-
+2. Re-run the test suite.
+  Rerun the tests, and see that one more test passes. Good job!
+```bash
+npm run test
+```
 Now our shopping cart data is secure, and tested. If this were a production application, we could add these tests to our CI tests, to have confidence going forward that our shopping cart data would stay secure. 
 
 ## Initialize your Firebase project and continue with your own project's Security Rules
