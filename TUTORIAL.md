@@ -96,9 +96,38 @@ We'll present most of the walkthrough content and hands-on exercises this way, s
 
 ## Security Rules basics
 
-You'll get the most out of this walkthrough if you already have some experience with the Firestore Security Rules language and have modified the default `firestore.rules` with Rules tailored to your project. In this applies to you, you can click "Next" to move on.
+You'll get the most out of this walkthrough if you already have some experience with the Firestore Security Rules language and have in your own project modified the default `firestore.rules` with Rules tailored to your data. If this applies to you, you can click "Next" to move on.
 
 Here are the basics about Rules statements. If these concepts are unfamiliar, you might review [Structuring Cloud Firestore Security Rules](https://firebase.google.com/docs/firestore/security/rules-structure).
+
+### Service and database declaration
+Cloud Firestore Security Rules always begin with the following declaration:
+```
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // ...
+  }
+}
+```
+The service cloud.firestore declaration scopes the rules to Cloud Firestore, preventing conflicts between Cloud Firestore Security Rules and rules for other products such as Cloud Storage.
+
+The match /databases/{database}/documents declaration specifies that rules should match any Cloud Firestore database in the project. Currently each project has only a single database named (default).
+
+### Basic read/write rules
+Basic rules consist of a match statement specifying a document path and an allow expression detailing when reading the specified data is allowed:
+```
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Match any document in the 'cities' collection
+    match /cities/{city} {
+      allow read: if <condition>;
+      allow write: if <condition>;
+    }
+  }
+}
+```
+All match statements should point to documents, not collections. A match statement can point to a specific document, as in match /cities/SF or use wildcards to point to any document in the specified path, as in match /cities/{city}.
 
 ## Emulator Suite and Firebase Test SDK basics
 
