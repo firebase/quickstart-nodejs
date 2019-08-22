@@ -2,36 +2,23 @@
 
 ## Introduction
 
-Hi Firebase Security Rules developer! Welcome to Google Cloud Shell and Learning Assistant. We'll explain what this environment is all about shortly, but for now a quick orientation:
+Hi Firebase Security Rules developer! Welcome to Google Cloud Shell. We'll explain what this environment is all about shortly, but for now a quick orientation:
 
-+   The panel you're reading this text in is called the Learning Assistant.
-+   At left, the bottom panel is a full-featured command shell, essentially a Google-hosted virtual machine with Web interface, called the Google Cloud Shell.
++   The panel you're reading this text in is called the Learn Assistant.
++   At left, the bottom panel is a full-featured command shell, essentially a Google-hosted virtual machine with this Web interface, called the Google Cloud Shell.
 +   At left, a file browser and editor panel let you browse directories in this Cloud Shell instance and edit local files.
 
-You're likely here by way of the Rules interface in Firebase console,
-interested in learning how you can use offline Firebase emulators to prototype
-and test Security Rules for your Firebase project.
+You're likely here by way of the Rules interface in Firebase console, interested in learning how you can use offline Firebase emulators to prototype and test Security Rules for your Firebase project.
 
-The news is good. This Cloud Shell instance is already configured with Firebase emulators and a simple testing framework designed with Security Rules development in mind.
+The news is good. This Cloud Shell instance is already configured with Firebase emulators including Security Rules engine, and a simple testing framework designed with Security Rules development in mind.
 
-Note: If you close this Learning Assistant panel by accident, at the Cloud Shell prompt, run `tutorial.sh`. You'll be prompted to resume the tutorial from where you left off.
+Note: If you close this Learn Assistant panel by accident, at the Cloud Shell prompt, run `tutorial.sh`. You'll be prompted to resume the tutorial from where you left off.
 
 To get started with the walkthrough...well, click `Start` below.
 
-## What should you know for this walkthrough?
-
-To get the most out of this Firebase emulators and Security Rules walkthrough, it's best if you've already implemented part or all of an app using a Firestore backend, or at least you should:
-
-+   Be familiar with Firestore's overall NoSQL, document-centric concept of data
-+   Be familiar with Firestore's particular document and collection representation of data
-+   Have looked at the Firestore default rules set, `firestore.rules,` in your own project
-+   Have a Github account
-
-In other words, we hope you'll be familiar with the basics of Firestore security and ready for next steps. If you're just starting out or need a refresher, link XXX.
-
 ## What will you learn in this walkthrough?
 
-We're hoping this walkthrough will teach you how to quickly access the Firebase Local Emulator Suite in a Cloud Shell environment, a **persistent** environment that you can drop back into whenever you need to debug Security Rules and don't have access to your own locally-installed Emulator Suite. In this case, the Firestore emulator is preconfigured, with Security Rules engine built-in.
+We're hoping this walkthrough will teach you how to quickly access the Firebase Local Emulator Suite in a Cloud Shell environment, a **persistent** environment that you can drop back into whenever you need to debug Security Rules and don't have access to your own locally-installed Emulator Suite.
 
 We also want to introduce the Firebase Test SDK, a Node.js plus mocha framework that is well-suited for prototyping and debugging Security Rules. Don't worry:
 
@@ -41,68 +28,70 @@ We also want to introduce the Firebase Test SDK, a Node.js plus mocha framework 
 
 After working with the Firestore and Security Rules emulator, you'll be able to initialize your Firebase project here in Cloud Shell and continue working on your own project's Security Rules.
 
-OK, now let's get started with a bit about this Cloud Shell environment!
-
-## Getting familiar with Cloud Shell
-
-+   A VM, a persistent, hosted environment
-+   (Sell Cloud Shell as prototyping and learning environment)
-
-    +   Net access, git access
-
-+   We've pre-installed the Firestore emulator
-
-    +   Lets you test with Firestore without touching any production code or data, and, important in this context, its Security Rules using the Firestore API 
-    +   Also the Firebase Test SDK
-
 ## Check out a Security Rules tutorial project
 
-(These will all be Neos "terminal input code blocks" to dump to promptâ€¦)
+Let's check some tutorial samples out of Google Cloud Source.
+
+1.  Initialize Google Cloud SDK. Follow the setup wizard, answering with these options:
+
+    1.  First prompt: **option [1]** Re-initialize this configuration
+    1.  Second prompt: **option [1]** {your cloud account IDe}
+    1.  Third prompt: **option [2]** Create a new project. Enter a temporary project name. To guarantee uniqueness, append your Cloud account ID. For example `rules-test-janedoe`.
+
+```bash  
+gcloud init  
+```
 
 1.  Set up a directory structure to organize tutorial project files plus your own project(s).
 
-> Note: Please create the following directory from the **root** of your Cloud Shell home directory. Once this walkthrough is done, you can remove the tutorial directory and re-organize your Cloud Shell working directory however you like.  
-```bash
-cd ~; mkdir rules-tutorial
+> Note: Please create the following directory from the **root** of your Cloud Shell home directory.  
+```bash  
+cd ~; mkdir rules-tutorial  
 ```
 
 1.  Switch to the tutorial working directory.
 
-```bash
-cd ~/rules-tutorial
+```bash  
+cd ~/rules-tutorial  
 ```
 
-1.  Check out the tutorial project from Github.
+1.  Check out the tutorial project from Cloud Source.
 
-```bash
-git clone https://github.com/firebase/quickstart-nodejs  
+```bash  
+gcloud source repos clone emulator-codelab --project=rachelmyers-wipeout-example  
+```
+
+1.  Change directory to the tutorial project.
+
+```bash  
+cd emulator-codelab/codelab-initial-state/functions/ 
 ```
 
 1.  Install the Firebase Test SDK and a few more tools.
 
-```bash
-npm install
+```bash  
+npm install  
 ```
 
-1.  Confirm the checkout was successful by running tests using the default test cases and Security Rules configuration
+1.  Confirm the checkout was successful by running tests. It's OK if you see errors in the terminal. If you see `passing` and `failing` in the output, then the Test SDK and tools were correctly installed.
 
-```bash
-npm run test
+```bash  
+npm run test  
 ```
 
-## Using the Learning Assistant
+## Using the Learn Assistant
 
-This Learning Assistant has some convenient features we'll take advantage of for this walkthrough. Let's try them out.
+This Learn Assistant has some convenient features we'll take advantage of for this walkthrough. Let's try them out.
 
 Note: Be sure you've followed the previous topic and created the home directory structure explained there.
 
-1.  You'll be opening files. Click to open <walkthrough-editor-open-file filePath="./firestore.rules">a sample firebase.rules file</walkthrough-editor-open-file>.
-1.  In those files, you'll read notes and instructions in code comments and make edits. Click to select <walkthrough-editor-select-line filePath="./firestore.rules" startLine=0 startCharacterOffset=0 endLine=4 endCharacterOffset=0>some introductory notes</walkthrough-editor-select-line>
-1.  You'll run commands at the Cloud Shell prompt.
+1.  You'll be opening files. Click to open <walkthrough-editor-open-file filePath="./rules-tutorial/emulator-codelab/codelab-initial-state/firestore.rules">a sample firebase.rules file</walkthrough-editor-open-file>.
+1.  In those files, you'll read notes and instructions in code comments and make edits. Click to select <walkthrough-editor-select-line filePath="./rules-tutorial/emulator-codelab/codelab-initial-state/firestore.rules" startLine=0 startCharacterOffset=0 endLine=4 endCharacterOffset=0>some introductory notes</walkthrough-editor-select-line>.
+1.  You'll run commands at the Cloud Shell prompt, some that you copy/paste from the editor panel and some - as you've already discovered - you can launch directly from this Learn Assistant panel:
 
-```bash
-npm run test
-```
+```bash   
+echo "It is currently "$(date)   
+```  
 We'll present most of the walkthrough content and hands-on exercises this way, so get comfortable with this interaction.
 
 ## Security Rules basics
@@ -114,48 +103,126 @@ We'll present most of the walkthrough content and hands-on exercises this way, s
 +   Checking rules evaluations
 +   What closed rules look like...
 
-## Broken rules are good (for offline learning)
+## Emulator Suite and Firebase Test SDK basics
 
-+   Try: opening a series of consecutive tutorial rules files (firestore.rules, firestore.rules.1, firestore.rules.2) and Save Asâ€¦ firestore.rules to run tests...
-+   Introduce our use case
-+   Look at the Firestore data we're securing
+Earlier we ran the test suite to make sure our tool setup and tutorial project checkout were successful. Now let's start up the Firestore emulator and run the test suite for real.
 
-    +   (go to editor I/F, open test.js in editor panel)
-    +   With Test SDK we're setting up a local, emulated Firestore database with data model in this file.
+1.  Start the Firestore and Cloud Functions emulators.
 
-        +   This gives you the freedom to iterate both your rules and your data model. Adjustments to both are often necessary to get security working the way you need it to
-        +   Let's quickly review the data model (shift focus to editor window and code comments)
-        +   Come back to this panel when you're done in test.js
+```bash  
+firebase emulators:start --only firestore,functions 
+```
 
-+   Now look at the initial rules
+1.  Wait briefly until the Firestore and Cloud Functions emulators have started up. You'll see terminal output saying it's safe to connect.
+1.  Add a new Cloud Shell session **(will try to use Spotlight to show this…).** Firestore emulator continues running in parallel, in our original session.
+1.  At the new session prompt, change directory to our Rules walkthrough project.
 
-    +   (go to editor I/Fopen firestore.rules in editor panel)
-    +   What do you predict?
+```bash  
+cd ~; cd ./rules-tutorial/emulator-codelab/codelab-initial-state/functions/
+```
 
-+   Now let's watch it burn  `npm run test`
+1.  Run the test suite.
 
-    +   Match expectations?
-    +   Rules failed here becauseâ€¦.
+```bash  
+npm run test  
+```  
+Awesome. We're going to peek under the hood next, but the gist is our test suite populated the Firestore emulator with data and made a series of access requests, which were allowed and denied according to our Security Rules, and checked per our test cases.
 
-## Repaired rules are better (for production)
+## Let them create shopping carts
+
+In the editor panel, switch to the <walkthrough-editor-open-file filePath="./rules-tutorial/emulator-codelab/codelab-initial-state/firestore.rules">firestore.rules tab</walkthrough-editor-open-file> if you're not already there.. 
+
+This and the test script files are where we'll iterate to make sure that our application will protect user data. We see that we have the default rules created in open mode; everyone is allowed to read or write to any part of this database. We don’t want to ship our app like that, so we’ll tailor the Security Rules to our specific application.
+
+1.  Run the tests again, and notice the first error.
+```bash
+npm run test
+```
+1.  Open the test file, <walkthrough-editor-open-file filePath="./rules-tutorial/emulator-codelab/codelab-initial-state/functions/test.js">functions/test.js</walkthrough-editor-open-file>. 
+1.  To fix the first failure, for the test case that a shopping cart can only be created by a shopping cart owner, replace the innermost match statement, to match only documents in the carts collection, and add an allow statement to allow creates only if the user who is making the request is the user listed as the cart owner. In the editor panel, back in <walkthrough-editor-open-file filePath="./rules-tutorial/emulator-codelab/codelab-initial-state/firestore.rules">firebase.rules</walkthrough-editor-open-file>, **replace the current rules set with the following**:
+
+```
+    service cloud.firestore {
+      match /databases/{database}/documents {
+        match /carts/{cartID} {
+          allow create: if request.auth.uid == request.resource.data.ownerUID;
+        }
+      }
+    }
+```
+
+1.  Rerun the tests, and see that one more test passes. Good job!
+```bash
+npm run test
+```
+
+## Let them update and delete shopping carts
+
+Next, we'll cover the case when a user wants to update or delete a cart. In that case, we want a different rule, that checks the ownerUID that saved in the document rather than the ownerUID sent in the request:
+
+    service cloud.firestore {
+      match /databases/{database}/documents {
+        match /carts/{cartID} {
+          allow create: if request.auth.uid == request.resource.data.ownerUID;
+          allow update, delete: if request.auth.uid == resource.data.ownerUID;
+        }
+      }
+    }
+
+Let them look in their shopping carts
+
+When we rerun the tests, we find that the next failure is that although cart owners can write to their cart, they can't read it. Since we want cart owners to be the only ones to read their carts, modify the update and delete rule to also allow reads:
+
+```
+    service cloud.firestore {
+      match /databases/{database}/documents {
+        match /carts/{cartID} {
+          allow create: if request.auth.uid == request.resource.data.ownerUID
+          allow read, update, delete: if request.auth.uid == resource.data.ownerUID;
+        }
+      }
+    }
+```
+
+Rerunning the tests, we find that the tests around cart documents pass, but the tests for the `items` subcollections are not passing. The cart owner should be able to read or write to that subcollection, so we can write one last rule that will allow access if the user accessing the items data has the same UID as the ownerUID on the cart document:
+
+```
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /carts/{cartID} {
+      allow create: if request.auth.uid == request.resource.data.ownerUID;
+      allow read, update, delete: if request.auth.uid == resource.data.ownerUID;
+    }
+    match /carts/{cartID}/items/{itemID} {
+      allow read, write: if get(/databases/$(database)/documents/carts/$(cartID)).data.ownerUID == request.auth.uid;
+    }
+  }
+}
+```
+
+Now our shopping cart data is secure, and tested. If this were a production application, we could add these tests to our CI tests, to have confidence going forward that our shopping cart data would stay secure. 
 
 ## Initialize your Firebase project and continue with your own project's Security Rules
 
-+   Ugh, we have to right?
-+   When finished, `firebase deploy` to push your modified project files back to production.
+* **One topic** to demonstrate that user can `firebase init`, select their own project, work with their own rules...
+
+...
+
++   When finished, `firebase deploy` to push your modified project files back to production. **Note that the deploy command puts your changes in production, not staging**, so be sure you're happy with changes to your Security Rules or other code before you deploy.
 
 ## What next?
 
 OK, so we've:
 
-+   Created a Firestore database using Firebase Local Emulator Suite, populated
-this database, and used it for live Security Rules evaluations. +   Worked with
-a .rules file and a few predefined test cases using Firebase Test SDK to spot
-buggy Security Rules and quickly iterate fixes +   Pushed updated Firebase
-project files to production from the Cloud Shell
++   Created a Firestore database using Firebase Local Emulator Suite, populated this database, and used it for live Security Rules evaluations.
++   Worked with a .rules file and a few predefined test cases using Firebase Test SDK to spot buggy Security Rules and quickly iterate fixes
++   Pushed updated Firebase project files to production from the Cloud Shell
 
 At this point, we recommend you:
 
 +   Learn more about Firebase Local Emulator Suite, including how to install and include it in your continuous integration environment, as well as how to use it for mobile app prototyping and testing.
++   Compare the Security Rules debugging experience you just had with the Emulator Suite to Rules debugging in the Security Rules Simulator in Firebase console. Each tool has its value.
 
-The Firebase console is likely still open in your browser. To complete this walkthrough and close Cloud Shell, simply close this browser tab. If you deployed your updated Security Rules, refresh the console Rules Simulator to see the updates. Remember, you can always return to Cloud Shell and continue with your Security Rules and other project files and data.
+**The Firebase console is likely still open in your browser. To complete this walkthrough and close Cloud Shell, simply close this browser tab. If you deployed your updated Security Rules, refresh the console Rules Simulator to see the updates**.
+
+Remember, you can always return to Cloud Shell to check out and prototype your Firebase Security Rules and other project files and data.
