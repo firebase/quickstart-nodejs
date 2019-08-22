@@ -97,7 +97,7 @@ We'll present most of the walkthrough content and hands-on exercises this way, s
 ## Security Rules basics
 
 You'll get the most out of this walkthrough if you already have some experience with the Firestore Security Rules language and have in your own project modified the default `firestore.rules` with Rules tailored to your data. 
-> If this applies to you, you can click "Next" to move on.
+**If this applies to you, you can click "Next" to move on**.
 
 Here are the basics about Rules statements. If these concepts are unfamiliar, you might review [Structuring Cloud Firestore Security Rules](https://firebase.google.com/docs/firestore/security/rules-structure).
 
