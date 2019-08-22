@@ -14,18 +14,6 @@ The news is good. This Cloud Shell instance is already configured with Firebase 
 
 To get started with the walkthrough...well, click `Start` below.
 
-## What will you learn in this walkthrough?
-
-We're hoping this walkthrough will teach you how to quickly access the Firebase Local Emulator Suite in a Cloud Shell environment, a **persistent** environment that you can drop back into whenever you need to debug Security Rules and don't have access to your own locally-installed Emulator Suite.
-
-We also want to introduce the Firebase Test SDK, a Node.js plus mocha framework that is well-suited for prototyping and debugging Security Rules. Don't worry:
-
-+   Running tests with Node.js and mocha is straightforward. Kicking off tests is a one-liner operation: `npm run test`.
-+   We focus on Firebase emulators and Security Rules, not details of test frameworks that would distract from the lessons you're trying to learn.
-+   We'll glance at but won't need to edit any test script. Instead, we'll concentrate on a  `firestore.rules` file, looking at rules statements that fail and iterating until rules operate the way you need them to.
-
-After working with the Firestore and Security Rules emulator, you'll be able to initialize your Firebase project here in Cloud Shell and continue working on your own project's Security Rules.
-
 ## Check out a Security Rules tutorial project
 
 Let's check some tutorial samples out of Google Cloud Source.
