@@ -32,7 +32,7 @@ After working with the Firestore and Security Rules emulator, you'll be able to 
 
 Let's check some tutorial samples out of Google Cloud Source.
 
-1.  Initialize Google Cloud SDK. Follow the setup wizard, answering with these options:
+1.  Initialize Google Cloud SDK. Below, click the icon to copy the `gcloud init` command to the Cloud Shell prompt. Then follow the setup wizard, answering with these options:
 
     1.  First prompt: **option [1]** Re-initialize this configuration
     1.  Second prompt: **option [1]** {your cloud account IDe}
@@ -96,12 +96,12 @@ We'll present most of the walkthrough content and hands-on exercises this way, s
 
 ## Security Rules basics
 
-(Note: break up basic concepts into sections and link out to specific Firesite topics, don't dump them into the top level of Rules docs)
+You'll get the most out of this walkthrough if you already have some experience with the Firestore Security Rules language and have modified the default `firestore.rules` with Rules tailored to your project. In this applies to you, you can click "Next" to move on.
 
-+   (Working with .rules files)
-+   Rules basic syntax
-+   Checking rules evaluations
-+   What closed rules look like...
+Here are the basics about Rules statements. If these concepts are unfamiliar, you might review <a href="https://firebase.google.com/docs/firestore/security/rules-structure>Structuring Cloud Firestore Security Rules
+</a>.
+
+
 
 ## Emulator Suite and Firebase Test SDK basics
 
