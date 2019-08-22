@@ -12,8 +12,6 @@ You're likely here by way of the Rules interface in Firebase console, interested
 
 The news is good. This Cloud Shell instance is already configured with Firebase emulators including Security Rules engine, and a simple testing framework designed with Security Rules development in mind.
 
-Note: If you close this Learn Assistant panel by accident, at the Cloud Shell prompt, run `tutorial.sh`. You'll be prompted to resume the tutorial from where you left off.
-
 To get started with the walkthrough...well, click `Start` below.
 
 ## What will you learn in this walkthrough?
