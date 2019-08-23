@@ -21,8 +21,8 @@ Let's check some tutorial samples out of Google Cloud Source.
 1.  Initialize Google Cloud SDK. Below, click the icon to copy the `gcloud init` command to the Cloud Shell prompt. Then follow the setup wizard, answering with these options:
 
     a.  First prompt: **option [1]** Re-initialize this configuration
-    b.  Second prompt: **option [1]** {your cloud account ID}
-    c.  Third prompt: **option [2]** Create a new project. Enter a temporary project name. To guarantee uniqueness, append your Cloud account ID. For example `rules-test-janedoe`.
+    a.  Second prompt: **option [1]** {your cloud account ID}
+    a.  Third prompt: **option [2]** Create a new project. Enter a temporary project name. To guarantee uniqueness, append your Cloud account ID. For example `rules-test-janedoe`.
 
 ```bash  
 gcloud init  
@@ -250,13 +250,12 @@ OK, so we've:
 
 +   Created a Firestore database using Firebase Local Emulator Suite, populated this database, and used it for live Security Rules evaluations.
 +   Worked with a .rules file and a few predefined test cases using Firebase Test SDK to spot buggy Security Rules and quickly iterate fixes
-+   Pushed updated Firebase project files to production from the Cloud Shell
 
 At this point, we recommend you:
 
 +   Learn more about Firebase Local Emulator Suite, including how to install and include it in your continuous integration environment, as well as how to use it for mobile app prototyping and testing.
 +   Compare the Security Rules debugging experience you just had with the Emulator Suite to Rules debugging in the Security Rules Simulator in Firebase console. Each tool has its value.
 
-**The Firebase console is likely still open in your browser. To complete this walkthrough and close Cloud Shell, simply close this browser tab. If you deployed your updated Security Rules, refresh the console Rules Simulator to see the updates**.
+**The Firebase console is likely still open in your browser. To complete this walkthrough and close Cloud Shell, simply close this browser tab.
 
 Remember, you can always return to Cloud Shell to check out and prototype your Firebase Security Rules and other project files and data.
