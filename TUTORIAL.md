@@ -20,46 +20,46 @@ Let's check some tutorial samples out of Google Cloud Source.
 
 1.  Initialize Google Cloud SDK. Below, click the icon to copy the `gcloud init` command to the Cloud Shell prompt. Then follow the setup wizard, answering with these options:
 
-    1.  First prompt: **option [1]** Re-initialize this configuration
-    1.  Second prompt: **option [1]** {your cloud account IDe}
-    1.  Third prompt: **option [2]** Create a new project. Enter a temporary project name. To guarantee uniqueness, append your Cloud account ID. For example `rules-test-janedoe`.
+    a.  First prompt: **option [1]** Re-initialize this configuration
+    b.  Second prompt: **option [1]** {your cloud account ID}
+    c.  Third prompt: **option [2]** Create a new project. Enter a temporary project name. To guarantee uniqueness, append your Cloud account ID. For example `rules-test-janedoe`.
 
 ```bash  
 gcloud init  
 ```
 
-1.  Set up a directory structure to organize tutorial project files plus your own project(s).
+2.  Set up a directory structure to organize tutorial project files plus your own project(s).
 
 > Note: Please create the following directory from the **root** of your Cloud Shell home directory.  
 ```bash  
 cd ~; mkdir rules-tutorial  
 ```
 
-1.  Switch to the tutorial working directory.
+3.  Switch to the tutorial working directory.
 
 ```bash  
 cd ~/rules-tutorial  
 ```
 
-1.  Check out the tutorial project from Cloud Source.
+4.  Check out the tutorial project from Cloud Source.
 
 ```bash  
 gcloud source repos clone emulator-codelab --project=rachelmyers-wipeout-example  
 ```
 
-1.  Change directory to the tutorial project.
+5.  Change directory to the tutorial project.
 
 ```bash  
 cd emulator-codelab/codelab-initial-state/functions/ 
 ```
 
-1.  Install the Firebase Test SDK and a few more tools.
+6.  Install the Firebase Test SDK and a few more tools.
 
 ```bash  
 npm install  
 ```
 
-1.  Confirm the checkout was successful by running tests. It's OK if you see errors in the terminal. If you see `passing` and `failing` in the output, then the Test SDK and tools were correctly installed.
+7.  Confirm the checkout was successful by running tests. It's OK if you see errors in the terminal. If you see `passing` and `failing` in the output, then the Test SDK and tools were correctly installed.
 
 ```bash  
 npm run test  
@@ -72,8 +72,8 @@ This Learn Assistant has some convenient features we'll take advantage of for th
 Note: Be sure you've followed the previous topic and created the home directory structure explained there.
 
 1.  You'll be opening files. Click to open <walkthrough-editor-open-file filePath="./rules-tutorial/emulator-codelab/codelab-initial-state/firestore.rules">a sample firebase.rules file</walkthrough-editor-open-file>.
-1.  In those files, you'll read notes and instructions in code comments and make edits. Click to select <walkthrough-editor-select-line filePath="./rules-tutorial/emulator-codelab/codelab-initial-state/firestore.rules" startLine=0 startCharacterOffset=0 endLine=4 endCharacterOffset=0>some code lines or introductory notes</walkthrough-editor-select-line>.
-1.  You'll run commands at the Cloud Shell prompt, some that you copy/paste from the editor panel and some - as you've already discovered - you can launch directly from this Learn Assistant panel:
+2.  In those files, you'll read notes and instructions in code comments and make edits. Click to select <walkthrough-editor-select-line filePath="./rules-tutorial/emulator-codelab/codelab-initial-state/firestore.rules" startLine=0 startCharacterOffset=0 endLine=4 endCharacterOffset=0>some code lines or introductory notes</walkthrough-editor-select-line>.
+3.  You'll run commands at the Cloud Shell prompt, some that you copy/paste from the editor panel and some - as you've already discovered - you can launch directly from this Learn Assistant panel:
 
 ```bash   
 echo "It is currently "$(date)   
@@ -126,15 +126,15 @@ Earlier we ran the test suite to make sure our tool setup and tutorial project c
 firebase emulators:start --only firestore,functions 
 ```
 
-1.  Wait briefly until the Firestore and Cloud Functions emulators have started up. You'll see terminal output saying it's safe to connect.
-1.  Add a new Cloud Shell session **(will try to use Spotlight to show this…).** Firestore emulator continues running in parallel, in our original session.
-1.  At the new session prompt, change directory to our Rules walkthrough project.
+2.  Wait briefly until the Firestore and Cloud Functions emulators have started up. You'll see terminal output saying it's safe to connect.
+3.  Add a <walkthrough-spotlight-pointer spotlightId="devshell-add-tab-button">new Cloud Shell session</walkthrough-spotlight-pointer>. Firestore emulator continues running in parallel, in our original session.
+4.  At the new session prompt, change directory to our Rules walkthrough project.
 
 ```bash  
 cd ~; cd ./rules-tutorial/emulator-codelab/codelab-initial-state/functions/
 ```
 
-1.  Run the test suite.
+5.  Run the test suite.
 
 ```bash  
 npm run test  
@@ -151,8 +151,8 @@ This and the test script files are where we'll iterate to make sure that our app
 ```bash
 npm run test
 ```
-1.  Open the test file, <walkthrough-editor-open-file filePath="./rules-tutorial/emulator-codelab/codelab-initial-state/functions/test.js">functions/test.js</walkthrough-editor-open-file>. 
-1.  To fix the first failure, for the test case that a shopping cart can only be created by a shopping cart owner, replace the innermost match statement, to match only documents in the carts collection, and add an allow statement to allow creates only if the user who is making the request is the user listed as the cart owner. In the editor panel, back in <walkthrough-editor-open-file filePath="./rules-tutorial/emulator-codelab/codelab-initial-state/firestore.rules">firebase.rules</walkthrough-editor-open-file>, **replace the current rules set with the following**:
+2.  Open the test file, <walkthrough-editor-open-file filePath="./rules-tutorial/emulator-codelab/codelab-initial-state/functions/test.js">functions/test.js</walkthrough-editor-open-file>. 
+3.  To fix the first failure, for the test case that a shopping cart can only be created by a shopping cart owner, replace the innermost match statement, to match only documents in the carts collection, and add an allow statement to allow creates only if the user who is making the request is the user listed as the cart owner. In the editor panel, back in <walkthrough-editor-open-file filePath="./rules-tutorial/emulator-codelab/codelab-initial-state/firestore.rules">firebase.rules</walkthrough-editor-open-file>, **replace the current rules set with the following**:
 
 ```
     service cloud.firestore {
@@ -164,7 +164,7 @@ npm run test
     }
 ```
 
-1.  Rerun the tests, and see that one more test passes. Good job!
+4.  Rerun the tests, and see that one more test passes. Good job!
 ```bash
 npm run test
 ```
