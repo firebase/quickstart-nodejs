@@ -258,6 +258,6 @@ At this point, we recommend you:
 +   Learn more about Firebase Local Emulator Suite, including how to install and include it in your continuous integration environment, as well as how to use it for mobile app prototyping and testing.
 +   Compare the Security Rules debugging experience you just had with the Emulator Suite to Rules debugging in the Security Rules Simulator in Firebase console. Each tool has its value.
 
-**The Firebase console is likely still open in your browser. To complete this walkthrough and close Cloud Shell, simply close this browser tab.
+**The Firebase console is likely still open in your browser. To complete this walkthrough and close Cloud Shell, simply close this browser tab.**
 
 Remember, you can always return to Cloud Shell to check out and prototype your Firebase Security Rules and other project files and data.
