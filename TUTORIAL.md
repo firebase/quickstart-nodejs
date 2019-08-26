@@ -238,14 +238,6 @@ npm run test
 ```
 Now our shopping cart data is secure, and tested. If this were a production application, we could add these tests to our CI tests, to have confidence going forward that our shopping cart data would stay secure. 
 
-## Initialize your Firebase project and continue with your own project's Security Rules
-
-* **One topic** to demonstrate that user can `firebase init`, select their own project, work with their own rules...
-
-...
-
-+   When finished, `firebase deploy` to push your modified project files back to production. **Note that the deploy command puts your changes in production, not staging**, so be sure you're happy with changes to your Security Rules or other code before you deploy.
-
 ## What next?
 
 OK, so we've:
