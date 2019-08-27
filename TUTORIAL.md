@@ -24,11 +24,12 @@ Let's check some tutorial samples out of Google Cloud Source.
 gcloud init  
 ```
 **Note:** follow the setup wizard, answering with these options:
-&nbsp;&nbsp;&nbsp;a.  First prompt: **option [1]** Re-initialize this configuration
 
-&nbsp;&nbsp;&nbsp;b.  Second prompt: **option [1]** {your cloud account ID}
+&nbsp;&nbsp;&nbsp;&nbsp;a.  First prompt: **option [1]** Re-initialize this configuration
 
-&nbsp;&nbsp;&nbsp;c.  Third prompt: **option [2]** Create a new project. Enter a temporary project name. To guarantee &nbsp;&nbsp;&nbsp;&nbsp;uniqueness, append your Cloud account ID. For example `rules-test-janedoe`.
+&nbsp;&nbsp;&nbsp;&nbsp;b.  Second prompt: **option [1]** {your cloud account ID}
+
+&nbsp;&nbsp;&nbsp;&nbsp;c.  Third prompt: **option [2]** Create a new project. Enter a temporary project name. To guarantee &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;uniqueness, append your Cloud account ID. For example `rules-test-janedoe`.
 
 2.  Set up a directory structure to organize tutorial project files plus your own project(s).
 
