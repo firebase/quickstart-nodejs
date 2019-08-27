@@ -18,17 +18,17 @@ To get started with the walkthrough...well, click `Start` below.
 
 Let's check some tutorial samples out of Google Cloud Source.
 
-1.  Initialize Google Cloud SDK. Below, click the icon to copy the `gcloud init` command to the Cloud Shell prompt. Then follow the setup wizard, answering with these options:
+1.  Initialize Google Cloud SDK. Click the icon to copy the `gcloud init` command to the Cloud Shell prompt.
+```bash  
+gcloud init  
+```
+Then follow the setup wizard, answering with these options:
 
     a.  First prompt: **option [1]** Re-initialize this configuration
 
     b.  Second prompt: **option [1]** {your cloud account ID}
 
     c.  Third prompt: **option [2]** Create a new project. Enter a temporary project name. To guarantee uniqueness, append your Cloud account ID. For example `rules-test-janedoe`.
-
-```bash  
-gcloud init  
-```
 
 2.  Set up a directory structure to organize tutorial project files plus your own project(s).
 
@@ -186,6 +186,7 @@ Next, we'll cover the case when a user wants to update or delete a cart. In that
       }
     }
 ```
+2. Switch to the Cloud Shell session in which the emulators are running.
 2. Re-run the test suite.
   Rerun the tests, and see that one more test passes. Good job!
 ```bash
