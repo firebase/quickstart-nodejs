@@ -22,7 +22,7 @@ Let's check some tutorial samples out of Google Cloud Source.
 ```bash  
 gcloud init  
 ```
-Then follow the setup wizard, answering with these options:
+**Note:** follow the setup wizard, answering with these options:
 
     a.  First prompt: **option [1]** Re-initialize this configuration
 
