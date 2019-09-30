@@ -1,6 +1,6 @@
 var rp = require('request-promise');
 var fs = require('fs');
-var google = require('googleapis');
+var {GoogleAuth} = require('google-auth-library');
 
 var PROJECT_ID = 'PROJECT_ID';
 var HOST = 'https://firebaseremoteconfig.googleapis.com';
@@ -16,22 +16,10 @@ var SCOPES = ['https://www.googleapis.com/auth/firebase.remoteconfig'];
  */
 // [START retrieve_access_token]
 function getAccessToken() {
-  return new Promise(function(resolve, reject) {
-    google.auth.getApplicationDefault(function (err, authClient) {
-      if (err != null) {
-        reject(err);
-      }
-      if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-        authClient = authClient.createScoped(SCOPES);
-      }
-      authClient.getAccessToken(function(err, token) {
-        if (err != null) {
-          reject(err);
-        }
-        resolve(token);
-      })
-    });
+  var auth = new GoogleAuth({
+    scopes: SCOPES
   });
+  return auth.getAccessToken();
 }
 // [END retrieve_access_token]
 
