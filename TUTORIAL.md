@@ -34,13 +34,13 @@ cd ~/rules-tutorial
 3.  Check out the tutorial project from Github.
 
 ```bash  
-git clone https://github.com/firebase/emulators-codelab
+git clone -b rpb/markarndt https://github.com/firebase/quickstart-nodejs
 ```
 
 4.  Change directory to the tutorial project.
 
 ```bash  
-cd emulators-codelab/codelab-initial-state/functions/ 
+cd quickstart-nodejs/css-walkthrough/
 ```
 
 4.  Install the Firebase Test SDK and a few more tools.
