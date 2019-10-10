@@ -16,7 +16,7 @@ To get started with the walkthrough...well, click `Start` below.
 
 ## Check out a Security Rules tutorial project
 
-Let's check some tutorial samples out of Github.
+Let's check some tutorial samples out from Github and some tools out of npm. Use the XXimg control to paste commands straight to the Cloud Shell prompt.
 
 1.  Set up a directory structure to organize tutorial project files plus your own project(s).
 
@@ -34,7 +34,7 @@ cd ~/rules-tutorial
 3.  Check out the tutorial project from Github.
 
 ```bash  
-gcloud source repos clone emulator-codelab --project=rachelmyers-wipeout-example  
+git clone https://github.com/firebase/emulators-codelab
 ```
 
 4.  Change directory to the tutorial project.
