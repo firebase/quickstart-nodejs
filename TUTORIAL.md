@@ -63,8 +63,8 @@ This Learn Assistant has some convenient features we'll take advantage of for th
 
 Note: Be sure you've followed the previous topic and created the home directory structure explained there.
 
-1.  You'll be opening files. Click to open <walkthrough-editor-open-file filePath="./rules-tutorial/emulator-codelab/codelab-initial-state/firestore.rules">a sample firebase.rules file</walkthrough-editor-open-file>.
-2.  In those files, you'll read notes and instructions in code comments and make edits. Click to select <walkthrough-editor-select-line filePath="./rules-tutorial/emulator-codelab/codelab-initial-state/firestore.rules" startLine=0 startCharacterOffset=0 endLine=4 endCharacterOffset=0>some code lines or introductory notes</walkthrough-editor-select-line>.
+1.  You'll be opening files. Click to open <walkthrough-editor-open-file filePath="./rules-tutorial/emulators-codelab/codelab-initial-state/firestore.rules">a sample firebase.rules file</walkthrough-editor-open-file>.
+2.  In those files, you'll read notes and instructions in code comments and make edits. Click to select <walkthrough-editor-select-line filePath="./rules-tutorial/emulators-codelab/codelab-initial-state/firestore.rules" startLine=0 startCharacterOffset=0 endLine=4 endCharacterOffset=0>some code lines or introductory notes</walkthrough-editor-select-line>.
 3.  You'll run commands at the Cloud Shell prompt, some that you copy/paste from the editor panel and some - as you've already discovered - you can launch directly from this Learn Assistant panel:
 
 ```bash   
