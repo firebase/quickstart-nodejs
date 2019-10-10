@@ -70,6 +70,8 @@ npm run test
 
 ## Using the Learn Assistant
 
+OK, set up is done.
+
 This Learn Assistant has some convenient features we'll take advantage of for this walkthrough. Let's try them out.
 
 Note: Be sure you've followed the previous topic and created the home directory structure explained there.
