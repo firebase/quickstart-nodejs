@@ -119,7 +119,7 @@ firebase emulators:start --only firestore,functions
 ```
 
 2.  Wait briefly until the Firestore and Cloud Functions emulators have started up. You'll see terminal output saying it's safe to connect.
-3.  Add a <walkthrough-spotlight-pointer spotlightId="devshell-add-tab-button">new Cloud Shell session</walkthrough-spotlight-pointer>. Firestore emulator continues running in parallel, in our original session.
+3.  Add a <walkthrough-spotlight-pointer cssSelector="devshell-add-tab-button">new Cloud Shell session</walkthrough-spotlight-pointer>. Firestore emulator continues running in parallel, in our original session.
 4.  At the new session prompt, change directory to our Rules walkthrough project.
 
 ```bash  
