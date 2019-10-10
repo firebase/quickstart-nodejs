@@ -16,53 +16,40 @@ To get started with the walkthrough...well, click `Start` below.
 
 ## Check out a Security Rules tutorial project
 
-Let's check some tutorial samples out of Google Cloud Source.
+Let's check some tutorial samples out of Github.
 
-1.  Initialize Google Cloud SDK. Click the icon to copy the `gcloud init` command to the Cloud Shell prompt.
-
-```bash  
-gcloud init  
-```
-**Note:** follow the setup wizard, answering with these options:
-
-&nbsp;&nbsp;&nbsp;&nbsp;a.  First prompt: **option [1]** Re-initialize this configuration
-
-&nbsp;&nbsp;&nbsp;&nbsp;b.  Second prompt: **option [1]** {your cloud account ID}
-
-&nbsp;&nbsp;&nbsp;&nbsp;c.  Third prompt: **option [2]** Create a new project. Enter a temporary project name. To guarantee &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;uniqueness, append your Cloud account ID. For example `rules-test-janedoe`.
-
-2.  Set up a directory structure to organize tutorial project files plus your own project(s).
+1.  Set up a directory structure to organize tutorial project files plus your own project(s).
 
 > Note: Please create the following directory from the **root** of your Cloud Shell home directory.  
 ```bash  
 cd ~; mkdir rules-tutorial  
 ```
 
-3.  Switch to the tutorial working directory.
+2.  Switch to the tutorial working directory.
 
 ```bash  
 cd ~/rules-tutorial  
 ```
 
-4.  Check out the tutorial project from Cloud Source.
+3.  Check out the tutorial project from Github.
 
 ```bash  
 gcloud source repos clone emulator-codelab --project=rachelmyers-wipeout-example  
 ```
 
-5.  Change directory to the tutorial project.
+4.  Change directory to the tutorial project.
 
 ```bash  
 cd emulator-codelab/codelab-initial-state/functions/ 
 ```
 
-6.  Install the Firebase Test SDK and a few more tools.
+4.  Install the Firebase Test SDK and a few more tools.
 
 ```bash  
 npm install  
 ```
 
-7.  Confirm the checkout was successful by running tests. It's OK if you see errors in the terminal. If you see `passing` and `failing` in the output, then the Test SDK and tools were correctly installed.
+5.  Confirm the checkout was successful by running tests. It's OK if you see errors in the terminal. If you see `passing` and `failing` in the output, then the Test SDK and tools were correctly installed.
 
 ```bash  
 npm run test  
