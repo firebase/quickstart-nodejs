@@ -40,7 +40,7 @@ git clone -b rpb/markarndt https://github.com/firebase/quickstart-nodejs
 4.  Change directory to the tutorial project.
 
 ```bash  
-cd quickstart-nodejs/css-walkthrough/
+cd quickstart-nodejs/cs-walkthrough/
 ```
 
 4.  Install the Firebase Test SDK and a few more tools.
