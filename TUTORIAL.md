@@ -40,7 +40,7 @@ gcloud source repos clone emulator-codelab --project=rachelmyers-wipeout-example
 4.  Change directory to the tutorial project.
 
 ```bash  
-cd emulator-codelab/codelab-initial-state/functions/ 
+cd emulators-codelab/codelab-initial-state/functions/ 
 ```
 
 4.  Install the Firebase Test SDK and a few more tools.
