@@ -1,3 +1,8 @@
+// Here is some text we higlighted from the Learn Assistant.
+Comment out this line
+// Then from the File menu, select 'Save'.
+// Continue reading in the Learn Assistant panel.
+
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
