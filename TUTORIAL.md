@@ -34,13 +34,13 @@ cd ~/rules-tutorial
 3.  Check out the tutorial project from Github.
 
 ```bash  
-git clone https://github.com/firebase/emulators-codelab
+git clone -b rpb/markarndt https://github.com/firebase/quickstart-nodejs
 ```
 
 4.  Change directory to the tutorial project.
 
 ```bash  
-cd emulators-codelab/codelab-initial-state/functions/ 
+cd quickstart-nodejs/cs-walkthrough/
 ```
 
 4.  Install the Firebase Test SDK and a few more tools.
@@ -63,8 +63,8 @@ This Learn Assistant has some convenient features we'll take advantage of for th
 
 Note: Be sure you've followed the previous topic and created the home directory structure explained there.
 
-1.  You'll be opening files. Click to open <walkthrough-editor-open-file filePath="./rules-tutorial/emulators-codelab/codelab-initial-state/firestore.rules">a sample firebase.rules file</walkthrough-editor-open-file>.
-2.  In those files, you'll read notes and instructions in code comments and make edits. Click to select <walkthrough-editor-select-line filePath="./rules-tutorial/emulators-codelab/codelab-initial-state/firestore.rules" startLine=0 startCharacterOffset=0 endLine=4 endCharacterOffset=0>some code lines or introductory notes</walkthrough-editor-select-line>.
+1.  You'll be opening files. Click to open <walkthrough-editor-open-file filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/firestore.rules">a sample firebase.rules file</walkthrough-editor-open-file>.
+2.  In those files, you'll read notes and instructions in code comments and make edits. Click to select <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/firestore.rules" startLine=0 startCharacterOffset=0 endLine=4 endCharacterOffset=0>some code lines or introductory notes</walkthrough-editor-select-line>.
 3.  You'll run commands at the Cloud Shell prompt, some that you copy/paste from the editor panel and some - as you've already discovered - you can launch directly from this Learn Assistant panel:
 
 ```bash   
@@ -119,7 +119,7 @@ firebase emulators:start --only firestore,functions
 ```
 
 2.  Wait briefly until the Firestore and Cloud Functions emulators have started up. You'll see terminal output saying it's safe to connect.
-3.  Add a <walkthrough-spotlight-pointer spotlightId="devshell-add-tab-button">new Cloud Shell session</walkthrough-spotlight-pointer>. Firestore emulator continues running in parallel, in our original session.
+3.  Add a <walkthrough-spotlight-pointer cssSelector="devshell-add-tab-button">new Cloud Shell session</walkthrough-spotlight-pointer>. Firestore emulator continues running in parallel, in our original session.
 4.  At the new session prompt, change directory to our Rules walkthrough project.
 
 ```bash  
