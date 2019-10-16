@@ -1,1 +1,29 @@
+//********************************************
+// If you need to restart the walkthrough for
+// any reason, at the Cloud Shell prompt
+// run '~/rules-tutorial/quickstart-nodejs/cs-walkthrough/walkthrough.sh'
+//********************************************
 
+rules_version = '2';
+service cloud.firestore {
+
+  match /databases/{database}/documents {
+    // We want these rules to ensure that a that a shopping cart
+    // can only be created by the shopping cart owner.
+    // Let's start the improvement by globally restricting
+    // reads and writes to carts
+    // DELETE OR COMMENT OUT THE FOLLOWING LINE.
+    match /{document=**} {
+    // UNCOMMENT THE FOLLOWING LINE.
+    // match /carts/{cartID} {
+    // AND SAVE THE FILE: FILE > SAVE.
+      allow read, write: if false;
+    }
+ 
+  match /items/{itemID} {
+      allow read; // Users can read items
+      // Never do this in production
+      allow create; // Client app creates seed data to create a smooth codelab
+    }
+  }
+}
