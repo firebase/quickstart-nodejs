@@ -137,7 +137,7 @@ Awesome. We're going to peek under the hood next, but the gist is our test suite
 
 ## Let users create shopping carts
 
-The Firebase emulators are waiting for database interactions and Security Rules evaluations!
+The Firebase emulators are waiting for more database interactions and Security Rules evaluations!
 
 We can start working with rules definitions in the firestore.rules file to improve the security of our app.
 
