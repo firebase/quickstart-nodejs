@@ -69,7 +69,8 @@ Note: Be sure you've followed the previous topic and created the home directory 
 4.  At the Cloud Shell prompt, you'll **copy/replace to update our main tutorial firestore.rules file**.
 
 ```bash   
-echo "It is currently "$(date)   
+cp ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_0 \
+   ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/firestore.rules
 ```  
 We'll present most of the walkthrough content and hands-on exercises this way, so repeat the above sequence as many times as you like to get comfortable with this interaction.
 
