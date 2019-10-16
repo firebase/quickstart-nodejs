@@ -10,20 +10,24 @@ service cloud.firestore {
   match /databases/{database}/documents {
     // We want these rules to ensure that a that a shopping cart
     // can only be created by the shopping cart owner.
-    // Let's start the improvement by globally restricting
-    // reads and writes to carts
+    // Let's start the improvement by restricting
+    // matches to carts...
     // DELETE OR COMMENT OUT THE FOLLOWING LINE.
     match /{document=**} {
     // UNCOMMENT THE FOLLOWING LINE.
     // match /carts/{cartID} {
-    // AND SAVE THE FILE: FILE > SAVE.
+    // ...then allowing reads and writes when the requster's ID
+    // matches the ownerID of the data.
+    // DELETE OR COMMENT OUT 
       allow read, write: if false;
+    // UNCOMMENT THE FOLLOWING LINE.
+    //allow read, write: if request.auth.uid == request.resource.data.ownerUID;
     }
  
   match /items/{itemID} {
       allow read; // Users can read items
       // Never do this in production
-      allow create; // Client app creates seed data to create a smooth codelab
+      allow create;
     }
   }
 }
