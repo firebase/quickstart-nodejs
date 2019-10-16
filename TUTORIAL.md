@@ -141,9 +141,9 @@ Awesome. We're going to peek under the hood next, but the gist is our test suite
 
 The Firebase emulators are waiting for more database interactions and Security Rules evaluations!
 
-We can start working with rules definitions in the firestore.rules file to improve the security of our app.
+We can start working with rules definitions in the ```firestore.rules``` file to improve the security of our app.
 
-Let's start with rules that have our app open to all operations and start to lock down security.
+Let's start with rules that leave our app open to all operations and start to lock down security.
 
 1. Open <walkthrough-editor-open-file filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_1">firestore.rules_template_1</walkthrough-editor-open-file>. 
 
