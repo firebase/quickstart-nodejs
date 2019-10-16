@@ -10,9 +10,9 @@ service cloud.firestore {
       // This rule applies to the entire database and grants
       // all access to all users. Update the rule to deny
       // access by setting the condition to false:
-      // COMMENT OUT OR DELETE THIS LINE
+      // COMMENT OUT OR DELETE THE FOLLOWING LINE
       allow read, write: if true;
-      // UNCOMMENT THIS LINE
+      // UNCOMMENT THE FOLLOWING LINE
       // allow read, write: if false;
       // FINALLY, SAVE THE FILE: FILE > SAVE.
     }
