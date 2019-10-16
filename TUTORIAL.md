@@ -151,7 +151,7 @@ Let's start with rules that have our app open to all operations and start to loc
 
 3. Now **edit the rules** to <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_1" startLine=12 startCharacterOffset=0 endLine=16 endCharacterOffset=0>begin tightening security</walkthrough-editor-select-line>.
 
-3. Now based on our rules_template_1 file, **copy/replace to update firestore.rules**.
+3. Using our **saved** firestore.rules_template_1 file, **copy/replace to update firestore.rules**.
 ```bash
 cp ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_1 \
    ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/firestore.rules
