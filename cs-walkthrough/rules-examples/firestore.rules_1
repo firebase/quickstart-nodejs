@@ -11,7 +11,9 @@ service cloud.firestore {
     }
  
   // The second rule definition applies to documents in the items collection.
-  // Note that a rule like this should not be used in production, but we use it in this codelab to let the web app generate the initial set of data. We'll leave these rules alone for the duration of the codelab   
+  // Note that a rule like this should not be used in production, but we use it in this
+  // codelab to let the web app generate the initial set of data.
+  // We'll leave these rules alone for the duration of the codelab.   
   match /items/{itemID} {
       allow read; // Users can read items
       // Never do this in production
