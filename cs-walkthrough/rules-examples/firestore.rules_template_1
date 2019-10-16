@@ -7,7 +7,12 @@ service cloud.firestore {
   // to all documents in the database.
   match /databases/{database}/documents {
     match /{document=**} {
+      // This rule applies to the entire database and grants
+      // all access to all users. Update the rule to deny
+      // access by setting the condition to false:
+      // COMMENT OUT OR DELETE THIS LINE
       allow read, write: if true;
+      // UNCOMMENT THIS LINE
       // allow read, write: if false;
     }
  
