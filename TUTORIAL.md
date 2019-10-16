@@ -63,14 +63,15 @@ This Learn Assistant has some convenient features we'll take advantage of for th
 
 Note: Be sure you've followed the previous topic and created the home directory structure explained there.
 
-1.  You'll be opening files. Click to open <walkthrough-editor-open-file filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/firestore.rules">a sample firebase.rules file</walkthrough-editor-open-file>.
-2.  In those files, you'll read notes and instructions in code comments and make edits. Click to select <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/firestore.rules" startLine=0 startCharacterOffset=0 endLine=4 endCharacterOffset=0>some code lines or introductory notes</walkthrough-editor-select-line>.
-3.  You'll run commands at the Cloud Shell prompt, some that you copy/paste from the editor panel and some - as you've already discovered - you can launch directly from this Learn Assistant panel:
+1.  You'll be opening a series of Security Rules template files. Click to open <walkthrough-editor-open-file filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/firestore.rules_template_0">the first, which is firebase.rules_template_0</walkthrough-editor-open-file>.
+2.  In those template files, you'll **review** descriptions and comments on security rules. Click to select <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/firestore.rules_template_0" startLine=0 startCharacterOffset=0 endLine=4 endCharacterOffset=0>some discussion of a rule definition</walkthrough-editor-select-line>.
+3.  After reviewing rule definitions, you'll **edit** rules and **save the changes** in preparation for re-running the test suite. Click to select <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/firestore.rules_template_0" startLine=0 startCharacterOffset=0 endLine=4 endCharacterOffset=0>code modification instructions</walkthrough-editor-select-line>.
+4.  You'll run commands at the Cloud Shell prompt to **copy/replace template files to update our main firestore.rules file**.
 
 ```bash   
 echo "It is currently "$(date)   
 ```  
-We'll present most of the walkthrough content and hands-on exercises this way, so get comfortable with this interaction.
+We'll present most of the walkthrough content and hands-on exercises this way, so repeat the above sequence as many times as you like to get comfortable with this interaction.
 
 ## Security Rules basics
 
