@@ -143,7 +143,7 @@ The Firebase emulators are waiting for more database interactions and Security R
 
 We can start working with rules definitions in the ```firestore.rules``` file to improve the security of our app.
 
-Let's start with rules that leave our app open to all operations and start to lock down security.
+Let's start with rules that leave our app open to all operations and modify them to lock down security.
 
 1. Open <walkthrough-editor-open-file filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_1">firestore.rules_template_1</walkthrough-editor-open-file>. 
 
@@ -165,22 +165,17 @@ cp ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.ru
 npm run test
 ```
 
-## Let users update and delete shopping carts
+## Let users create shopping carts
 
-Next, we'll cover the case when a user wants to update or delete a cart. In that case, we want a different rule, that checks the ownerUID that saved in the document rather than the ownerUID sent in the request:
+Next, we'll cover the case when a user wants to create a cart.
 
-1. Replace the contents of `firestore.rules` with the following:
-```
-    service cloud.firestore {
-      match /databases/{database}/documents {
-        match /carts/{cartID} {
-          allow create: if request.auth.uid == request.resource.data.ownerUID;
-          allow update, delete: if request.auth.uid == resource.data.ownerUID;
-        }
-      }
-    }
-```
-2. Switch to the Cloud Shell session in which the emulators are running.
+This rule means "let a cart be created if the user who is creating the cart is the same as the user listed as the cart's owner".
+
+We use two objects that are available in the context of every rule:
+
+The request object contains data and metadata about the operation that is being attempted.
+If a Firebase project is using Firebase Authentication, the request.auth object describes the user who is making the request.
+
 2. Re-run the test suite.
   Rerun the tests, and see that one more test passes. Good job!
 ```bash
