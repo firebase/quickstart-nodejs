@@ -14,6 +14,7 @@ service cloud.firestore {
       allow read, write: if true;
       // UNCOMMENT THIS LINE
       // allow read, write: if false;
+      // FINALLY, SAVE THE FILE: FILE > SAVE.
     }
  
   // The second rule definition applies to documents in the
