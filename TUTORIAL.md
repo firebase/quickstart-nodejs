@@ -135,28 +135,21 @@ Awesome. We're going to peek under the hood next, but the gist is our test suite
 
 ## Let users create shopping carts
 
-In the editor panel, switch to the <walkthrough-editor-open-file filePath="./rules-tutorial/emulator-codelab/codelab-initial-state/firestore.rules">firestore.rules tab</walkthrough-editor-open-file> if you're not already there.. 
+Now we can start working with rules definitions in the firestore.rules file to improve the security of our app.
 
-This and the test script files are where we'll iterate to make sure that our application will protect user data. We see that we have the default rules created in open mode; everyone is allowed to read or write to any part of this database. We don’t want to ship our app like that, so we’ll tailor the Security Rules to our specific application.
+Let's start with rules that have our app open to all operations and start to lock down security.
 
-1.  Run the tests again, and notice the first error.
+1. Open <walkthrough-editor-open-file filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_1">firestore.rules_template_1</walkthrough-editor-open-file>. 
+
+2. Review the two rules definitions in this file:
+
+3. Now copy the rules_template_1 file to replace firestore.rules.
 ```bash
-npm run test
-```
-2.  Open the test file, <walkthrough-editor-open-file filePath="./rules-tutorial/emulator-codelab/codelab-initial-state/functions/test.js">functions/test.js</walkthrough-editor-open-file>. 
-3.  To fix the first failure, for the test case that a shopping cart can only be created by a shopping cart owner, replace the innermost match statement, to match only documents in the carts collection, and add an allow statement to allow creates only if the user who is making the request is the user listed as the cart owner. In the editor panel, back in <walkthrough-editor-open-file filePath="./rules-tutorial/emulator-codelab/codelab-initial-state/firestore.rules">firebase.rules</walkthrough-editor-open-file>, **replace the current rules set with the following**:
-
-```
-    service cloud.firestore {
-      match /databases/{database}/documents {
-        match /carts/{cartID} {
-          allow create: if request.auth.uid == request.resource.data.ownerUID;
-        }
-      }
-    }
+cp ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_1 \
+   ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/firestore.rules
 ```
 
-4.  Rerun the tests, and see that one more test passes. Good job!
+4.  Run the tests again, and notice the first error.
 ```bash
 npm run test
 ```
