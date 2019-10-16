@@ -16,7 +16,9 @@ To get started with the walkthrough...well, click `Start` below.
 
 ## Check out a Security Rules tutorial project
 
-Let's check some tutorial samples out from Github and some tools out of npm. Use the XXimg control to paste commands straight to the Cloud Shell prompt.
+Let's check some tutorial samples out from Github and some tools out of npm. 
+
+ICON_IMG - use this control to paste commands straight to the Cloud Shell prompt.
 
 1.  Set up a directory structure to organize tutorial project files plus your own project(s).
 
