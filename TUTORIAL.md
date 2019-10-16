@@ -143,7 +143,7 @@ Let's start with rules that have our app open to all operations and start to loc
 
 2. Review the two rules definitions in this file:
 
-* A definition that applies to all documents in the datbase, <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_1" startLine=4 startCharacterOffset=0 endLine=8 endCharacterOffset=0>here</walkthrough-editor-select-line?.
+* A definition that applies to all documents in the datbase, <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_1" startLine=4 startCharacterOffset=0 endLine=8 endCharacterOffset=0>here</walkthrough-editor-select-line>.
 * A definition that applies to items in the items collection, here.
 
 3. Now copy the rules_template_1 file to replace firestore.rules.
