@@ -137,7 +137,7 @@ npm run test
 ```  
 Awesome. We're going to peek under the hood next, but the gist is our test suite populated the Firestore emulator with data and made a series of access requests, which were allowed and denied according to our Security Rules, and checked per our test cases.
 
-## Let users create shopping carts
+## Lock down Security Rules
 
 The Firebase emulators are waiting for more database interactions and Security Rules evaluations!
 
