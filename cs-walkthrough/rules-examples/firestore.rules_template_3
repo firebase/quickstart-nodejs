@@ -10,6 +10,12 @@ service cloud.firestore {
   match /databases/{database}/documents {
     match /carts/{cartID} {
       allow create: if request.auth.uid == request.resource.data.ownerUID;
+      // Now we want the cart owner to be able to read, update, or delete
+      // their cart. Again, we'll based the allow on matching the requester's
+      // ID to the data's owner ID
+      // UNCOMMENT THE FOLLOWING LINE.
+      // allow read, update, delete: if request.auth.uid == resource.data.ownerUID;
+      // THEN SAVE THE FILE: FILE > SAVE.
     }
  
   match /items/{itemID} {
