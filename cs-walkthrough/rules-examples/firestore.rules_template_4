@@ -1,0 +1,23 @@
+//********************************************
+// If you need to restart the walkthrough for
+// any reason, at the Cloud Shell prompt
+// run '~/rules-tutorial/quickstart-nodejs/cs-walkthrough/walkthrough.sh'
+//********************************************
+
+rules_version = '2';
+service cloud.firestore {
+
+  match /databases/{database}/documents {
+    match /carts/{cartID} {
+      allow create: if request.auth.uid == request.resource.data.ownerUID;
+      allow read, update, delete: if request.auth.uid == resource.data.ownerUID;
+    }
+ 
+  match /items/{itemID} {
+      allow read; // Users can read items
+      // Never do this in production
+      allow create;
+    }
+  }
+}
+© 2019 GitHub, Inc.
