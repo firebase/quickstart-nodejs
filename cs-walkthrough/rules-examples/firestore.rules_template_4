@@ -13,6 +13,14 @@ service cloud.firestore {
       allow read, update, delete: if request.auth.uid == resource.data.ownerUID;
     }
  
+  // UNCOMMENT THE FOLLOWING LINES.
+  // match /carts/{cartID}/items/{itemID} {
+  //   allow write: if 
+  //      get(/databases/$(database)/documents/carts/$(cartID))
+  //      .data.ownerUID == request.auth.uid;
+  // }
+  // AND SAVE THE FILE: FILE > SAVE.
+ 
   match /items/{itemID} {
       allow read; // Users can read items
       // Never do this in production
