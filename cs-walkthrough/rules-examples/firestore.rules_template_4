@@ -13,6 +13,11 @@ service cloud.firestore {
       allow read, update, delete: if request.auth.uid == resource.data.ownerUID;
     }
  
+  // Now let's talk about adding items to a cart. We can write a rule that
+  // allows access if the current user has the same UID as the ownerUID
+  // on the cart document.
+  // The 'get' operation in the conditional is reading a value from Firestore
+  // - in this case, the ownerUID on the cart document.
   // UNCOMMENT THE FOLLOWING LINES.
   // match /carts/{cartID}/items/{itemID} {
   //   allow write: if 
