@@ -37,4 +37,3 @@ service cloud.firestore {
     }
   }
 }
-© 2019 GitHub, Inc.
