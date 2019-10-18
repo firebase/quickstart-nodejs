@@ -16,7 +16,7 @@ service cloud.firestore {
     match /{document=**} {
     // UNCOMMENT THE FOLLOWING LINE.
     // match /carts/{cartID} {
-    // ...then allowing reads and writes when the requster's ID
+    // ...then allowing reads and writes when the requester's ID
     // matches the ownerID of the data.
     // DELETE OR COMMENT OUT 
       allow read, write: if false;
