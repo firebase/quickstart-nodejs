@@ -229,9 +229,31 @@ Empty carts are no good. Let's write a new set of ```match``` and ```allow``` st
 
 * And then edit <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_4" startLine=12 startCharacterOffset=0 endLine=16 endCharacterOffset=0>here</walkthrough-editor-select-line>.
 
-3. **Copy** the modified and **saved** firestore.rules_template_3 file to update ```firestore.rules```.
+3. **Copy** the modified and **saved** firestore.rules_template_4 file to update ```firestore.rules```.
 ```bash
 cp ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_4 \
+   ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/firestore.rules
+```
+
+4.  Run the tests again, and notice the first error.
+```bash
+npm run test
+```
+## Let users view items in their cart
+
+Last but not least, users should be able to view ```items```.
+
+1. Open <walkthrough-editor-open-file filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_5">firestore.rules_template_5</walkthrough-editor-open-file>. 
+
+2. Now **review** and **edit** the template to add new rule statements:
+
+* Review the notes about this addition <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_5" startLine=12 startCharacterOffset=0 endLine=16 endCharacterOffset=0>here</walkthrough-editor-select-line>.
+
+* And then edit <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_5" startLine=12 startCharacterOffset=0 endLine=16 endCharacterOffset=0>here</walkthrough-editor-select-line>.
+
+3. **Copy** the modified and **saved** firestore.rules_template_5 file to update ```firestore.rules```.
+```bash
+cp ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_5 \
    ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/firestore.rules
 ```
 
