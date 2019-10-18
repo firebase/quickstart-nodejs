@@ -14,10 +14,14 @@ service cloud.firestore {
     }
  
   // Now let's talk about adding items to a cart. We can write a rule that
-  // allows access if the current user has the same UID as the ownerUID
-  // on the cart document.
-  // The 'get' operation in the conditional is reading a value from Firestore
-  // - in this case, the ownerUID on the cart document.
+  // allows writing ```items``` if the current user has the same UID as the ownerUID
+  // on the ```cart``` document.
+  //
+  // Here our ```match``` statement applies to documents in the ``items``` collection,
+  // but we need data from the ```carts``` collection to define security. That's where
+  // the ```get``` operation in the conditional comes in. Use ``get``` to access documents
+  // outside the ```match``` path you're working in. Here we use it to get the
+  // the ownerUID on the ```cart``` document.
   // UNCOMMENT THE FOLLOWING LINES.
   // match /carts/{cartID}/items/{itemID} {
   //   allow write: if 
