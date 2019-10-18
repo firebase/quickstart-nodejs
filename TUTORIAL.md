@@ -169,13 +169,6 @@ npm run test
 
 Now let's look at at restricting how users can create a cart.
 
-This rule means "let a cart be created if the user who is creating the cart is the same as the user listed as the cart's owner".
-
-We use two objects that are available in the context of every rule:
-
-The request object contains data and metadata about the operation that is being attempted.
-If a Firebase project is using Firebase Authentication, the request.auth object describes the user who is making the request.
-
 1. Open <walkthrough-editor-open-file filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_2">firestore.rules_template_2</walkthrough-editor-open-file>. 
 
 2. **Review** and **edit** the ```match``` statement controlling access to ```cart``` documents:
@@ -196,28 +189,30 @@ cp ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.ru
    ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/firestore.rules
 ```
 
-4.  Run the tests again, and notice the first error.
+5.  Run the tests again, and notice the first error.
 ```bash
 npm run test
 ```
 
-## Let users look in their shopping carts
+## Let users read, update and delete their carts
 
-When we rerun the tests, we find that the next failure is that although cart owners can write to their cart, they can't read it. Since we want cart owners to be the only ones to read their carts, modify the update and delete rule to also allow reads:
+The next test covers the case of a cart owner having the ability to read, update, or delete their cart.
 
-1. Replace the contents of `firestore.rules` with the following:
+1. Open <walkthrough-editor-open-file filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_3">firestore.rules_template_3</walkthrough-editor-open-file>. 
+
+2. Now **review** and **edit** the template to add to the ```allow``` statement:
+
+* Review the notes about this addition <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_3" startLine=12 startCharacterOffset=0 endLine=16 endCharacterOffset=0>here</walkthrough-editor-select-line>.
+
+* And then edit <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_3" startLine=12 startCharacterOffset=0 endLine=16 endCharacterOffset=0>here</walkthrough-editor-select-line>.
+
+3. **Copy** the modified and **saved** firestore.rules_template_3 file to update ```firestore.rules```.
+```bash
+cp ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_3 \
+   ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/firestore.rules
 ```
-    service cloud.firestore {
-      match /databases/{database}/documents {
-        match /carts/{cartID} {
-          allow create: if request.auth.uid == request.resource.data.ownerUID
-          allow read, update, delete: if request.auth.uid == resource.data.ownerUID;
-        }
-      }
-    }
-```
-2. Re-run the test suite.
-  Rerun the tests, and see that one more test passes. Good job!
+
+4.  Run the tests again, and notice the first error.
 ```bash
 npm run test
 ```
