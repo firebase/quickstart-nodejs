@@ -1,2 +1,2 @@
 
-teachme WALKTHROUGH.md 
+cloudshell launch-tutorial WALKTHROUGH.md 
