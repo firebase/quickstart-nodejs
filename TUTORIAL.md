@@ -18,7 +18,7 @@ To get started with the walkthrough...well, click `Start` below.
 
 Let's check some tutorial samples out from Github and some tools out of npm. 
 
-ICON_IMG - use this control to paste commands straight to the Cloud Shell prompt.
+![Copy to Cloud Shell control](https://firebase.devsite.corp.google.com/docs/rules/images/la_copy_to_shell_48.png "Copy to Cloud Shell control") -- use this control to paste commands straight to the Cloud Shell prompt.
 
 1.  Set up a directory structure to organize tutorial project files plus your own project(s).
 
@@ -156,7 +156,7 @@ cp ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.ru
 
 4.  Run the tests again, and notice the first error.
 ```bash
-npm run test
+npm --prefix=functions test  
 ```
 
 ## Let users create shopping carts
@@ -185,7 +185,7 @@ cp ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.ru
 
 5.  Run the tests again, and notice the first error.
 ```bash
-npm run test
+npm --prefix=functions test
 ```
 
 ## Let users read, update and delete their carts
