@@ -51,12 +51,6 @@ cd quickstart-nodejs/cs-walkthrough/
 npm install  
 ```
 
-5.  Confirm the checkout was successful by running tests. It's OK if you see errors in the terminal. If you see `passing` and `failing` in the output, then the Test SDK and tools were correctly installed.
-
-```bash  
-npm run test  
-```
-
 ## Using the Learn Assistant
 
 OK, setup is done.
