@@ -108,7 +108,7 @@ All match statements should point to documents, not collections. A match stateme
 
 ## Emulator Suite and Firebase Test SDK basics
 
-Earlier we ran the test suite to make sure our tool setup and tutorial project checkout were successful. Now let's start up the Firestore emulator and run the test suite developed with the Firebase Test SDK for real.
+Let's start up the Firestore emulator and run the test suite developed with the Firebase Test SDK.
 
 1.  Start the Firestore and Cloud Functions emulators.
 
