@@ -48,7 +48,7 @@ cd quickstart-nodejs/cs-walkthrough/
 4.  Install the Firebase Test SDK and a few more tools.
 
 ```bash  
-npm install  
+npm --prefix=functions install  
 ```
 
 ## Using the Learn Assistant
@@ -121,13 +121,13 @@ firebase emulators:start --only firestore,functions
 4.  At the new session prompt, change directory to our Security Rules walkthrough project.
 
 ```bash  
-cd ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/functions/
+cd ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/
 ```
 
 5.  Run the test suite.
 
 ```bash  
-npm run test  
+npm --prefix=functions test  
 ```  
 Awesome. We're going to peek under the hood next, but the gist is our test suite populated the Firestore emulator with data and made a series of access requests, which were allowed and denied according to our Security Rules, and checked per our test cases.
 
