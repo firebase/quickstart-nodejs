@@ -5,7 +5,7 @@
 //********************************************
 
 // This is a set of Firestore Seurity Rules.
-Try editing: DELETE OR COMMENT THIS LINE OUT.
+// Try editing: DELETE THIS LINE.
 // THEN SAVE THE FILE: FILE > SAVE.
 
 rules_version = '2';
