@@ -219,28 +219,26 @@ npm run test
 
 ## Let users put items in their cart
 
-Rerunning the tests, we find that the tests around cart documents pass, but the tests for the `items` subcollections are not passing. The cart owner should be able to read or write to that subcollection, so we can write one last rule that will allow access if the user accessing the items data has the same UID as the ownerUID on the cart document:
+Empty carts are no good. Let's write a new set of ```match``` and ```allow``` statements so users can add items to their carts as as long as they own the cart.
 
-1. Replace the contents of `firestore.rules` with the following:
+1. Open <walkthrough-editor-open-file filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_4">firestore.rules_template_4</walkthrough-editor-open-file>. 
+
+2. Now **review** and **edit** the template to add new rule statements:
+
+* Review the notes about this addition <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_4" startLine=12 startCharacterOffset=0 endLine=16 endCharacterOffset=0>here</walkthrough-editor-select-line>.
+
+* And then edit <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_4" startLine=12 startCharacterOffset=0 endLine=16 endCharacterOffset=0>here</walkthrough-editor-select-line>.
+
+3. **Copy** the modified and **saved** firestore.rules_template_3 file to update ```firestore.rules```.
+```bash
+cp ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_4 \
+   ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/firestore.rules
 ```
-service cloud.firestore {
-  match /databases/{database}/documents {
-    match /carts/{cartID} {
-      allow create: if request.auth.uid == request.resource.data.ownerUID;
-      allow read, update, delete: if request.auth.uid == resource.data.ownerUID;
-    }
-    match /carts/{cartID}/items/{itemID} {
-      allow read, write: if get(/databases/$(database)/documents/carts/$(cartID)).data.ownerUID == request.auth.uid;
-    }
-  }
-}
-```
-2. Re-run the test suite.
-  Rerun the tests, and see that one more test passes. Good job!
+
+4.  Run the tests again, and notice the first error.
 ```bash
 npm run test
 ```
-Now our shopping cart data is secure, and tested. If this were a production application, we could add these tests to our CI tests, to have confidence going forward that our shopping cart data would stay secure. 
 
 ## What next?
 
