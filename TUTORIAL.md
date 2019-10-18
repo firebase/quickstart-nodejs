@@ -167,7 +167,7 @@ npm run test
 
 ## Let users create shopping carts
 
-Next, we'll cover the case when a user wants to create a cart.
+Now let's look at at restricting how users can create a cart.
 
 This rule means "let a cart be created if the user who is creating the cart is the same as the user listed as the cart's owner".
 
@@ -176,8 +176,27 @@ We use two objects that are available in the context of every rule:
 The request object contains data and metadata about the operation that is being attempted.
 If a Firebase project is using Firebase Authentication, the request.auth object describes the user who is making the request.
 
-2. Re-run the test suite.
-  Rerun the tests, and see that one more test passes. Good job!
+1. Open <walkthrough-editor-open-file filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_2">firestore.rules_template_2</walkthrough-editor-open-file>. 
+
+2. **Review** and **edit** the ```match``` statement controlling access to ```cart``` documents:
+
+* Review the ```match``` statement <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_2" startLine=5 startCharacterOffset=0 endLine=9 endCharacterOffset=0>here</walkthrough-editor-select-line>.
+
+* Edit the ```match``` statement <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_2" startLine=5 startCharacterOffset=0 endLine=9 endCharacterOffset=0>here</walkthrough-editor-select-line>.
+
+3. Now **review** and **edit** the ```allow``` statement to narrow down who can interact with selected ```cart``` documents:
+
+* Review the notes about the current and proposed ```allow``` statement <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_2" startLine=12 startCharacterOffset=0 endLine=16 endCharacterOffset=0>begin tightening security</walkthrough-editor-select-line>.
+
+* And then edit <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_2" startLine=12 startCharacterOffset=0 endLine=16 endCharacterOffset=0>begin tightening security</walkthrough-editor-select-line>.
+
+4. **Copy** the modified and **saved** firestore.rules_template_2 file to update ```firestore.rules```.
+```bash
+cp ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_2 \
+   ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/firestore.rules
+```
+
+4.  Run the tests again, and notice the first error.
 ```bash
 npm run test
 ```
