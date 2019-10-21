@@ -22,7 +22,7 @@ Let's check some tutorial samples out from Github and some tools out of npm.
 
 1.  Set up a directory structure to organize tutorial project files plus your own project(s).
 
-> Note: Please create the following directory from the **root** of your Cloud Shell home directory.  
+> Note: As shown below, please create the following directory from the **root** of your Cloud Shell home directory.  
 ```bash  
 cd ~; mkdir rules-tutorial  
 ```
