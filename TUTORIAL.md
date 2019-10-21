@@ -91,7 +91,7 @@ The service cloud.firestore declaration scopes the rules to Cloud Firestore, pre
 The match /databases/{database}/documents declaration specifies that rules should match any Cloud Firestore database in the project. Currently each project has only a single database named (default).
 
 ### Basic read/write rules
-Basic rules consist of a match statement specifying a document path and an allow expression detailing when reading the specified data is allowed:
+Basic rules consist of a ```match``` statement specifying a document path and an ```allow``` expression detailing when reading the specified data is allowed:
 ```
 service cloud.firestore {
   match /databases/{database}/documents {
