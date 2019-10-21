@@ -135,11 +135,9 @@ All of the tests pass, isn't that great? Well, that depends on how secure our ap
 
 ## Lock down Security Rules
 
-The Firebase emulators are waiting for more database interactions and Security Rules evaluations!
+The default ```firestore.rules``` in this walkthrough are set with open security. That is, all operations are permitted on all documents in the database.
 
-We can start working with rules definitions in the ```firestore.rules``` file to improve the security of our app.
-
-Let's start with rules that leave our app open to all operations and modify them to lock down security.
+The Firebase emulators are waiting for more database interactions and Security Rules evaluations, so let's update ```firestore.rules``` to improve security and re-run the tests!
 
 1. Open <walkthrough-editor-open-file filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_1">firestore.rules_template_1</walkthrough-editor-open-file>. 
 
@@ -150,13 +148,13 @@ Let's start with rules that leave our app open to all operations and modify them
 
 3. Now **edit the rules** to <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_1" startLine=12 startCharacterOffset=0 endLine=16 endCharacterOffset=0>begin tightening security</walkthrough-editor-select-line>.
 
-3. Using your modified and **saved** firestore.rules_template_1 file, **copy/replace to update firestore.rules**.
+4. Using your modified and **saved** firestore.rules_template_1 file, **copy/replace to update firestore.rules**.
 ```bash
 cp ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_1 \
    ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/firestore.rules
 ```
 
-4.  Run the tests again, and notice the first error.
+5.  Run the tests again, and notice the first error.
 ```bash
 npm --prefix=functions test  
 ```
