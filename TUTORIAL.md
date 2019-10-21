@@ -18,7 +18,7 @@ To get started with the walkthrough...well, click `Start` below.
 
 Let's check some tutorial samples out from Github and some tools out of npm. 
 
-![Copy to Cloud Shell control](https://firebase.devsite.corp.google.com/docs/rules/images/la_copy_to_shell_48.png "Copy to Cloud Shell control") -- use this control to paste commands straight to the Cloud Shell prompt.
+![Copy to Cloud Shell control](https://firebase.devsite.corp.google.com/docs/rules/images/la_copy_to_shell_48.png "Copy to Cloud Shell control") -- in the snippets below, use this control to paste commands straight to the Cloud Shell prompt.
 
 1.  Set up a directory structure to organize tutorial project files plus your own project(s).
 
