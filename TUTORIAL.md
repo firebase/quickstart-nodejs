@@ -143,7 +143,7 @@ The Firebase emulators are waiting for more database interactions and Security R
 
 2. **Review** the two rules definitions in this file:
 
-* A definition that applies to all documents in the database, <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_1" startLine=5 startCharacterOffset=0 endLine=9 endCharacterOffset=0>here</walkthrough-editor-select-line>.
+* A definition that applies to all documents in the database, <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_1" startLine=17 startCharacterOffset=0 endLine=21 endCharacterOffset=0>here</walkthrough-editor-select-line>.
 * A definition that applies to items in the items collection, here.
 
 3. Now **edit the rules** to <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_1" startLine=12 startCharacterOffset=0 endLine=16 endCharacterOffset=0>begin tightening security</walkthrough-editor-select-line>.
