@@ -213,7 +213,7 @@ cp ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.ru
 
 4.  Run the tests again, and notice the first error.
 ```bash
-npm run test
+npm --prefix=functions test
 ```
 
 There we go. Now 2 passing tests.
@@ -238,7 +238,7 @@ cp ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.ru
 
 4.  Run the tests again, and notice the first error.
 ```bash
-npm run test
+npm --prefix=functions test
 ```
 
 Almost there. Let's adjust the rules for our final test case.
@@ -261,7 +261,7 @@ cp ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.ru
 
 4.  Run the tests again, and notice the first error.
 ```bash
-npm run test
+npm --prefix=functions test
 ```
 Fantastic! With the Local Emulator Suite and Firebase Test SDK, right in Cloud Shell with pre-installed tools, we've been able to prototype a set of Security Rules and test their performance without touching production code.
 
