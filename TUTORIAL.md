@@ -135,7 +135,7 @@ All of the tests pass, isn't that great? Well, that depends on how secure our ap
 
 ## Lock down Security Rules
 
-The default ```firestore.rules``` in this walkthrough are set with open security. That is, all operations are permitted on all documents in the database.
+The default ```firestore.rules``` in this walkthrough are set with open security. That is, all operations are permitted on all documents in the database. Our rules tests confirm that operations on the database are permitted, so everything passes.
 
 The Firebase emulators are waiting for more database interactions and Security Rules evaluations, so let's update ```firestore.rules``` to improve security and re-run the tests!
 
@@ -154,10 +154,13 @@ cp ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.ru
    ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/firestore.rules
 ```
 
-5.  Run the tests again, and notice the first error.
+5.  Run the tests again.
 ```bash
 npm --prefix=functions test  
 ```
+
+We've now fully locked down the data, so we go from 4 test successes to 4 failures. But from this point of security we can now start to allow operations with appropriate rules.
+
 
 ## Let users create shopping carts
 
