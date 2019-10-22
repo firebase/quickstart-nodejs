@@ -159,12 +159,12 @@ cp ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.ru
 npm --prefix=functions test  
 ```
 
-We've now fully locked down the data, so we go from 4 test successes to 4 failures. But from this point of security we can now start to allow operations with appropriate rules.
+We've now fully locked down the data, so we go from 4 test successes to 4 failures. But now that we're secure, we can start to allow database access with relaxed but appropriate rules.
 
 
 ## Let users create shopping carts
 
-Now let's look at at restricting how users can create a cart.
+First let's look at at letting users create carts in a secure way.
 
 1. Open <walkthrough-editor-open-file filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_2">firestore.rules_template_2</walkthrough-editor-open-file>. 
 
@@ -186,10 +186,12 @@ cp ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.ru
    ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/firestore.rules
 ```
 
-5.  Run the tests again, and notice the first error.
+5.  Run the tests again..
 ```bash
 npm --prefix=functions test
 ```
+
+Great, 1 test passed, 3 more to go.
 
 ## Let users read, update and delete their carts
 
@@ -214,6 +216,8 @@ cp ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.ru
 npm run test
 ```
 
+There we go. Now 2 passing tests.
+
 ## Let users put items in their cart
 
 Empty carts are no good. Let's write a new set of ```match``` and ```allow``` statements so users can add items to their carts as as long as they own the cart.
@@ -236,6 +240,9 @@ cp ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.ru
 ```bash
 npm run test
 ```
+
+Almost there. Let's adjust the rules for our final test case.
+
 ## Let users view items in their cart
 
 Last but not least, users should be able to view ```items```.
@@ -258,6 +265,8 @@ cp ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.ru
 ```bash
 npm run test
 ```
+Fantastic! With the Local Emulator Suite and Firebase Test SDK, right in Cloud Shell with pre-installed tools, we've been able to prototype a set of Security Rules and test their performance without touching production code.
+
 
 ## What next?
 
