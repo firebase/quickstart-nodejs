@@ -12,7 +12,7 @@ service cloud.firestore {
   // to all documents in the database.
   match /databases/{database}/documents {
     match /{document=**} {
-      // The preceding nested match statements match all documents
+      // The preceding nested statements match all documents,
       // so the following 'allow' statement effectively grants all
       // permissions on all documents to all users. Let's lock down
       // access by setting the condition in the 'allow' to false.
