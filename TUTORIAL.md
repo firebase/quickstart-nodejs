@@ -251,7 +251,7 @@ Last but not least, users should be able to view ```items```.
 
 2. Now **review** and **edit** the template to add new rule statements:
 
-* Edit <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_5" startLine=16 startCharacterOffset=0 endLine=16 endCharacterOffset=0>here</walkthrough-editor-select-line>.
+* Edit <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_5" startLine=16 startCharacterOffset=0 endLine=17 endCharacterOffset=0>here</walkthrough-editor-select-line>.
 
 3. **Copy** the modified and **saved** firestore.rules_template_5 file to update ```firestore.rules```.
 ```bash
