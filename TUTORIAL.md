@@ -201,9 +201,9 @@ The next test covers the case of a cart owner having the ability to read, update
 
 2. Now **review** and **edit** the template to add to the ```allow``` statement:
 
-* Review the notes about this addition <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_3" startLine=12 startCharacterOffset=0 endLine=16 endCharacterOffset=0>here</walkthrough-editor-select-line>.
+* Review the notes about this addition <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_3" startLine=13 startCharacterOffset=0 endLine=21 endCharacterOffset=0>here</walkthrough-editor-select-line>.
 
-* And then edit <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_3" startLine=12 startCharacterOffset=0 endLine=16 endCharacterOffset=0>here</walkthrough-editor-select-line>.
+* And then edit <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_3" startLine=21 startCharacterOffset=0 endLine=24 endCharacterOffset=0>here</walkthrough-editor-select-line>.
 
 3. **Copy** the modified and **saved** firestore.rules_template_3 file to update ```firestore.rules```.
 ```bash
