@@ -176,9 +176,9 @@ First let's look at at letting users create carts in a secure way.
 
 3. Now **review** and **edit** the ```allow``` statement to narrow down who can interact with selected ```cart``` documents:
 
-* Review the notes about the current and proposed ```allow``` statement <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_2" startLine=18 startCharacterOffset=0 endLine=20 endCharacterOffset=0>begin tightening security</walkthrough-editor-select-line>.
+* Review the notes about the current and proposed ```allow``` statement <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_2" startLine=18 startCharacterOffset=0 endLine=20 endCharacterOffset=0>here</walkthrough-editor-select-line>.
 
-* And then edit <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_2" startLine=20 startCharacterOffset=0 endLine=23 endCharacterOffset=0>begin tightening security</walkthrough-editor-select-line>.
+* And then edit <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_2" startLine=20 startCharacterOffset=0 endLine=24 endCharacterOffset=0>begin tightening security</walkthrough-editor-select-line>.
 
 4. **Copy** the modified and **saved** firestore.rules_template_2 file to update ```firestore.rules```.
 ```bash
