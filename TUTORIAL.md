@@ -60,8 +60,8 @@ This Learn Assistant has some convenient features we'll take advantage of for th
 Note: Be sure you've followed the previous topic and created the home directory structure explained there.
 
 1.  You'll be opening a series of Security Rules template files. Click to open <walkthrough-editor-open-file filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_0">the first, which is firebase.rules_template_0</walkthrough-editor-open-file>.
-2.  In those template files, you'll **review** descriptions and comments on security rules. Click to select <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_0" startLine=0 startCharacterOffset=0 endLine=4 endCharacterOffset=0>some discussion of a rule definition</walkthrough-editor-select-line>.
-3.  After reviewing rule definitions, you'll **edit** rules and **save the changes** in preparation for re-running the test suite. Click to select <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_0" startLine=0 startCharacterOffset=0 endLine=4 endCharacterOffset=0>code modification instructions</walkthrough-editor-select-line>.
+2.  In those template files, you'll **review** descriptions and comments on security rules. Click to select <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_0" startLine=6 startCharacterOffset=0 endLine=6 endCharacterOffset=0>some discussion of a rule definition</walkthrough-editor-select-line>.
+3.  After reviewing rule definitions, you'll **edit** rules and **save the changes** in preparation for re-running the test suite. Click to select <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_0" startLine=7 startCharacterOffset=0 endLine=9 endCharacterOffset=0>code modification instructions</walkthrough-editor-select-line>.
 4.  At the Cloud Shell prompt, you'll **copy the template file to update your main tutorial firestore.rules file**.
 
 ```bash   
@@ -251,9 +251,7 @@ Last but not least, users should be able to view ```items```.
 
 2. Now **review** and **edit** the template to add new rule statements:
 
-* Review the notes about this addition <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_5" startLine=12 startCharacterOffset=0 endLine=16 endCharacterOffset=0>here</walkthrough-editor-select-line>.
-
-* And then edit <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_5" startLine=12 startCharacterOffset=0 endLine=16 endCharacterOffset=0>here</walkthrough-editor-select-line>.
+* Edit <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_5" startLine=16 startCharacterOffset=0 endLine=16 endCharacterOffset=0>here</walkthrough-editor-select-line>.
 
 3. **Copy** the modified and **saved** firestore.rules_template_5 file to update ```firestore.rules```.
 ```bash
