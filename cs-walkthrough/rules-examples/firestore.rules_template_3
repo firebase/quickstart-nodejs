@@ -15,9 +15,9 @@ service cloud.firestore {
       // their cart. Again, we'll base the allow action on a match between 
       // the requester's ID and the data's owner ID.
       //
-      // This time, however, our ```if``` condition compares
+      // This time, however, our 'if' condition compares
       // the requester's ID to an existing Firestore resource with
-      // ```== resource.data.ownerUID``` rather than ```request.resource.data.ownerUID```.
+      // '== resource.data.ownerUID' rather than 'request.resource.data.ownerUID'.
       //
       // UNCOMMENT THE FOLLOWING LINE.
       // allow read, update, delete: if request.auth.uid == resource.data.ownerUID;
