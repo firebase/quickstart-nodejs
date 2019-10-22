@@ -263,7 +263,9 @@ cp ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.ru
 ```bash
 npm --prefix=functions test
 ```
-Fantastic! With the Local Emulator Suite and Firebase Test SDK, right in Cloud Shell with pre-installed tools, we've been able to prototype a set of Security Rules and test their performance without touching production code.
+Fantastic! 4 security test cases, 4 passing tests!
+
+With the Local Emulator Suite and Firebase Test SDK, right in Cloud Shell with pre-installed tools, we've been able to prototype a set of Security Rules and test their performance without touching production code.
 
 
 ## What next?
