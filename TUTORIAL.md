@@ -143,10 +143,10 @@ The Firebase emulators are waiting for more database interactions and Security R
 
 2. **Review** the two rules definitions in this file:
 
-* A definition that applies to all documents in the database, <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_1" startLine=17 startCharacterOffset=0 endLine=21 endCharacterOffset=0>here</walkthrough-editor-select-line>.
-* A definition that applies to items in the items collection, here.
+* A definition that applies to all documents in the database, <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_1" startLine=9 startCharacterOffset=0 endLine=13 endCharacterOffset=0>here</walkthrough-editor-select-line>.
+* A definition that applies to items in the items collection, <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_1" startLine=25 startCharacterOffset=0 endLine=32 endCharacterOffset=0>here</walkthrough-editor-select>.
 
-3. Now **edit the rules** to <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_1" startLine=12 startCharacterOffset=0 endLine=16 endCharacterOffset=0>begin tightening security</walkthrough-editor-select-line>.
+3. Now **edit the rules** to <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_1" startLine=14 startCharacterOffset=0 endLine=24 endCharacterOffset=0>begin tightening security</walkthrough-editor-select-line>.
 
 4. Using your modified and **saved** firestore.rules_template_1 file, **copy/replace to update firestore.rules**.
 ```bash
