@@ -117,7 +117,8 @@ firebase emulators:start --only firestore,functions
 ```
 
 2.  Wait briefly until the Firestore and Cloud Functions emulators have started up. You'll see terminal output saying it's safe to connect.
-3.  Add a <walkthrough-spotlight-pointer cssSelector="devshell-add-tab-button">new Cloud Shell session</walkthrough-spotlight-pointer>. You can do so manually by clicking the + control ("Open a new tab") in the menu above the Cloud Shell terminal window. The emulators keep running in parallel, in our original session.
+3.  Add a <walkthrough-spotlight-pointer cssSelector="#devshell-editor-app;div.p6n-devshell-editor-app-body.layout-row.flex;div.layout-column.flex;pan-dev-shell;div;div.p6n-devshell-header.p6n-action-bar;div:nth-child(6);csh-new-tab-menu;div;button.main.dense.mat-icon-button.mat-button-base;span;mat-icon
+">new Cloud Shell session</walkthrough-spotlight-pointer>. You can do so manually by clicking the + control ("Open a new tab") in the menu above the Cloud Shell terminal window. The emulators keep running in parallel, in our original session.
 4.  At the new session prompt, change directory to our Security Rules walkthrough project.
 
 ```bash  
