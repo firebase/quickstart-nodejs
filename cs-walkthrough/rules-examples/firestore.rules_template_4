@@ -13,7 +13,7 @@ service cloud.firestore {
       allow read, update, delete: if request.auth.uid == resource.data.ownerUID;
     }
  
-  // Now let's talk about adding 'item' documents to a cart. We can write a rule that
+  // Let's talk about adding 'item' documents to a cart. We can write a rule that
   // allows writing an 'item' if the current user has the same UID as the ownerUID
   // on the 'cart' document.
   //
