@@ -160,7 +160,7 @@ cp ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.ru
 npm --prefix=functions test  
 ```
 
-We've now fully locked down the data, so we go from 4 test successes to 4 failures. But now that we're secure, we can start to allow database access with relaxed but appropriate rules.
+We've now fully locked down the data, so we go from 4 test successes to 4 failures. But now that we're secure, we can start to allow database access with appropriate rules.
 
 
 ## Let users create shopping carts
