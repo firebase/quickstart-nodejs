@@ -16,7 +16,7 @@ To get started with the walkthrough...well, click `Start` below.
 
 ## Check out a Security Rules tutorial project
 
-Let's check some tutorial samples out from Github and some tools out of npm. 
+Let's check some tutorial samples out from GitHub and some tools out of npm. 
 
 ![Copy to Cloud Shell control](https://firebase.devsite.corp.google.com/docs/rules/images/la_copy_to_shell_48.png "Copy to Cloud Shell control") -- in the snippets below, use this control to paste commands straight to the Cloud Shell prompt.
 
