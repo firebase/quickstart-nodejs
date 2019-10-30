@@ -4,7 +4,7 @@
 // run '~/rules-tutorial/quickstart-nodejs/cs-walkthrough/walkthrough.sh'
 //********************************************
 
-// This file contains a set of Firestore Seurity Rules.
+// This file contains a set of Firestore Security Rules.
 // Try editing: DELETE THIS LINE.
 // THEN SAVE THE FILE: FILE > SAVE.
 
