@@ -13,24 +13,14 @@ into any bugs.
 
 ## Setup
 
-Download the Firestore emulator
+Start the Firestore and Hosting emulators:
 ```
-curl -LO https://storage.googleapis.com/firebase-preview-drop/emulator/cloud-firestore-emulator-v1.7.0.jar
-```
-
-Start the Firestore emulator with WebChannel support enabled
-```
-java -jar cloud-firestore-emulator-v1.7.0.jar --webchannel-port=50051 --rules=firestore.rules
-```
-
-Start the Firebase hosting emulator
-```
-firebase serve
+firebase emulators:start --only hosting,firestore
 ```
 
 ## Interacting with the page
 
-Once you've run `firebase serve`, you can visit `http://localhost:5000` in your
+Once you've run `firebase emulators;start`, you can visit `http://localhost:5000` in your
 browser and you should see a _very_ barebones chat app powered by the local
 Firestore emulator.
 
