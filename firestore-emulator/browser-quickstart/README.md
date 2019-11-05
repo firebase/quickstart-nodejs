@@ -20,7 +20,7 @@ firebase emulators:start --only hosting,firestore
 
 ## Interacting with the page
 
-Once you've run `firebase emulators;start`, you can visit `http://localhost:5000` in your
+Once you've run `firebase emulators:start`, you can visit `http://localhost:5000` in your
 browser and you should see a _very_ barebones chat app powered by the local
 Firestore emulator.
 
