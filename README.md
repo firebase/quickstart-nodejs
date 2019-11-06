@@ -17,8 +17,8 @@ These quickstarts show you how to use the Firebase Local Emulators to test your 
 
 * [database-emulator/javascript-quickstart](database-emulator/javascript-quickstart/README.md) - demonstrates how to write unit tests for Security Rules using the Realtime Database emulator and the `@firebase/testing` SDK in JavaScript.
 * [database-emulator/typescript-quickstart](database-emulator/typescript-quickstart/README.md) - demonstrates how to write unit tests for Security Rules using the Realtime Database emulator and the `@firebase/testing` SDK in TypeScript.
-* [firestore-emulator/javascript-quickstart](firestore-emulator/javascript-quickstart/README.md) - demonstrates how to write unit tests for Security Rules using the Cloud Firestoer emulator and the `@firebase/testing` SDK in JavaScript.
-* [firestore-emulator/typescript-quickstart](firestore-emulator/typescript-quickstart/README.md) - demonstrates how to write unit tests for Security Rules using the Cloud Firestoer emulator and the `@firebase/testing` SDK in TypeScript.
+* [firestore-emulator/javascript-quickstart](firestore-emulator/javascript-quickstart/README.md) - demonstrates how to write unit tests for Security Rules using the Cloud Firestore emulator and the `@firebase/testing` SDK in JavaScript.
+* [firestore-emulator/typescript-quickstart](firestore-emulator/typescript-quickstart/README.md) - demonstrates how to write unit tests for Security Rules using the Cloud Firestore emulator and the `@firebase/testing` SDK in TypeScript.
 * [firestore-emulator/browser-quickstart](firestore-emulator/browser-quickstart/README.md) - demonstrates connecting a web application to the Cloud Firestore emulator.
 
 ## How to make contributions?
