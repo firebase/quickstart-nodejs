@@ -13,7 +13,7 @@ const dom = {
 };
 
 const db = firebase.initializeApp({ projectId: "firestore-emulator-example" }).firestore();
-db.settings({ host: "localhost:50051", ssl: false });
+db.settings({ host: "localhost:8080", ssl: false });
 
 function submit() {
   db.collection("messages").add({

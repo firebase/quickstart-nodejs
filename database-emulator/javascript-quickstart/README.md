@@ -8,17 +8,13 @@ Let's try writing some simple tests for our security rules.
 
 Run `npm install` from this directory, and make sure that you have a recent
 version of the [Firebase CLI tool](https://github.com/firebase/firebase-tools)
-installed (you'll need `firebase --version` to be at least `6.1.1`).
+installed (you'll need `firebase --version` to be at least `7.0.0`).
 
 ### Running the emulator
 
-Download the database emulator
-```
-firebase setup:emulators:database
-```
 Start the database emulator (and leave it running during the tests)
 ```
-firebase serve --only database
+firebase emulators:start --only database
 ```
 
 ## Running the tests
