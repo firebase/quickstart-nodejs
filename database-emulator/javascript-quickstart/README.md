@@ -10,20 +10,29 @@ Run `npm install` from this directory, and make sure that you have a recent
 version of the [Firebase CLI tool](https://github.com/firebase/firebase-tools)
 installed (you'll need `firebase --version` to be at least `7.0.0`).
 
-### Running the emulator
+### Running the tests with the emulator
 
-Start the database emulator (and leave it running during the tests)
+To start the database emulator and run the tests:
 ```
-firebase emulators:start --only database
+firebase emulators:exec --only database 'npm test'
 ```
 
-## Running the tests
+If another app's using the port, update the firebase.json file to
+look like this before you run the command above.
+```
+{
+  "database": {
+    "rules": "database.rules.json"
+  },
+  "emulators": {
+    "database": {
+      "port": "PORT"
+    }
+  }
+}
+```
 
-To run the tests, execute
-```
-npm test
-```
-which runs all the tests in the `tests/` directory.
+Either way, the command runs all the tests in the `tests/` directory.
 
 ```
   profile read rules

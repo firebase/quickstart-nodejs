@@ -4,30 +4,21 @@ Let's try writing some simple tests for our security rules.
 
 ## Setup
 
-### Start in the right directory
-
-To use this, some people may clone the entire quickstart-nodejs directory.
-When starting the quickstart, cd to the specific quickstart related to your
-project (i.e. `cd firestore-emulator/javascript-quickstart`).
-
 ### Install Node dependencies
 
 Run `npm install` from this directory, and make sure that you have a recent
 version of the [Firebase CLI tool](https://github.com/firebase/firebase-tools)
 installed (you'll need `firebase --version` to be at least `6.3.0`).
 
-### Running the emulator
+### Running the tests with the emulator
 
-Setup the Firestore emulator
+To start the firestore emulator and run the tests:
 ```
-firebase setup:emulators:firestore
+firebase emulators:exec --only firestore 'npm test'
 ```
-Add your project to the emulator (use `firebase init` if no project setup)
-```
-firebase use --add your-project-name
-```
-If another app's using the 8080 port, update the firebase.json file to
-look like this
+
+If another app's using the port, update the firebase.json file to
+look like this before you run the command above.
 ```
 {
   "firestore": {
@@ -40,18 +31,8 @@ look like this
   }
 }
 ```
-Start the firestore emulator (and leave it running during the tests)
-```
-firebase emulators:start --only firestore
-```
 
-## Running the tests
-
-To run the tests, open a new terminal (in your specific quickstart directory, not '/quickstart-nodejs') and execute
-```
-npm test
-```
-which runs all the tests in the `tests/` directory.
+Either way, the command runs all the tests in the `tests/` directory.
 
 ```
     ✓ require users to log in before creating a profile (71ms)
