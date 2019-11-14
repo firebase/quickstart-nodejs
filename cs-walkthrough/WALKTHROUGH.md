@@ -16,9 +16,9 @@ To get started with the walkthrough...well, click `Start` below.
 
 ## Check out a Security Rules tutorial project
 
-Let's check some tutorial samples out from Github and some tools out of npm. 
+Let's check some tutorial samples out from GitHub and some tools out of npm. 
 
-![Copy to Cloud Shell control](https://firebase.devsite.corp.google.com/docs/rules/images/la_copy_to_shell_48.png "Copy to Cloud Shell control") -- in the snippets below, use this control to paste commands straight to the Cloud Shell prompt.
+![Copy to Cloud Shell control](https://firebase.devsite.corp.google.com/docs/rules/images/la_copy_to_shell.png "Copy to Cloud Shell control") -- in the snippets below, use this control to paste commands straight to the Cloud Shell prompt.
 
 1.  Set up a directory structure to organize tutorial project files plus your own project(s).
 
@@ -59,7 +59,7 @@ This Learn Assistant has some convenient features we'll take advantage of for th
 
 Note: Be sure you've followed the previous topic and created the home directory structure explained there.
 
-1.  You'll be opening a series of Security Rules template files. Click to open <walkthrough-editor-open-file filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_0">the first, which is firebase.rules_template_0</walkthrough-editor-open-file>.
+1.  You'll be **opening** a series of Security Rules template files. Click to open <walkthrough-editor-open-file filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_0">the first, which is firebase.rules_template_0</walkthrough-editor-open-file>.
 2.  In those template files, you'll **review** descriptions and comments on security rules. Click to select <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_0" startLine=6 startCharacterOffset=0 endLine=7 endCharacterOffset=0>some discussion of a rule definition</walkthrough-editor-select-line>.
 3.  After reviewing rule definitions, you'll **edit** rules and **save the changes** in preparation for re-running the test suite. Click to select <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_0" startLine=7 startCharacterOffset=0 endLine=9 endCharacterOffset=0>code modification instructions</walkthrough-editor-select-line>.
 4.  At the Cloud Shell prompt, you'll **copy the template file to update your main tutorial firestore.rules file**.
@@ -73,7 +73,7 @@ We'll present most of the walkthrough content and hands-on exercises this way, s
 ## Security Rules basics
 
 You'll get the most out of this walkthrough if you already have some experience with the Firestore Security Rules language and have in your own project modified the default ```firestore.rules``` file with rules tailored to your data. 
-**If this applies to you, you can click "Next" to move on**.
+**If you are already familiar with Security Rules basics, you can skip this slide by hitting "Next"**.
 
 Here are the basics about Rules statements. If these concepts are unfamiliar, you might review [Structuring Cloud Firestore Security Rules](https://firebase.google.com/docs/firestore/security/rules-structure).
 
@@ -108,7 +108,7 @@ All match statements should point to documents, not collections. A match stateme
 
 ## Emulator Suite and Firebase Test SDK basics
 
-Our tests are written with a simple eCommerce app in mind. We have ```users```, shopping ```carts```, and ```items``` to put in those carts. Let's start up the Firestore emulator and run the test suite developed with the Firebase Test SDK.
+Let's start up the Firestore emulator and run the test suite developed with the Firebase Test SDK.
 
 1.  Start the Firestore and Cloud Functions emulators.
 
@@ -134,6 +134,16 @@ Awesome. We're going to peek under the hood next, but the gist is our test suite
 
 All of the tests pass, isn't that great? Well, that depends on how secure our app *really* is and just what exactly the tests are confirming. Let's take a look...
 
+## What data are we securing?
+
+Our tests are written with a simple eCommerce app in mind. We have ```users```, and database entries for shopping ```carts```, and ```items``` to put in those carts.
+
+The emulated Firestore database for our tests will be created as we go, populated then deleted at each execution of the test suite, by the Firebase Test SDK.
+
+![Copy to Cloud Shell control](https://firebase.devsite.corp.google.com/docs/rules/images/cs_walkthrough_datamodel.png "eCommerce Data Model for Security Rules Walkthrough")
+
+Note that the data model contains collections (`carts` and `items`) and documents within those collections (`alicesCart` and `lemon`). You can review the [documentation about Firestore hierarchical data models](https://firebase.google.com/docs/firestore/data-model#hierarchical-data).
+
 ## Lock down Security Rules
 
 The default ```firestore.rules``` in this walkthrough are set with open security. That is, all operations are permitted on all documents in the database. Our rules tests confirm that operations on the database are permitted, so everything passes.
@@ -150,6 +160,9 @@ The Firebase emulators are waiting for more database interactions and Security R
 3. Now **edit the rules** to <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_1" startLine=14 startCharacterOffset=0 endLine=23 endCharacterOffset=0>begin tightening security</walkthrough-editor-select-line>.
 
 4. Using your modified and **saved** firestore.rules_template_1 file, **copy/replace to update firestore.rules**.
+
+The emulators automatically detect these `.rules` file changes and load the new rules. 
+
 ```bash
 cp ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_1 \
    ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/firestore.rules
@@ -160,7 +173,7 @@ cp ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.ru
 npm --prefix=functions test  
 ```
 
-We've now fully locked down the data, so we go from 4 test successes to 4 failures. But now that we're secure, we can start to allow database access with relaxed but appropriate rules.
+We've now fully locked down the data, so we go from 4 test successes to 4 failures. But now that we're secure, we can start to allow database access with appropriate rules.
 
 
 ## Let users create shopping carts
@@ -187,7 +200,7 @@ cp ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.ru
    ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/firestore.rules
 ```
 
-5.  Run the tests again..
+5.  Run the tests again.
 ```bash
 npm --prefix=functions test
 ```
@@ -212,7 +225,7 @@ cp ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.ru
    ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/firestore.rules
 ```
 
-4.  Run the tests again, and notice the first error.
+4.  Run the tests.
 ```bash
 npm --prefix=functions test
 ```
@@ -237,7 +250,7 @@ cp ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.ru
    ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/firestore.rules
 ```
 
-4.  Run the tests again, and notice the first error.
+4.  Run the tests.
 ```bash
 npm --prefix=functions test
 ```
