@@ -18,7 +18,7 @@ To get started with the walkthrough...well, click `Start` below.
 
 Let's check some tutorial samples out from GitHub and some tools out of npm. 
 
-![Copy to Cloud Shell control](https://firebase.devsite.corp.google.com/docs/rules/images/la_copy_to_shell_48.png "Copy to Cloud Shell control") -- in the snippets below, use this control to paste commands straight to the Cloud Shell prompt.
+![Copy to Cloud Shell control](https://walkthroughs.googleusercontent.com/content/firebase_rules/images/la_copy_to_shell_shrink.png "Copy to Cloud Shell control") -- in the snippets below, use this control to paste commands straight to the Cloud Shell prompt.
 
 1.  Set up a directory structure to organize tutorial project files plus your own project(s).
 
@@ -108,7 +108,7 @@ All match statements should point to documents, not collections. A match stateme
 
 ## Emulator Suite and Firebase Test SDK basics
 
-Our tests are written with a simple eCommerce app in mind. We have ```users```, shopping ```carts```, and ```items``` to put in those carts. Let's start up the Firestore emulator and run the test suite developed with the Firebase Test SDK.
+Let's start up the Firestore emulator and run the test suite developed with the Firebase Test SDK.
 
 1.  Start the Firestore and Cloud Functions emulators.
 
@@ -133,6 +133,12 @@ npm --prefix=functions test
 Awesome. We're going to peek under the hood next, but the gist is our test suite populated the Firestore emulator with data and made a series of access requests, which were allowed and denied according to our Security Rules, and checked per our test cases.
 
 All of the tests pass, isn't that great? Well, that depends on how secure our app *really* is and just what exactly the tests are confirming. Let's take a look...
+
+## What data are we securing?
+
+Our tests are written with a simple eCommerce app in mind. We have ```users```, and database entries for shopping ```carts```, and ```items``` to put in those carts. All of this data will be created as wel go by the Firebase Test SDK.
+
+![Copy to Cloud Shell control](https://firebase.devsite.corp.google.com/docs/rules/images/cs_walkthrough_databmodel.png "eCommerce Data Model for Security Rules Walkthrough")
 
 ## Lock down Security Rules
 
