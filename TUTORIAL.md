@@ -273,7 +273,7 @@ cp ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.ru
    ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/firestore.rules
 ```
 
-4.  Run the tests again, and notice the first error.
+4.  Run the tests again.
 ```bash
 npm --prefix=functions test
 ```
