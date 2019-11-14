@@ -138,7 +138,7 @@ All of the tests pass, isn't that great? Well, that depends on how secure our ap
 
 Our tests are written with a simple eCommerce app in mind. We have ```users```, and database entries for shopping ```carts```, and ```items``` to put in those carts. All of this data will be created as wel go by the Firebase Test SDK.
 
-![Copy to Cloud Shell control](https://firebase.devsite.corp.google.com/docs/rules/images/cs_walkthrough_datamodel_480.png "eCommerce Data Model for Security Rules Walkthrough")
+![Copy to Cloud Shell control](https://firebase.devsite.corp.google.com/docs/rules/images/cs_walkthrough_datamodel.png "eCommerce Data Model for Security Rules Walkthrough")
 
 ## Lock down Security Rules
 
