@@ -160,6 +160,9 @@ The Firebase emulators are waiting for more database interactions and Security R
 3. Now **edit the rules** to <walkthrough-editor-select-line filePath="./rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_1" startLine=14 startCharacterOffset=0 endLine=23 endCharacterOffset=0>begin tightening security</walkthrough-editor-select-line>.
 
 4. Using your modified and **saved** firestore.rules_template_1 file, **copy/replace to update firestore.rules**.
+
+The emulators automatically detect these `.rules` file changes and load the new rules. 
+
 ```bash
 cp ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/rules-examples/firestore.rules_template_1 \
    ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/firestore.rules
