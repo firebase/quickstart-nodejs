@@ -1,7 +1,7 @@
 //********************************************
 // If you need to restart the walkthrough for
 // any reason, at the Cloud Shell prompt
-// run '~/rules-tutorial/quickstart-nodejs/cs-walkthrough/walkthrough.sh'
+// run 'cd ~/rules-tutorial/quickstart-nodejs/cs-walkthrough/ ; ./walkthrough.sh'
 //********************************************
 
 rules_version = '2';
