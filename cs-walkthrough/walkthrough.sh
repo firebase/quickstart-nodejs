@@ -1,2 +1,2 @@
 
-cloudshell launch-tutorial ~/rules-tutorial/guickstart-nodejs/cs-walkthrough/WALKTHROUGH.md 
+cloudshell launch-tutorial ./WALKTHROUGH.md 
