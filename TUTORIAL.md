@@ -136,9 +136,11 @@ All of the tests pass, isn't that great? Well, that depends on how secure our ap
 
 ## What data are we securing?
 
-Our tests are written with a simple eCommerce app in mind. We have ```users```, and database entries for shopping ```carts```, and ```items``` to put in those carts. All of this data will be created as wel go by the Firebase Test SDK.
+Our tests are written with a simple eCommerce app in mind. We have ```users```, and database entries for shopping ```carts```, and ```items``` to put in those carts. The database for our tests will be created as we go by the Firebase Test SDK.
 
 ![Copy to Cloud Shell control](https://firebase.devsite.corp.google.com/docs/rules/images/cs_walkthrough_datamodel.png "eCommerce Data Model for Security Rules Walkthrough")
+
+Note that the data model contains collections (`carts` and `items`) and documents within those collections (`alicesCart` and `lemon`). You can review the [documentation about Firestore hierarchical data models](https://firebase.google.com/docs/firestore/data-model#hierarchical-data).
 
 ## Lock down Security Rules
 
