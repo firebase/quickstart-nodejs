@@ -13,6 +13,11 @@ into any bugs.
 
 ## Setup
 
+Make sure you have the Firebase CLI version `7.5.0` or higher:
+```
+firebase --version
+```
+
 Start the Firestore and Hosting emulators:
 ```
 firebase emulators:start --only hosting,firestore
