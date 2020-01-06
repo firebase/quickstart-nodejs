@@ -10,7 +10,6 @@
   "devDependencies": {
     "@firebase/testing": "^0.15.0",
     "@types/mocha": "5.2.5",
-    "filesystem": "1.0.1",
     "mocha": "5.2.0",
     "mocha-typescript": "1.1.17",
     "prettier": "1.15.2",
