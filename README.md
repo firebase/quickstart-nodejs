@@ -10,6 +10,7 @@ These quickstarts show you how to use Firebase products from your Node.js server
 * [config](config/README.md) - demonstrates retrieving and updating the Firebase Remote Config template.
 * [database](database/README.md) - demonstrates how to connect to and use the Firebase Realtime Database using Node.js through a simple social blogging app.
 * [messaging](messaging/README.md) - demonstrates sending FCM notification messages to a topic using the Node.js Admin SDK.
+* [machine-learning](machine-learning/README.md) - demonstrates how to manage your hosted ML models.
 
 ## Testing Quickstarts
 

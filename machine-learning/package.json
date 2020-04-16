@@ -1,0 +1,12 @@
+{
+  "name": "ml-quickstart",
+  "version": "1.0.0",
+  "description": "Firebase ML model management",
+  "main": "manage-ml.js",
+  "author": "Firebase",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "firebase-admin": "^8.11.0",
+    "yargs": "^15.1.0"
+  }
+}
