@@ -1,7 +1,6 @@
 {
   "dependencies": {
-    "google-auth-library": "^0.10.0",
-    "googleapis": "^20.1.0",
+    "googleapis": "^49.0.0",
     "request-promise": "^4.2.2",
     "request": "^2.88.0"
   }
