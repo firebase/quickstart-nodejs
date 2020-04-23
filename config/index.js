@@ -1,6 +1,6 @@
 var rp = require('request-promise');
 var fs = require('fs');
-var google = require('googleapis');
+var { google } = require('googleapis');
 
 var PROJECT_ID = 'PROJECT_ID';
 var HOST = 'https://firebaseremoteconfig.googleapis.com';
