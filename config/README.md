@@ -7,16 +7,19 @@ demonstrates retrieving and updating the Firebase Remote Config template.
 Introduction
 ------------
 
-This is a simple example of using the Firebase Remote Config REST API to update
-the Remote Config template being used by clients apps.
+This is a simple example of using the Firebase Admin SDK to update
+the Remote Config template being used by clients apps. You can also directly
+use the [Remote Config REST API](https://firebase.google.com/docs/remote-config/automate-rc#modify_remote_config_using_the_rest_api)
+to perform additional template operations. 
 
 Getting started
 ---------------
 
-1. [Add Firebase to your Android Project](https://firebase.google.com/docs/android/setup).
-2. Create a service account as described in [Adding Firebase to your Server](https://firebase.google.com/docs/admin/setup) and download the JSON file.
-  - Copy the private key JSON file to this folder and rename it to `service-account.json`.
-3. Change the `PROJECT_ID` variable in `index.js` to your project ID.
+1. [Create a Firebase project](https://console.firebase.google.com).
+2. Create a service account as described in [Adding Firebase to your Server](https://firebase.google.com/docs/admin/setup)
+   and download the JSON file.
+3. Set the [`GOOGLE_APPLICATION_CREDENTIALS`](https://firebase.google.com/docs/admin/setup#initialize-sdk)
+   environment variable to the path of the JSON file.
 
 Run
 ---
@@ -24,12 +27,16 @@ Run
 - Get active template
   - From the `config` directory run `node index.js get` to retrieve the template.
     - The returned template is stored in a file named `config.json`.
-    - Note the ETag printed to the console you will need to use it when publishing template updates.
-- Update the template
+    - Note the ETag printed to the console. When replacing the current template
+      a matching ETag ensures that no template versions are overwritten
+      accidentally.
+- Update the template via file
   - If your template already has parameters, adjust one or more of the values.
-  - If your template is empty, update it to look like this:
+  - If your template is empty, update parameters and conditions to look like
+    this:
 
         {
+          "etag": "etag-<YOUR_TEMPLATE_ETAG>",
           "conditions": [
             {
               "name": "AndroidUsers",
@@ -59,35 +66,19 @@ Run
           }
         }
 
-  - From the `config` directory run `node index.js publish <LATEST_ETAG>` to update the template.
-    - Be sure to set the etag to the one that was last printed in the console.
+  - From the `config` directory run `node index.js publish` to update the template.
   - Confirm in the console that the template has been updated.
     - At this point mobile clients can fetch the updated values.
-- View existing versions
-  - From the `config` directory run `node index.js versions` to print the metadata of the
-    last 5 template versions.
-- Roll back to an existing template
-  - From the `config` directory run `node index.js rollback <TEMPLATE_VERSION_NUMBER>` to
-    activate the template with the matching version number.
+- Update the template in memory
+  - From the `config` directory run `node index.js update` to retrieve the
+    current template and update it in memory. Using this option will set the
+    a condition (`android_en`) and a parameter that uses the condition.
 
 Best practices
 --------------
 
 This section provides some additional information about how the Remote Config
-REST API should be used when retrieving and updating templates.
-
-### [Versions](https://firebase.google.com/docs/remote-config/templates) ###
-
-Each time you update parameters, {{remote_config}} creates a
-new versioned {{remote_config}} template and stores the previous template as
-a version that you can retrieve or roll back to as needed.
-
-All non-active versions expire and are removed if they are older than 90 days or if
-there are more than 300 newer template versions. Since template versions expire, any
-versions that need to be retrieved later on should be persisted externally.
-
-Use the `listVersions` [query parameters](https://firebase.google.com/docs/reference/remote-config/rest/v1/projects.remoteConfig/listVersions#query-parameters)
-to filter the versions that are returned.
+Admin SDK should be used when retrieving and updating templates.
 
 ### ETags ###
 
@@ -95,11 +86,9 @@ Each time the Remote Config template it retrieved an ETag is included. This ETag
 unique identifier of the current template on the server. When submitting updates
 to the template you must include the latest ETag to ensure that your updates are consistent.
 
-In the event that you want to completely overwrite the server's template use
-an ETag of "\*". Use this with caution since this operation cannot be undone.
-
-**NOTE:** To get the ETag your request must accept the gzip encoding. Add the header
-`Accept-Encoding: gzip` to receive the ETag in the response header `ETag`.
+In the event that you want to completely overwrite the server's template set
+the `force` parameter of `publishTemplate` method to `true`. Use this with
+caution since this operation cannot be undone.
 
 Support
 -------
