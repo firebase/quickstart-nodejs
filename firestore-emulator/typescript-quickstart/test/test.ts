@@ -1,5 +1,5 @@
-/// <reference path='../node_modules/mocha-typescript/globals.d.ts' />
 import * as firebase from "@firebase/testing";
+import { suite, test } from "@testdeck/mocha";
 import * as fs from "fs";
 
 /*
@@ -19,9 +19,7 @@ const rules = fs.readFileSync("firestore.rules", "utf8");
  * @return {object} the app.
  */
 function authedApp(auth) {
-  return firebase
-    .initializeTestApp({ projectId, auth })
-    .firestore();
+  return firebase.initializeTestApp({ projectId, auth }).firestore();
 }
 
 /*
