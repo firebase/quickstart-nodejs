@@ -1,13 +1,7 @@
 **/secrets.json
-**/firebase-debug.log
-**/firestore-debug.log
-**/package-lock.json
+*-debug.log
 **/node_modules
-**/bower_components
 **/*.bak
 .idea
 
 */tsconfig.json
-
-database-debug.log
-firestore-debug.log
