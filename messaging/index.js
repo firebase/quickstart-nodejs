@@ -7,13 +7,13 @@
  * a badge is added to messages that are sent to iOS devices.
  */
 const https = require('https');
-var fs = require('fs');
-var google = require('googleapis');
-var PROJECT_ID = '<YOUR-PROJECT-ID>';
-var HOST = 'fcm.googleapis.com';
-var PATH = '/v1/projects/' + PROJECT_ID + '/messages:send';
-var MESSAGING_SCOPE = 'https://www.googleapis.com/auth/firebase.messaging';
-var SCOPES = [MESSAGING_SCOPE];
+const { google } = require('googleapis');
+
+const PROJECT_ID = '<YOUR-PROJECT-ID>';
+const HOST = 'fcm.googleapis.com';
+const PATH = '/v1/projects/' + PROJECT_ID + '/messages:send';
+const MESSAGING_SCOPE = 'https://www.googleapis.com/auth/firebase.messaging';
+const SCOPES = [MESSAGING_SCOPE];
 
 /**
  * Get a valid access token.
@@ -43,7 +43,7 @@ function getAccessToken() {
 /**
  * Send HTTP request to FCM with given message.
  *
- * @param {JSON} fcmMessage will make up the body of the request.
+ * @param {object} fcmMessage will make up the body of the request.
  */
 function sendFcmMessage(fcmMessage) {
   getAccessToken().then(function(accessToken) {

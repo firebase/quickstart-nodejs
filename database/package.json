@@ -5,11 +5,13 @@
   "main": "index.js",
   "author": "nivco@google.com",
   "license": "Apache License Version 2.0",
+  "scripts": {
+    "compile": "cp ../tsconfig.json.template ./tsconfig.json && tsc"
+  },
   "dependencies": {
     "escape-html": "^1.0.3",
-    "firebase-admin": "^4.0.3",
+    "firebase-admin": "^8.13.0",
     "node-schedule": "^1.1.0",
-    "nodemailer": "^2.4.1",
-    "promise": "^7.1.1"
+    "nodemailer": "^2.4.1"
   }
 }

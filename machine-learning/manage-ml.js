@@ -116,7 +116,7 @@ const updateModel = async (modelId, tflite = null, displayName = null, newTags =
   }
 
   if (removeTags != null) {
-    if (!('tags' in updates)) {
+    if (!updates.tags) {
       updates.tags = model.tags;
     }
     updates.tags = updates.tags.filter(tag => !removeTags.includes(tag));

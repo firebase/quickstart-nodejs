@@ -7,5 +7,7 @@
 **/*.bak
 .idea
 
+*/tsconfig.json
+
 database-debug.log
 firestore-debug.log

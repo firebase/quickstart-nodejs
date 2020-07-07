@@ -16,24 +16,22 @@
 'use strict';
 
 // [START imports]
-var firebase = require('firebase-admin');
+const firebase = require('firebase-admin');
 // [END imports]
-var nodemailer = require('nodemailer');
-var schedule = require('node-schedule');
-var Promise = require('promise');
-var escape = require('escape-html');
+const nodemailer = require('nodemailer');
+const schedule = require('node-schedule');
+const escape = require('escape-html');
 
 // TODO(DEVELOPER): Configure your email transport.
 // Configure the email transport using the default SMTP transport and a GMail account.
 // See: https://nodemailer.com/
 // For other types of transports (Amazon SES, Sendgrid...) see https://nodemailer.com/2-0-0-beta/setup-transporter/
-var mailTransport = nodemailer.createTransport('smtps://<user>%40gmail.com:<password>@smtp.gmail.com');
+const mailTransport = nodemailer.createTransport('smtps://<user>%40gmail.com:<password>@smtp.gmail.com');
 
 // TODO(DEVELOPER): Change the two placeholders below.
 // [START initialize]
 // Initialize the app with a service account, granting admin privileges
-var serviceAccount = require('path/to/serviceAccountKey.json');
-
+const serviceAccount = require('./service-account.json');
 firebase.initializeApp({
   credential: firebase.credential.cert(serviceAccount),
   databaseURL: 'https://<PROJECT_ID>.firebaseio.com'
@@ -173,7 +171,7 @@ function sendWeeklyTopPostEmail(users, emailHtml) {
         console.log('Weekly top posts email sent to: ' + user.email);
         // Save the date at which we sent the weekly email.
         // [START basic_write]
-        return firebase.database().child('/users/' + uid + '/lastSentWeeklyTimestamp')
+        return firebase.database().ref().child('/users/' + uid + '/lastSentWeeklyTimestamp')
             .set(firebase.database.ServerValue.TIMESTAMP);
         // [END basic_write]
       }).catch(function(error) {

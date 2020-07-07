@@ -1,7 +1,11 @@
 {
+  "name": "config",
+  "scripts": {
+    "compile": "cp ../tsconfig.json.template ./tsconfig.json && tsc"
+  },
   "dependencies": {
-    "google-auth-library": "^0.10.0",
-    "googleapis": "^20.1.0",
-    "firebase-admin": "^8.11.0"
+    "firebase-admin": "^8.13.0",
+    "google-auth-library": "^6.0.3",
+    "googleapis": "^52.1.0"
   }
 }

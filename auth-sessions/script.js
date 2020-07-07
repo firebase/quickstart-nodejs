@@ -92,7 +92,7 @@ var handleSignedInUser = function(user) {
  * @param {string} url The session login endpoint.
  * @param {string} idToken The ID token to post to backend.
  * @param {?string} csrfToken The CSRF token to send to backend.
- * @return {jQuery.jqXHR<string>} A jQuery promise that resolves on completion.
+ * @return {any} A jQuery promise that resolves on completion.
  */
 var postIdTokenToSessionLogin = function(url, idToken, csrfToken) {
   // POST to session login endpoint.

@@ -12,20 +12,18 @@
  * limitations under the License.
  */
 
-var express = require('express');
-var cookieParser = require('cookie-parser')
-var http = require('http');
-var https = require('https');
-var app = express();
-var admin = require('firebase-admin');
-var bodyParser = require('body-parser');
+const express = require('express');
+const cookieParser = require('cookie-parser')
+const app = express();
+const admin = require('firebase-admin');
+const bodyParser = require('body-parser');
 
 /**
  * Renders the profile page and serves it in the response.
  * @param {string} endpoint The get profile endpoint.
  * @param {!Object} req The expressjs request.
  * @param {!Object} res The expressjs response.
- * @param {!firebase.auth.DecodedIdToken} decodedClaims The decoded claims from verified
+ * @param {!admin.auth.DecodedIdToken} decodedClaims The decoded claims from verified
  *     session cookies.
  * @return {!Promise} A promise that resolves on success.
  */
