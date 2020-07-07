@@ -8,7 +8,7 @@
  */
 const https = require('https');
 var fs = require('fs');
-var {google} = require('googleapis');
+var google = require('googleapis');
 var PROJECT_ID = '<YOUR-PROJECT-ID>';
 var HOST = 'fcm.googleapis.com';
 var PATH = '/v1/projects/' + PROJECT_ID + '/messages:send';
