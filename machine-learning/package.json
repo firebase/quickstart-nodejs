@@ -5,6 +5,9 @@
   "main": "manage-ml.js",
   "author": "Firebase",
   "license": "Apache-2.0",
+  "scripts": {
+    "compile": "cp ../tsconfig.json.template ./tsconfig.json && tsc"
+  },
   "dependencies": {
     "firebase-admin": "^8.11.0",
     "yargs": "^15.1.0"

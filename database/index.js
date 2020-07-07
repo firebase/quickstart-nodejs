@@ -16,24 +16,23 @@
 'use strict';
 
 // [START imports]
-var firebase = require('firebase-admin');
+const firebase = require('firebase-admin');
 // [END imports]
-var nodemailer = require('nodemailer');
-var schedule = require('node-schedule');
-var Promise = require('promise');
-var escape = require('escape-html');
+const nodemailer = require('nodemailer');
+const schedule = require('node-schedule');
+const escape = require('escape-html');
 
 // TODO(DEVELOPER): Configure your email transport.
 // Configure the email transport using the default SMTP transport and a GMail account.
 // See: https://nodemailer.com/
 // For other types of transports (Amazon SES, Sendgrid...) see https://nodemailer.com/2-0-0-beta/setup-transporter/
-var mailTransport = nodemailer.createTransport('smtps://<user>%40gmail.com:<password>@smtp.gmail.com');
+const mailTransport = nodemailer.createTransport('smtps://<user>%40gmail.com:<password>@smtp.gmail.com');
 
 // TODO(DEVELOPER): Change the two placeholders below.
 // [START initialize]
 // Initialize the app with a service account, granting admin privileges
-var serviceAccount = require('path/to/serviceAccountKey.json');
-
+/** @type {any} */
+const serviceAccount = require('../placeholders/service-account.json');
 firebase.initializeApp({
   credential: firebase.credential.cert(serviceAccount),
   databaseURL: 'https://<PROJECT_ID>.firebaseio.com'
@@ -46,16 +45,16 @@ firebase.initializeApp({
 // [START single_value_read]
 function sendNotificationToUser(uid, postId) {
   // Fetch the user's email.
-  var userRef = firebase.database().ref('/users/' + uid);
+  const userRef = firebase.database().ref('/users/' + uid);
   userRef.once('value').then(function(snapshot) {
-    var email = snapshot.val().email;
+    const email = snapshot.val().email;
     // Send the email to the user.
     // [START_EXCLUDE]
     if (email) {
       sendNotificationEmail(email).then(function() {
         // Save the date at which we sent that notification.
         // [START write_fan_out]
-        var update = {};
+        const update = {};
         update['/posts/' + postId + '/lastNotificationTimestamp'] =
             firebase.database.ServerValue.TIMESTAMP;
         update['/user-posts/' + uid + '/' + postId + '/lastNotificationTimestamp'] =
@@ -76,7 +75,7 @@ function sendNotificationToUser(uid, postId) {
  * Send the new star notification email to the given email.
  */
 function sendNotificationEmail(email) {
-  var mailOptions = {
+  const mailOptions = {
     from: '"Firebase Database Quickstart" <noreply@firebase.com>',
     to: email,
     subject: 'New star!',
@@ -106,9 +105,9 @@ function updateStarCount(postRef) {
  */
 function startListeners() {
   firebase.database().ref('/posts').on('child_added', function(postSnapshot) {
-    var postReference = postSnapshot.ref;
-    var uid = postSnapshot.val().uid;
-    var postId = postSnapshot.key;
+    const postReference = postSnapshot.ref;
+    const uid = postSnapshot.val().uid;
+    const postId = postSnapshot.key;
     // Update the star count.
     // [START post_value_event_listener]
     postReference.child('stars').on('value', function(dataSnapshot) {
@@ -141,13 +140,13 @@ function startWeeklyTopPostEmailer() {
   schedule.scheduleJob({hour: 14, minute: 30, dayOfWeek: 0}, function () {
     // List the top 5 posts.
     // [START top_posts_query]
-    var topPostsRef = firebase.database().ref('/posts').orderByChild('starCount').limitToLast(5);
+    const topPostsRef = firebase.database().ref('/posts').orderByChild('starCount').limitToLast(5);
     // [END top_posts_query]
-    var allUserRef = firebase.database().ref('/users');
+    const allUserRef = firebase.database().ref('/users');
     Promise.all([topPostsRef.once('value'), allUserRef.once('value')]).then(function(resp) {
-      var topPosts = resp[0].val();
-      var allUsers = resp[1].val();
-      var emailText = createWeeklyTopPostsEmailHtml(topPosts);
+      const topPosts = resp[0].val();
+      const allUsers = resp[1].val();
+      const emailText = createWeeklyTopPostsEmailHtml(topPosts);
       sendWeeklyTopPostEmail(allUsers, emailText);
     }).catch(function(error) {
       console.log('Failed to start weekly top posts emailer:', error);
@@ -161,9 +160,9 @@ function startWeeklyTopPostEmailer() {
  */
 function sendWeeklyTopPostEmail(users, emailHtml) {
   Object.keys(users).forEach(function(uid) {
-    var user = users[uid];
+    const user = users[uid];
     if (user.email) {
-      var mailOptions = {
+      const mailOptions = {
         from: '"Firebase Database Quickstart" <noreply@firebase.com>',
         to: user.email,
         subject: 'This week\'s top posts!',
@@ -173,7 +172,7 @@ function sendWeeklyTopPostEmail(users, emailHtml) {
         console.log('Weekly top posts email sent to: ' + user.email);
         // Save the date at which we sent the weekly email.
         // [START basic_write]
-        return firebase.database().child('/users/' + uid + '/lastSentWeeklyTimestamp')
+        return firebase.database().ref().child('/users/' + uid + '/lastSentWeeklyTimestamp')
             .set(firebase.database.ServerValue.TIMESTAMP);
         // [END basic_write]
       }).catch(function(error) {
@@ -187,9 +186,9 @@ function sendWeeklyTopPostEmail(users, emailHtml) {
  * Creates the text for the weekly top posts email given an Object of top posts.
  */
 function createWeeklyTopPostsEmailHtml(topPosts) {
-  var emailHtml = '<h1>Here are this week\'s top posts:</h1>';
+  let emailHtml = '<h1>Here are this week\'s top posts:</h1>';
   Object.keys(topPosts).forEach(function(postId) {
-    var post = topPosts[postId];
+    const post = topPosts[postId];
     emailHtml += '<h2>' + escape(post.title) + '</h2><div>Author: ' + escape(post.author) +
         '</div><div>Stars: ' + escape(post.starCount) + '</div><p>' + escape(post.body) + '</p>';
   });

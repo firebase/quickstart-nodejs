@@ -4,7 +4,7 @@
   "description": "Session Management with Firebase Admin SDK Quickstart Sample",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "cp ../tsconfig.json.template ./tsconfig.json && tsc",
     "demo": "./node_modules/.bin/webpack --config webpack.config.js && node app.js"
   },
   "author": "bojeil-google",
@@ -13,10 +13,10 @@
     "body-parser": "^1.15.2",
     "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
+    "firebase": "^7.15.5",
+    "firebase-admin": "^8.13.0",
+    "firebaseui": "^4.5.1",
     "jquery": "^3.5.0",
-    "firebase-admin": "^5.12.0",
-    "firebase": "^4.8.0",
-    "firebaseui": "^2.6.3",
     "webpack": "^4.4.1",
     "webpack-cli": "^2.0.13"
   }

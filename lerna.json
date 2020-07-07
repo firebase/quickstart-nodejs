@@ -1,0 +1,10 @@
+{
+  "packages": [
+    "auth-sessions",
+    "config",
+    "database",
+    "machine-learning",
+    "messaging"
+  ],
+  "version": "0.0.0"
+}

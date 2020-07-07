@@ -1,6 +1,10 @@
 {
+  "name": "messaging",
+  "scripts": {
+    "compile": "cp ../tsconfig.json.template ./tsconfig.json && tsc"
+  },
   "dependencies": {
-    "google-auth-library": "^0.10.0",
-    "googleapis": "^20.1.0"
+    "google-auth-library": "^6.0.3",
+    "googleapis": "^52.1.0"
   }
 }

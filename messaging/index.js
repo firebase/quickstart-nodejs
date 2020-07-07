@@ -7,13 +7,13 @@
  * a badge is added to messages that are sent to iOS devices.
  */
 const https = require('https');
-var fs = require('fs');
-var google = require('googleapis');
-var PROJECT_ID = '<YOUR-PROJECT-ID>';
-var HOST = 'fcm.googleapis.com';
-var PATH = '/v1/projects/' + PROJECT_ID + '/messages:send';
-var MESSAGING_SCOPE = 'https://www.googleapis.com/auth/firebase.messaging';
-var SCOPES = [MESSAGING_SCOPE];
+const { google } = require('googleapis');
+
+const PROJECT_ID = '<YOUR-PROJECT-ID>';
+const HOST = 'fcm.googleapis.com';
+const PATH = '/v1/projects/' + PROJECT_ID + '/messages:send';
+const MESSAGING_SCOPE = 'https://www.googleapis.com/auth/firebase.messaging';
+const SCOPES = [MESSAGING_SCOPE];
 
 /**
  * Get a valid access token.
@@ -21,8 +21,8 @@ var SCOPES = [MESSAGING_SCOPE];
 // [START retrieve_access_token]
 function getAccessToken() {
   return new Promise(function(resolve, reject) {
-    var key = require('./service-account.json');
-    var jwtClient = new google.auth.JWT(
+    const key = require('../placeholders/service-account.json');
+    const jwtClient = new google.auth.JWT(
       key.client_email,
       null,
       key.private_key,
@@ -43,11 +43,11 @@ function getAccessToken() {
 /**
  * Send HTTP request to FCM with given message.
  *
- * @param {JSON} fcmMessage will make up the body of the request.
+ * @param {object} fcmMessage will make up the body of the request.
  */
 function sendFcmMessage(fcmMessage) {
   getAccessToken().then(function(accessToken) {
-    var options = {
+    const options = {
       hostname: HOST,
       path: PATH,
       method: 'POST',
@@ -58,7 +58,7 @@ function sendFcmMessage(fcmMessage) {
       // [END use_access_token]
     };
 
-    var request = https.request(options, function(resp) {
+    const request = https.request(options, function(resp) {
       resp.setEncoding('utf8');
       resp.on('data', function(data) {
         console.log('Message sent to Firebase for delivery, response:');
@@ -81,8 +81,8 @@ function sendFcmMessage(fcmMessage) {
  * the messages sent to iOS and Android devices.
  */
 function buildOverrideMessage() {
-  var fcmMessage = buildCommonMessage();
-  var apnsOverride = {
+  const fcmMessage = buildCommonMessage();
+  const apnsOverride = {
     'payload': {
       'aps': {
         'badge': 1
@@ -93,7 +93,7 @@ function buildOverrideMessage() {
     }
   };
 
-  var androidOverride = {
+  const androidOverride = {
     'notification': {
       'click_action': 'android.intent.action.MAIN'
     }
@@ -122,14 +122,14 @@ function buildCommonMessage() {
   };
 }
 
-var message = process.argv[2];
+const message = process.argv[2];
 if (message && message == 'common-message') {
-  var commonMessage = buildCommonMessage();
+  const commonMessage = buildCommonMessage();
   console.log('FCM request body for message using common notification object:');
   console.log(JSON.stringify(commonMessage, null, 2));
   sendFcmMessage(buildCommonMessage());
 } else if (message && message == 'override-message') {
-  var overrideMessage = buildOverrideMessage();
+  const overrideMessage = buildOverrideMessage();
   console.log('FCM request body for override message:');
   console.log(JSON.stringify(overrideMessage, null, 2));
   sendFcmMessage(buildOverrideMessage());

@@ -12,27 +12,25 @@
  * limitations under the License.
  */
 
-var express = require('express');
-var cookieParser = require('cookie-parser')
-var http = require('http');
-var https = require('https');
-var app = express();
-var admin = require('firebase-admin');
-var bodyParser = require('body-parser');
+const express = require('express');
+const cookieParser = require('cookie-parser')
+const app = express();
+const admin = require('firebase-admin');
+const bodyParser = require('body-parser');
 
 /**
  * Renders the profile page and serves it in the response.
  * @param {string} endpoint The get profile endpoint.
  * @param {!Object} req The expressjs request.
  * @param {!Object} res The expressjs response.
- * @param {!firebase.auth.DecodedIdToken} decodedClaims The decoded claims from verified
+ * @param {!admin.auth.DecodedIdToken} decodedClaims The decoded claims from verified
  *     session cookies.
  * @return {!Promise} A promise that resolves on success.
  */
 function serveContentForUser(endpoint, req, res, decodedClaims) {
   // Lookup the user information corresponding to cookie and return the profile data for the user.
   return admin.auth().getUser(decodedClaims.sub).then(function(userRecord) {
-    var html = '<!DOCTYPE html>' +
+    const html = '<!DOCTYPE html>' +
       '<html>' +
       '<meta charset="UTF-8">' +
       '<link href="style.css" rel="stylesheet" type="text/css" media="screen" />' +
@@ -96,7 +94,7 @@ function attachCsrfToken(url, cookie, value) {
 function checkIfSignedIn(url) {
   return function(req, res, next) {
     if (req.url == url) {
-      var sessionCookie = req.cookies.session || '';
+      const sessionCookie = req.cookies.session || '';
       // User already logged in. Redirect to profile page.
       admin.auth().verifySessionCookie(sessionCookie).then(function(decodedClaims) {
         res.redirect('/profile');
@@ -131,7 +129,7 @@ app.use('/', express.static('public'));
 /** Get profile endpoint. */
 app.get('/profile', function (req, res) {
   // Get session cookie.
-  var sessionCookie = req.cookies.session || '';
+  const sessionCookie = req.cookies.session || '';
   // Get the session cookie and verify it. In this case, we are verifying if the
   // Firebase session was revoked, user deleted/disabled, etc.
   admin.auth().verifySessionCookie(sessionCookie, true /** check if revoked. */)
@@ -147,8 +145,8 @@ app.get('/profile', function (req, res) {
 /** Session login endpoint. */
 app.post('/sessionLogin', function (req, res) {
   // Get ID token and CSRF token.
-  var idToken = req.body.idToken.toString();
-  var csrfToken = req.body.csrfToken.toString();
+  const idToken = req.body.idToken.toString();
+  const csrfToken = req.body.csrfToken.toString();
   
   // Guard against CSRF attacks.
   if (!req.cookies || csrfToken !== req.cookies.csrfToken) {
@@ -156,7 +154,7 @@ app.post('/sessionLogin', function (req, res) {
     return;
   }
   // Set session expiration to 5 days.
-  var expiresIn = 60 * 60 * 24 * 5 * 1000;
+  const expiresIn = 60 * 60 * 24 * 5 * 1000;
   // Create the session cookie. This will also verify the ID token in the process.
   // The session cookie will have the same claims as the ID token.
   // We could also choose to enforce that the ID token auth_time is recent.
@@ -170,7 +168,7 @@ app.post('/sessionLogin', function (req, res) {
   .then(function(sessionCookie) {
     // Note httpOnly cookie will not be accessible from javascript.
     // secure flag should be set to true in production.
-    var options = {maxAge: expiresIn, httpOnly: true, secure: false /** to test in localhost */};
+    const options = {maxAge: expiresIn, httpOnly: true, secure: false /** to test in localhost */};
     res.cookie('session', sessionCookie, options);
     res.end(JSON.stringify({status: 'success'}));
   })
@@ -182,7 +180,7 @@ app.post('/sessionLogin', function (req, res) {
 /** User signout endpoint. */
 app.get('/logout', function (req, res) {
   // Clear cookie.
-  var sessionCookie = req.cookies.session || '';
+  const sessionCookie = req.cookies.session || '';
   res.clearCookie('session');
   // Revoke session too. Note this will revoke all user sessions.
   if (sessionCookie) {
@@ -205,7 +203,7 @@ app.get('/logout', function (req, res) {
 
 /** User delete endpoint. */
 app.get('/delete', function (req, res) {
-  var sessionCookie = req.cookies.session || '';
+  const sessionCookie = req.cookies.session || '';
   res.clearCookie('session');
   if (sessionCookie) {
     // Verify user and then delete the user.

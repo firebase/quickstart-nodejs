@@ -1,0 +1,16 @@
+{
+  "name": "quickstart-nodejs",
+  "version": "1.0.0",
+  "description": "Quickstarts for Firebase services in Node.js",
+  "scripts": {
+    "lerna-compile": "lerna run compile",
+    "lerna-bootstrap": "lerna bootstrap"
+  },
+  "author": "Firebase",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@types/node": "^14.0.18",
+    "lerna": "^3.22.1",
+    "typescript": "^3.9.6"
+  }
+}
