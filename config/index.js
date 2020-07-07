@@ -1,5 +1,5 @@
-var fs = require('fs');
-var admin = require('firebase-admin');
+const fs = require('fs');
+const admin = require('firebase-admin');
 admin.initializeApp();
 
 /**
@@ -28,7 +28,7 @@ function getTemplate() {
   config.getTemplate()
       .then(template => {
         console.log('ETag from server: ' + template.etag);
-        var templateStr = JSON.stringify(template);
+        const templateStr = JSON.stringify(template);
         fs.writeFileSync('config.json', templateStr);
       })
       .catch(err => {

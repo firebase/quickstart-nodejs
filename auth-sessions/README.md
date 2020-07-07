@@ -37,7 +37,7 @@ Enable the **Google** and **Email/Password** sign-in providers in the
 In the root folder `./auth-sessions`, create a `config.js` file:
 
 ```javascript
-var config = {
+const config = {
   apiKey: "...",
   authDomain: "...",
   databaseURL: "...",

@@ -12,17 +12,17 @@
  * limitations under the License.
  */
 
-var firebase = require('firebase');
-var firebaseui = require('firebaseui');
-var config = require('./config.js');
-var $ = require('jquery');
+const firebase = require('firebase');
+const firebaseui = require('firebaseui');
+const config = require('./config.js');
+const $ = require('jquery');
 
 /**
  * @param {string} name The cookie name.
  * @return {?string} The corresponding cookie value to lookup.
  */
 function getCookie(name) {
-  var v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+  const v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
   return v ? v[2] : null;
 }
 
@@ -67,14 +67,14 @@ function getUiConfig() {
  * profile page on success.
  * @param {!firebase.User} user
  */
-var handleSignedInUser = function(user) {
+const handleSignedInUser = function(user) {
   // Show redirection notice.
   document.getElementById('redirecting').classList.remove('hidden');
   // Set session cookie
   user.getIdToken().then(function(idToken) {
     // Session login endpoint is queried and the session cookie is set.
     // CSRF token should be sent along with request.
-    var csrfToken = getCookie('csrfToken')
+    const csrfToken = getCookie('csrfToken')
     return postIdTokenToSessionLogin('/sessionLogin', idToken, csrfToken)
       .then(function() {
         // Redirect to profile on success.
@@ -94,7 +94,7 @@ var handleSignedInUser = function(user) {
  * @param {?string} csrfToken The CSRF token to send to backend.
  * @return {any} A jQuery promise that resolves on completion.
  */
-var postIdTokenToSessionLogin = function(url, idToken, csrfToken) {
+const postIdTokenToSessionLogin = function(url, idToken, csrfToken) {
   // POST to session login endpoint.
   return $.ajax({
     type:'POST',
@@ -107,7 +107,7 @@ var postIdTokenToSessionLogin = function(url, idToken, csrfToken) {
 /**
  * Initializes the app.
  */
-var initApp = function() {
+const initApp = function() {
   // Renders sign-in page using FirebaseUI.
   ui.start('#firebaseui-container', getUiConfig());
 };
@@ -117,6 +117,6 @@ firebase.initializeApp(config);
 // Set persistence to none.
 firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE);
 // Initialize the FirebaseUI Widget using Firebase.
-var ui = new firebaseui.auth.AuthUI(firebase.auth());
+const ui = new firebaseui.auth.AuthUI(firebase.auth());
 // On page ready, initialize app.
 window.addEventListener('load', initApp);
