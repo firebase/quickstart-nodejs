@@ -9,7 +9,7 @@
     "compile": "cp ../tsconfig.json.template ./tsconfig.json && tsc"
   },
   "dependencies": {
-    "firebase-admin": "^9.1.0",
+    "firebase-admin": "git+https://github.com/firebase/firebase-admin-node.git#if-automl-3",
     "yargs": "^15.1.0"
   }
 }
