@@ -52,7 +52,6 @@ See the [developer guide][docs] for more information on model management.
 $ ./manage-ml.js list
 fish_detector    8716935   vision
 barcode_scanner  8716959   vision
-smart_reply      8716981   natural_language
 $ ./manage-ml.js new yak_detector -f ~/yak.tflite --tags vision,experimental
 Uploading model to Cloud Storage...
 Model uploaded and published:
@@ -64,7 +63,6 @@ $ ./manage-ml.js update 8717019 --remove_tags experimental
 $ ./manage-ml.js delete 8716959
 $ ./manage-ml.js list
 fish_detector    8716935   vision
-smart_reply      8716981   natural_language
 yak_detector     8717019   vision
 emu_detector     8717033
 $
