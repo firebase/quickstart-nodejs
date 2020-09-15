@@ -60,6 +60,31 @@ const uploadModel = async (tflite, displayName, tags = null) => {
 };
 
 /**
+ * Add an AutoML TensorFlow Lite model to your project and publish it.
+ *
+ * @param {string} automlRef AutoML reference of the model you want to add.
+ *  (e.g. 'projects/12345678/locations/us-central1/models/ICN1234567890')
+ * @param {string} displayName A name to identify the model in your Firebase
+ *  project. This is the name you use from your app to load the model.
+ * @param {?Array<string>=} tags Optional tags to help with model management.
+ */
+const addAutoMLModel = async (automlRef, displayName, tags = null) => {
+  const modelSpec = {
+    displayName: displayName,
+    tfliteModel: { automlModel: automlRef },
+  };
+  if (tags != null) { modelSpec.tags = tags; }
+  const model = await ml.createModel(modelSpec);
+  await model.waitForUnlocked();
+
+  await ml.publishModel(model.modelId);
+
+  const tagList = model.tags == null ? '' : model.tags.join(", ");
+  console.log('Model uploaded and published:');
+  console.log(`${model.displayName}\t\t${model.modelId}\t ${tagList}`);
+};
+
+/**
  * List the models in your project.
  *
  * @param {string=} filter An optional filter string to limit your results. See
@@ -142,16 +167,27 @@ const deleteModel = async (modelId) => {
 require('yargs')
     .scriptName("manage-ml")
     .usage('$0 <cmd> [args]')
-    .command('new <model_file> <name> [-t tags]]',
+    .command('new <name> [-f <model_file>] [-a <automl_ref>] [-t tags]]',
              'Upload and publish a tflite model',
              (yargs) => {
-               yargs.positional('model_file', {
-                 describe: 'Path to a tflite model',
-                 type: 'string'
-               });
                yargs.positional('name', {
                  describe: 'Display name for the model',
                  type: 'string'
+               });
+               yargs.option('file', {
+                 alias: 'f',
+                 demandOption: false,
+                 describe: 'Path to a tflite model',
+                 type: 'string',
+                 conflicts: 'automl'
+               });
+               yargs.option('automl', {
+                 alias: 'a',
+                 demandOption: false,
+                 describe: 'AutoML model reference (e.g. projects/12345678/' +
+                           'locations/us-central1/models/ICN1234567890)',
+                 type: 'string',
+                 conflicts: 'file'
                });
                yargs.option('tags', {
                  alias: 't',
@@ -163,7 +199,14 @@ require('yargs')
              }, (argv) => {
                (async () => {
                  const tags = argv.tags == null ? null : argv.tags.split(',');
-                 await uploadModel(argv.model_file, argv.name, tags);
+                 if (argv.file) {
+                   await uploadModel(argv.file, argv.name, tags);
+                 } else if (argv.automl) {
+                   await addAutoMLModel(argv.automl, argv.name, tags);
+                 } else {
+                   console.error('One of --file or --automl must be specified.');
+                   process.exit(1);
+                 }
                  process.exit();
                })().catch(e => {
                  printError(e);
