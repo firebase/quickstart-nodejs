@@ -15,7 +15,7 @@
     "express": "^4.14.0",
     "firebase": "^7.23.0",
     "firebase-admin": "^9.2.0",
-    "firebaseui": "^4.6.1",
+    "firebaseui": "^4.7.0",
     "jquery": "^3.5.0",
     "webpack": "^4.4.1",
     "webpack-cli": "^2.0.13"
