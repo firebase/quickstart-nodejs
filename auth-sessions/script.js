@@ -12,7 +12,9 @@
  * limitations under the License.
  */
 
-const firebase = require('firebase');
+import firebase from 'firebase/app';
+import 'firebase/auth';
+
 const firebaseui = require('firebaseui');
 const config = require('./config.js');
 const $ = require('jquery');
