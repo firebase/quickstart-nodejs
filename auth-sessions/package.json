@@ -14,7 +14,7 @@
     "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
     "firebase": "^8.1.2",
-    "firebase-admin": "^9.4.1",
+    "firebase-admin": "^9.4.2",
     "firebaseui": "^4.7.1",
     "jquery": "^3.5.0",
     "webpack": "^4.4.1",
