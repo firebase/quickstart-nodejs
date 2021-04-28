@@ -4,7 +4,7 @@
     "compile": "cp ../tsconfig.json.template ./tsconfig.json && tsc"
   },
   "dependencies": {
-    "firebase-admin": "^9.6.0",
+    "firebase-admin": "^9.7.0",
     "google-auth-library": "^6.0.3",
     "googleapis": "^52.1.0"
   }
