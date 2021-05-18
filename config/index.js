@@ -45,7 +45,7 @@ function getTemplate() {
 function publishTemplate() {
   const config = admin.remoteConfig();
   const template = config.createTemplateFromJSON(
-      fs.readFileSync('config.json', 'UTF8'));
+      fs.readFileSync('config.json', 'utf-8'));
   config.publishTemplate(template)
       .then(updatedTemplate => {
         console.log('Template has been published');

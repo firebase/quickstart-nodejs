@@ -75,7 +75,7 @@ function serveContentForUser(endpoint, req, res, decodedClaims) {
  * @param {string} url The URL to check.
  * @param {string} cookie The CSRF token name.
  * @param {string} value The CSRF token value to save.
- * @return {function} The middleware function to run.
+ * @return {express.Handler} The middleware function to run.
  */
 function attachCsrfToken(url, cookie, value) {
   return function(req, res, next) {
@@ -89,7 +89,7 @@ function attachCsrfToken(url, cookie, value) {
 /**
  * Checks if a user is signed in and if so, redirects to profile page.
  * @param {string} url The URL to check if signed in.
- * @return {function} The middleware function to run.
+ * @return {express.Handler} The middleware function to run.
  */
 function checkIfSignedIn(url) {
   return function(req, res, next) {
