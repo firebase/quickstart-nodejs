@@ -9,7 +9,7 @@
     "compile": "cp ../tsconfig.json.template ./tsconfig.json && tsc"
   },
   "dependencies": {
-    "firebase-admin": "^9.8.0",
+    "firebase-admin": "^9.9.0",
     "yargs": "^15.1.0"
   }
 }
