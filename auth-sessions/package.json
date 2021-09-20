@@ -13,7 +13,7 @@
     "body-parser": "^1.15.2",
     "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
-    "firebase": "^8.10.0",
+    "firebase": "^9.0.2",
     "firebase-admin": "^9.11.1",
     "firebaseui": "^5.0.0",
     "jquery": "^3.5.0",
