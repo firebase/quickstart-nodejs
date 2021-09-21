@@ -12,8 +12,8 @@
  * limitations under the License.
  */
 
-import firebase from 'firebase/app';
-import 'firebase/auth';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
 
 const firebaseui = require('firebaseui');
 const config = require('./config.js');
