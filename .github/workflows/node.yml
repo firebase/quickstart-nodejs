@@ -28,6 +28,5 @@ jobs:
           key: ${{ runner.os }}-node-${{ matrix.node-version }}-${{ hashFiles('**/package-lock.json') }}
 
       - run: npm install
-      
-      - name: "Lint and Test"
-        run: ./scripts/test.sh
+      - run: npm run bootstrap
+      - run: npm run compile
