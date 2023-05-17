@@ -4,20 +4,20 @@
   "description": "Session Management with Firebase Admin SDK Quickstart Sample",
   "main": "app.js",
   "scripts": {
-    "compile": "cp ../tsconfig.json.template ./tsconfig.json && tsc",
+    "compile": "cp ../tsconfig.template.json ./tsconfig.json && tsc",
     "demo": "./node_modules/.bin/webpack --config webpack.config.js && node app.js"
   },
   "author": "bojeil-google",
   "license": "Apache License Version 2.0",
   "dependencies": {
-    "body-parser": "^1.15.2",
-    "cookie-parser": "^1.4.3",
-    "express": "^4.14.0",
-    "firebase": "^9.1.1",
-    "firebase-admin": "^9.12.0",
-    "firebaseui": "^5.0.0",
-    "jquery": "^3.5.0",
-    "webpack": "^4.4.1",
-    "webpack-cli": "^2.0.13"
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.18.2",
+    "firebase": "^9.22.0",
+    "firebase-admin": "^11.8.0",
+    "firebaseui": "^6.0.2",
+    "jquery": "^3.7.0",
+    "webpack": "^5.82.1",
+    "webpack-cli": "^5.1.1"
   }
 }
