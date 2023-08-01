@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 importers:
 
   .:
@@ -8,8 +12,8 @@ importers:
         specifier: ^20.1.7
         version: 20.1.7
       pnpm:
-        specifier: ^8.5.1
-        version: 8.5.1
+        specifier: ^8.6.8
+        version: 8.6.8
       typescript:
         specifier: ^5.0.4
         version: 5.0.4
@@ -2597,8 +2601,8 @@ packages:
       find-up: 4.1.0
     dev: false
 
-  /pnpm@8.5.1:
-    resolution: {integrity: sha512-W6elL7Nww0a/MCICkzpkbxW6f99TQuX4DuJoDjWp39X08PKDkEpg4cgj3d6EtgYADcdQWl/eM8NdlLJVE3RgpA==}
+  /pnpm@8.6.8:
+    resolution: {integrity: sha512-OtrCRUE7VqRyKly9E3gfExZHOAHtFDpmulyVFKrnl3v/n2xJckdueVumWJqUA5FHxcRP/T42r8P8CDr9duPP9w==}
     engines: {node: '>=16.14'}
     hasBin: true
     dev: true
