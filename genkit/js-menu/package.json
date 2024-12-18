@@ -18,7 +18,7 @@
   "dependencies": {
     "genkit": "^0.9.0-rc || ^0.9",
     "@genkit-ai/dev-local-vectorstore": "^0.9.0-rc || ^0.9",
-    "@genkit-ai/firebase": "^0.9.0-rc || ^0.9",
+    "@genkit-ai/firebase": "^0.9",
     "@genkit-ai/evaluator": "^0.9.0-rc || ^0.9",
     "@genkit-ai/vertexai": "^0.9.0-rc || ^0.9"
   },
