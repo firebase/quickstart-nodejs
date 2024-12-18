@@ -10,7 +10,7 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "@types/node": "^20.1.7",
-    "pnpm": "^8.5.1",
+    "pnpm": "^9.15.0",
     "typescript": "^5.0.4"
   }
 }
